@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <title>Ensayapp - Login</title>
+
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="resources/css/cssLayout.css"></link>
+        <link rel="stylesheet" href="resources/css/fontawesome/css/all.css"></link>
+    </h:head>
+    <h:body class="login_body">
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div id="login_container" class="col-3">
+                    <div class="header_back">
+                        <h:form>
+                            <h:commandLink class="back_link" action="index">
+                                <h:outputLabel class="fas fa-chevron-left"/> #{msgs['login.btnVolver']}
+                            </h:commandLink>
+                        </h:form>
+                        <!--<a ><i class="fas fa-chevron-left"></i>  </a>-->
+                    </div>
+                    <div id="header_login">
+                        <img src="resources/img/Icono.jpg" alt="Logotipo" id="logo" style="width:180px;height: 180px;"></img><br/>
+                    </div>
+                    <h:form class="px-4 py-3">
+                        <div class="form-group">
+                            <!--<label><b></b></label>-->
+                            <h:outputLabel for="correo" value="#{msgs['login.lblCorreo']}"/>
+                            <h:inputText id="correo" class="form-control" required="true" />
+                            <h:message class="alert-error" for="correo" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel for="clave" value="#{msgs['login.lblClave']}"/>
+                            <h:inputText id="clave" class="form-control" required="true" />
+                            <h:message class="alert-error" for="clave" />
+                        </div>
+                        <!--<button type="button" class="btn btn-primary btn-block btn-login"></button>-->
+                        <h:commandButton class="btn btn-primary btn-block btn-login" value="#{msgs['login.btnIniciarSesion']}" />
+                    </h:form>
+                    <div class="dropdown-divider"></div>
+                    <h:form>
+                        <h:commandButton class="btn dropdown-item" value="#{msgs['login.lblRegistrarse']}" />
+                        <h:commandButton class="btn dropdown-item" value="#{msgs['login.lblOlvideClave']}" />
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script type="text/javascript" src="resources/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="resources/js/variables.js"></script>
+        <script type="text/javascript" src="resources/js/core.js"></script>
+    </h:body>
+</html>

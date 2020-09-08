@@ -1,0 +1,7 @@
+com\adsi\ensayapp\backing\App.class
+com\adsi\ensayapp\ejb\AbstractFacade.class
+com\adsi\ensayapp\bean\ContactForm.class
+com\adsi\ensayapp\ejb\MensajeContactoFacadeLocal.class
+com\adsi\ensayapp\model\MensajeContacto.class
+com\adsi\ensayapp\ejb\MensajeContactoFacade.class
+com\adsi\ensayapp\model\MensajeContacto_.class
