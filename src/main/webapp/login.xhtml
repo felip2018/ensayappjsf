@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="utf-8"></meta>
         <title>Ensayapp - Login</title>
@@ -16,9 +18,9 @@
                 <div id="login_container" class="col-3">
                     <div class="header_back">
                         <h:form>
-                            <h:commandLink class="back_link" action="index">
+                            <p:link outcome="index">
                                 <h:outputLabel class="fas fa-chevron-left"/> #{msgs['login.btnVolver']}
-                            </h:commandLink>
+                            </p:link>
                         </h:form>
                         <!--<a ><i class="fas fa-chevron-left"></i>  </a>-->
                     </div>
@@ -27,27 +29,99 @@
                     </div>
                     <h:form class="px-4 py-3">
                         <div class="form-group">
-                            <!--<label><b></b></label>-->
                             <h:outputLabel for="correo" value="#{msgs['login.lblCorreo']}"/>
-                            <h:inputText id="correo" class="form-control" required="true" />
+                            <h:inputText id="correo" class="form-control" required="true" 
+                                         value="#{loginForm.usuario.correo}"/>
                             <h:message class="alert-error" for="correo" />
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clave" value="#{msgs['login.lblClave']}"/>
-                            <h:inputText id="clave" class="form-control" required="true" />
+                            <p:password id="clave" class="form-control" required="true" 
+                                         value="#{loginForm.usuario.clave}"/>
                             <h:message class="alert-error" for="clave" />
                         </div>
-                        <!--<button type="button" class="btn btn-primary btn-block btn-login"></button>-->
-                        <h:commandButton class="btn btn-primary btn-block btn-login" value="#{msgs['login.btnIniciarSesion']}" />
+                        <h:commandButton class="btn btn-primary btn-block btn-login" 
+                                         value="#{msgs['login.btnIniciarSesion']}" 
+                                         action="#{loginForm.iniciarSesion()}"/>
+                        <p:messages showDetail="true" rendered="true"/>
                     </h:form>
                     <div class="dropdown-divider"></div>
                     <h:form>
-                        <h:commandButton class="btn dropdown-item" value="#{msgs['login.lblRegistrarse']}" />
-                        <h:commandButton class="btn dropdown-item" value="#{msgs['login.lblOlvideClave']}" />
+                        <p:commandLink class="btn dropdown-item" 
+                                       value="#{msgs['login.lblRegistrarse']}" 
+                                       onclick="PF('wdlgRegistro').show();"/>
+
+                        <p:commandLink class="btn dropdown-item" 
+                                       value="#{msgs['login.lblOlvideClave']}" />
+                        
+                        <!--<p:commandButton class="btn dropdown-item" onclick="verModal()" value="Modal"/>-->
+                                       
                     </h:form>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <p:dialog header="Regístrate" widgetVar="wdlgRegistro" modal="true" width="600">
+                        <h:form>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p:inputText id="nombres" required="true" class="form-control" placeholder="Nombres"
+                                                 value="#{registerForm.usuario.nombre}"/>
+                                    <p:message for="nombres"/>
+                                </div>
+                                <div class="col-6">
+                                    <p:inputText id="apellidos" required="true" class="form-control" placeholder="Apellidos"
+                                                 value="#{registerForm.usuario.apellido}"/>
+                                    <p:message for="apellidos"/>
+                                </div>
+                                <div class="col-6">
+                                    <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
+                                                     value="#{registerForm.usuario.idTipoDocumento}">
+                                        <f:selectItem itemValue="" itemLabel="-Tipo identificación" />
+                                        <f:selectItem itemValue="1" itemLabel="CÉDULA DE CIUDADANÍA" />
+                                        <f:selectItem itemValue="2" itemLabel="CÉDULA DE EXTRANJERÍA" />
+                                        <f:selectItem itemValue="3" itemLabel="PASAPORTE" />
+                                        <f:selectItem itemValue="4" itemLabel="TARJETA DE IDENTIDAD" />
+                                    </p:selectOneMenu>
+                                    <p:message for="id_tipo_doc"/>
+                                </div>
+                                <div class="col-6">
+                                    <p:inputNumber id="num_doc" required="true" class="form-control" placeholder="Documento"
+                                                   value="#{registerForm.usuario.numDoc}"/>
+                                    <p:message for="num_doc"/>
+                                </div>
+                                <div class="col-12">
+                                    <p:inputText id="telefono" required="true" class="form-control" placeholder="Telefono"
+                                                 value="#{registerForm.usuario.telefono}"/>
+                                    <p:message for="telefono"/>
+                                </div>
+                                <div class="col-12">
+                                    <p:inputText id="correo" required="true" class="form-control" placeholder="Correo electrónico"
+                                                 value="#{registerForm.usuario.correo}"/>
+                                    <p:message for="correo"/>
+                                </div>
+                                <div class="col-12">
+                                    <p:password id="clave" class="form-control" required="true" placeholder="Clave" match="clave2"
+                                                value="#{registerForm.usuario.clave}"/>
+                                    <p:message for="clave"/>
+                                </div>
+                                <div class="col-12">
+                                    <p:password id="clave2" class="form-control" required="true" placeholder="Repetir clave"/>
+                                    <p:message for="clave2"/>
+                                </div>
+                                <div class="col-12">
+                                    <hr></hr>
+                                    <p:commandButton class="btn btn-primary btn-block" value="Registrarse"
+                                                     action="#{registerForm.registrarUsuario()}"
+                                                     oncomplete="PF('wdlgRegistro').hide();"/>
+                                </div>
+                            </div>
+                        </h:form>
+                    </p:dialog>
+                </div>
+            </div>
         </div>
+
 
         <div class="modal" id="myModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -69,11 +143,10 @@
             </div>
         </div>
 
-
-        <script type="text/javascript" src="resources/js/jquery-3.4.1.min.js"></script>
+        <!--<script type="text/javascript" src="resources/js/jquery-3.4.1.min.js"></script>-->
+        <!--<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
         <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-
-        <script type="text/javascript" src="resources/js/variables.js"></script>
-        <script type="text/javascript" src="resources/js/core.js"></script>
+        <script type="text/javascript" src="resources/js/functions.js"></script>
     </h:body>
 </html>

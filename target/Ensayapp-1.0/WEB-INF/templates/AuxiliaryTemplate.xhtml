@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>Ensayapp</title>
+        <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="../../resources/css/cssLayout.css"></link>
+        <link rel="stylesheet" href="../../resources/css/fontawesome/css/all.css"></link>
+    </h:head>
+
+    <h:body>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <ui:insert name="top">
+                            <div class="col-12" id="top_menu">
+                                <b class="title_app">Ensayapp</b>
+                            </div> 
+                        </ui:insert>    
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 lateral_menu">
+                            <ui:insert name="left">
+
+                                <h:form>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p:commandButton class="btn btn-secondary btn-block" value="Inicio"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p:commandButton class="btn btn-secondary btn-block" value="Activos"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p:commandButton class="btn btn-secondary btn-block" value="Movimientos"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p:commandButton class="btn btn-secondary btn-block" value="Proveedores"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p:link class="btn btn-primary btn-block" outcome="/login">
+                                                    <p:outputLabel class="fas fa-sign-out-alt"/> Salir
+                                                </p:link>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </h:form>
+
+                            </ui:insert>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" id="container_content">
+                            <ui:insert name="content"></ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ui:insert name="bottom">
+                    <div class="col-12 footer">
+                        <p>&#169; Copyright 2020 - All rights reserved</p>
+                    </div>
+                </ui:insert>         
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../resources/js/variables.js"></script>
+        <script type="text/javascript" src="../../resources/js/core.js"></script>
+        <script type="text/javascript" src="../../resources/js/navigation.js"></script>
+    </h:body>
+
+</html>

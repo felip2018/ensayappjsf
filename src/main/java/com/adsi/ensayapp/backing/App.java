@@ -1,10 +1,10 @@
 package com.adsi.ensayapp.backing;
 
 import java.io.Serializable;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
-@SessionScoped
+@ApplicationScoped
 @Named
 public class App implements Serializable {
     
