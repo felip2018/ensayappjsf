@@ -30,7 +30,7 @@ public class Usuario implements Serializable{
     private long numDoc;
     
     @Column(name = "nombre")
-    private String nombre = "Felipe";
+    private String nombre;
     
     @Column(name = "apellido")
     private String apellido;

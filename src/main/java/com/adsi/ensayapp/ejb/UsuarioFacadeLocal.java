@@ -5,6 +5,7 @@
  */
 package com.adsi.ensayapp.ejb;
 
+import com.adsi.ensayapp.dto.UserValidationResponseDTO;
 import com.adsi.ensayapp.model.Usuario;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,6 +30,8 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
 
     int count();
+    
+    UserValidationResponseDTO validacionUsuario(Usuario usr);
     
     Usuario iniciarSesion(Usuario usr);
 }

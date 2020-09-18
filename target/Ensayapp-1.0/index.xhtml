@@ -31,7 +31,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 navigation-menu">
                         <ul>
                             <li>
-                                <p:link outcome="login">
+                                <p:link outcome="login" target="_blank">
                                     #{msgs['landing.ingresar']} <p:outputLabel class="fas fa-sign-in-alt"/>
                                 </p:link>
                             </li>
@@ -176,7 +176,10 @@
                                     <h:message class="alert-error" for="message" />
                                 </div>
                                 <div class="col-12">
-                                    <h:commandButton class="btn btn-primary btn-block" action="#{contactForm.enviar()}" value="#{msgs['contactForm.btnEnviar']}" />
+                                    <p:commandButton class="btn btn-primary btn-block" 
+                                                     actionListener="#{contactForm.enviar()}"
+                                                     value="#{msgs['contactForm.btnEnviar']}"
+                                                     oncomplete=""/>
                                 </div>
                             </h:form>
                         </div>	

@@ -5,12 +5,17 @@
  */
 package com.adsi.ensayapp.ejb;
 
+import com.adsi.ensayapp.dto.UserValidationResponseDTO;
 import com.adsi.ensayapp.model.Usuario;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -18,7 +23,9 @@ import javax.persistence.Query;
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
-
+    
+    Logger log = LogManager.getRootLogger();
+    
     @PersistenceContext(unitName = "ensayapp_PU")
     private EntityManager em;
 
@@ -29,6 +36,36 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     public UsuarioFacade() {
         super(Usuario.class);
+    }
+    
+    @Override
+    public UserValidationResponseDTO validacionUsuario(Usuario usr){
+        Usuario usuario = null;
+        UserValidationResponseDTO validacion = new UserValidationResponseDTO();
+        String consulta;
+        try {
+            StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("SP_UserValidation",UserValidationResponseDTO.class);
+            storedProcedure.registerStoredProcedureParameter("idTipoDoc", Integer.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("numDoc", Double.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("correoElectronico", String.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("cant", Integer.class, ParameterMode.OUT);
+            storedProcedure.registerStoredProcedureParameter("mensaje", String.class, ParameterMode.OUT);
+            
+            storedProcedure.setParameter("idTipoDoc", usr.getIdTipoDocumento());
+            storedProcedure.setParameter("numDoc", usr.getNumDoc());
+            storedProcedure.setParameter("correoElectronico", usr.getCorreo());
+            
+            storedProcedure.execute();
+            
+            validacion.setCant((int) storedProcedure.getOutputParameterValue("cant"));
+            validacion.setMensaje((String) storedProcedure.getOutputParameterValue("mensaje"));
+            
+            
+        } catch (Exception e) {
+            throw e;
+        } 
+        
+        return validacion;
     }
     
     @Override
