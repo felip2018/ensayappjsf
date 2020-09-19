@@ -112,12 +112,18 @@
                                     <h:message for="clave2" style="color:red;"/>
                                 </div>
                                 <div class="col-12">
+                                    <p:inputTextarea class="form-control" readonly="true" rows="2" 
+                                                     id="responseField"
+                                                     value="#{registerForm.respuesta}"/>
+                                </div>
+                                <div class="col-12">
                                     <hr></hr>
                                     <p:commandButton class="btn btn-secondary" 
                                                      value="Cancelar"
                                                      onclick="PF('wdlgRegistro').hide();"/>
                                     <p:commandButton class="btn btn-primary" value="Registrarse"
-                                                     actionListener="#{registerForm.registrarUsuario()}"/>
+                                                     actionListener="#{registerForm.registrarUsuario()}"
+                                                     update="responseField"/>
                                 </div>
                             </div>
                         </h:form>

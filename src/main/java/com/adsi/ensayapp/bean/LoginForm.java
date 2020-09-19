@@ -42,18 +42,26 @@ public class LoginForm implements Serializable {
         try {
             usr = usuarioEJB.iniciarSesion(usuario);
             if (usr != null) {
-                log.info("Hola, "+usr.getNombre());
                 
-                switch(usr.getIdPerfil()){
-                    case 1:
-                        urlRedireccion = "views/admin/AdminInicio?faces-redirect=true";
-                        break;
-                    case 2:
-                        urlRedireccion = "views/auxiliary/AuxiliaryInicio?faces-redirect=true";
-                        break;
-                    case 3:
-                        urlRedireccion = "views/musician/MusicianInicio?faces-redirect=true";
-                        break;
+                if (usr.getValidacionCuenta() == 1) {
+                    
+                
+                    switch(usr.getIdPerfil()){
+                        case 1:
+                            urlRedireccion = "views/admin/AdminInicio?faces-redirect=true";
+                            break;
+                        case 2:
+                            urlRedireccion = "views/auxiliary/AuxiliaryInicio?faces-redirect=true";
+                            break;
+                        case 3:
+                            urlRedireccion = "views/musician/MusicianInicio?faces-redirect=true";
+                            break;
+                    }
+                }else{
+                    FacesContext.getCurrentInstance().addMessage(null, 
+                                new FacesMessage(FacesMessage.SEVERITY_WARN,
+                                "Aviso",
+                                "La cuenta de usuario no ha sido activada."));
                 }
                 
             }else{

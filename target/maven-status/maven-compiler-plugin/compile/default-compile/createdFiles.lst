@@ -1,5 +1,9 @@
+com\adsi\ensayapp\utilities\SendEmail.class
+com\adsi\ensayapp\utilities\Constants.class
+com\adsi\ensayapp\dto\UserValidationResponseDTO.class
 com\adsi\ensayapp\ejb\PerfilFacade.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacade.class
+com\adsi\ensayapp\utilities\SendEmail$1.class
 com\adsi\ensayapp\ejb\UsuarioFacadeLocal.class
 com\adsi\ensayapp\model\TipoDocumento_.class
 com\adsi\ensayapp\model\Usuario.class
@@ -8,9 +12,11 @@ com\adsi\ensayapp\bean\ContactForm.class
 com\adsi\ensayapp\bean\LoginForm.class
 com\adsi\ensayapp\model\TipoDocumento.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacadeLocal.class
+com\adsi\ensayapp\bean\AccountValidation.class
 com\adsi\ensayapp\model\Perfil_.class
 com\adsi\ensayapp\bean\RegisterForm.class
 com\adsi\ensayapp\model\MensajeContacto_.class
+com\adsi\ensayapp\dto\EmailMessageDTO.class
 com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
 com\adsi\ensayapp\backing\App.class
 com\adsi\ensayapp\ejb\AbstractFacade.class

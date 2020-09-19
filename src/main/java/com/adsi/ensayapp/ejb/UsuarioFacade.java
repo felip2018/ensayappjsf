@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.adsi.ensayapp.ejb;
 
 import com.adsi.ensayapp.dto.UserValidationResponseDTO;
@@ -17,10 +12,6 @@ import javax.persistence.StoredProcedureQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- *
- * @author Felipe
- */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
     
@@ -90,5 +81,22 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         } 
         
         return usuario;
+    }
+    
+    @Override
+    public void validarCuenta(String codigoValidacion){
+        String consulta = "";
+        try {
+            /*em.createNamedQuery("updateValidationAccount",Usuario.class)
+                    .setParameter(1, codigoValidacion).executeUpdate();*/
+            consulta = "UPDATE Usuario u SET u.validacionCuenta = 1 WHERE u.codigoValidacion = ?1";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, codigoValidacion);
+            
+            query.executeUpdate();
+            
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

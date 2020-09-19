@@ -34,4 +34,6 @@ public interface UsuarioFacadeLocal {
     UserValidationResponseDTO validacionUsuario(Usuario usr);
     
     Usuario iniciarSesion(Usuario usr);
+    
+    void validarCuenta(String codigoValidacion);
 }
