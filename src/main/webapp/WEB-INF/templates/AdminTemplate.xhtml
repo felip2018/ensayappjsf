@@ -35,50 +35,32 @@
                             <ui:insert name="left">
 
                                 <h:form>
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-secondary btn-block" 
-                                                        value="#{msgs['AdminMenu.inicio']}"
-                                                        outcome="AdminInicio"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-secondary btn-block" 
-                                                        value="#{msgs['AdminMenu.reservaciones']}"
-                                                        outcome="Reservaciones"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-secondary btn-block" 
-                                                        value="#{msgs['AdminMenu.salasEnsayo']}"
-                                                        outcome="SalasEnsayo"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-secondary btn-block" 
-                                                        value="#{msgs['AdminMenu.gastos']}"
-                                                        outcome="Gastos"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-secondary btn-block" 
-                                                        value="#{msgs['AdminMenu.usuarios']}"
-                                                        outcome="Usuarios"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-primary btn-block" outcome="/login">
-                                                    <p:outputLabel class="fas fa-sign-out-alt"/> Salir
-                                                </p:link>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <p:menu toggleable="true">
+                                        <p:menuitem value="#{msgs['AdminMenu.inicio']}" outcome="AdminInicio"/>
+                                        <p:menuitem value="#{msgs['AdminMenu.reservaciones']}" outcome="Reservaciones"/>
+                                        <p:submenu label="#{msgs['AdminMenu.salasEnsayo']}">
+                                            <p:menuitem ajax="false" outcome="SalasEnsayo">
+                                                <p:outputLabel class="fas fa-eye"/> Ver Salas
+                                            </p:menuitem>
+                                            <p:menuitem ajax="false" outcome="RegistrarSalaEnsayo">
+                                                <p:outputLabel class="fas fa-plus"/> Registrar
+                                            </p:menuitem>
+                                        </p:submenu>
+                                        <p:submenu label="#{msgs['AdminMenu.gastos']}">
+                                            <p:menuitem ajax="false" outcome="Gastos">
+                                                <p:outputLabel class="fas fa-eye"/> Ver Gastos
+                                            </p:menuitem>
+                                        </p:submenu>
+                                        <p:submenu label="#{msgs['AdminMenu.usuarios']}">
+                                            <p:menuitem ajax="false" outcome="Usuarios">
+                                                <p:outputLabel class="fas fa-eye"/> Ver Usuarios
+                                            </p:menuitem>
+                                        </p:submenu>
+                                        <p:separator/>
+                                        <p:menuitem class="btn btn-primary btn-block" outcome="/login">
+                                            <p:outputLabel class="fas fa-sign-out-alt"/> Salir
+                                        </p:menuitem>
+                                    </p:menu>
                                 </h:form>
 
                             </ui:insert>

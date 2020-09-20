@@ -44,8 +44,6 @@ public class LoginForm implements Serializable {
             if (usr != null) {
                 
                 if (usr.getValidacionCuenta() == 1) {
-                    
-                
                     switch(usr.getIdPerfil()){
                         case 1:
                             urlRedireccion = "views/admin/AdminInicio?faces-redirect=true";
