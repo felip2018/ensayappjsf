@@ -3,8 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{app.locale}" />
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -37,27 +38,37 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Inicio"/>
+                                                <p:link class="btn btn-secondary btn-block" 
+                                                        value="#{msgs['AdminMenu.inicio']}"
+                                                        outcome="AdminInicio"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Reservaciones"/>
+                                                <p:link class="btn btn-secondary btn-block" 
+                                                        value="#{msgs['AdminMenu.reservaciones']}"
+                                                        outcome="Reservaciones"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Salas de ensayo"/>
+                                                <p:link class="btn btn-secondary btn-block" 
+                                                        value="#{msgs['AdminMenu.salasEnsayo']}"
+                                                        outcome="SalasEnsayo"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Gastos"/>
+                                                <p:link class="btn btn-secondary btn-block" 
+                                                        value="#{msgs['AdminMenu.gastos']}"
+                                                        outcome="Gastos"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Clientes"/>
+                                                <p:link class="btn btn-secondary btn-block" 
+                                                        value="#{msgs['AdminMenu.usuarios']}"
+                                                        outcome="Usuarios"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -97,10 +108,10 @@
 
 
 
-        <script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>
+        <!--<script type="text/javascript" src="../../resources/js/jquery-3.4.1.min.js"></script>-->
         <script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../resources/js/variables.js"></script>
-        <script type="text/javascript" src="../../resources/js/core.js"></script>
+        <!--<script type="text/javascript" src="../../resources/js/core.js"></script>-->
         <script type="text/javascript" src="../../resources/js/navigation.js"></script>
     </h:body>
 
