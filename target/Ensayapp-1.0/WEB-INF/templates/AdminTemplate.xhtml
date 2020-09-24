@@ -36,29 +36,35 @@
 
                                 <h:form>
                                     <p:menu toggleable="true">
-                                        <p:menuitem value="#{msgs['AdminMenu.inicio']}" outcome="AdminInicio"/>
+                                        <p:menuitem value="#{msgs['Menu.inicio']}" outcome="AdminInicio"/>
                                         <p:menuitem value="#{msgs['AdminMenu.reservaciones']}" outcome="Reservaciones"/>
                                         <p:submenu label="#{msgs['AdminMenu.salasEnsayo']}">
                                             <p:menuitem ajax="false" outcome="SalasEnsayo">
-                                                <p:outputLabel class="fas fa-eye"/> Ver Salas
+                                                <p:outputLabel class="fas fa-eye"/> #{msgs['AdminMenu.salasEnsayoSub.verSalas']}
                                             </p:menuitem>
                                             <p:menuitem ajax="false" outcome="RegistrarSalaEnsayo">
-                                                <p:outputLabel class="fas fa-plus"/> Registrar
+                                                <p:outputLabel class="fas fa-plus"/> #{msgs['AdminMenu.salasEnsayoSub.registrarSala']}
                                             </p:menuitem>
                                         </p:submenu>
                                         <p:submenu label="#{msgs['AdminMenu.gastos']}">
                                             <p:menuitem ajax="false" outcome="Gastos">
-                                                <p:outputLabel class="fas fa-eye"/> Ver Gastos
+                                                <p:outputLabel class="fas fa-eye"/> #{msgs['AdminMenu.gastosSub.verGastos']}
+                                            </p:menuitem>
+                                            <p:menuitem ajax="false" outcome="RegistrarGastos">
+                                                <p:outputLabel class="fas fa-plus"/> #{msgs['AdminMenu.gastosSub.registrarGasto']}
                                             </p:menuitem>
                                         </p:submenu>
                                         <p:submenu label="#{msgs['AdminMenu.usuarios']}">
                                             <p:menuitem ajax="false" outcome="Usuarios">
-                                                <p:outputLabel class="fas fa-eye"/> Ver Usuarios
+                                                <p:outputLabel class="fas fa-eye"/> #{msgs['AdminMenu.usuariosSub.verUsuarios']}
+                                            </p:menuitem>
+                                            <p:menuitem ajax="false" outcome="RegistrarUsuario">
+                                                <p:outputLabel class="fas fa-plus"/> #{msgs['AdminMenu.usuariosSub.registrarUsuario']}
                                             </p:menuitem>
                                         </p:submenu>
                                         <p:separator/>
                                         <p:menuitem class="btn btn-primary btn-block" outcome="/login">
-                                            <p:outputLabel class="fas fa-sign-out-alt"/> Salir
+                                            <p:outputLabel class="fas fa-sign-out-alt"/> #{msgs['Menu.salir']}
                                         </p:menuitem>
                                     </p:menu>
                                 </h:form>

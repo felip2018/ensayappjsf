@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -49,23 +50,64 @@
                                     </p:schedule>
                                 </h:panelGrid>
 
-                                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-                                    <h:panelGrid id="eventDetails" columns="2">
-                                        <p:outputLabel for="title" value="Titles:" />
-                                        <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" />
-
-                                        <p:outputLabel for="from" value="From:" />
-                                        <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
-
-                                        <p:outputLabel for="to" value="To:" />
-                                        <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
-
-                                        <p:outputLabel for="allDay" value="All Day (see #1164):" />
-                                        <h:selectBooleanCheckbox id="allDay" value="#{scheduleJava8View.event.allDay}" />
-
-                                        <p:commandButton type="reset" value="Reset" />
-                                        <p:commandButton id="addButton" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
-                                    </h:panelGrid>
+                                <p:dialog id="eventDetails" widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p:outputLabel for="title" value="Room: " />
+                                        </div>
+                                        <div class="col-8">
+                                            <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p:outputLabel for="from" value="From:" />
+                                        </div>
+                                        <div class="col-8">
+                                            <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p:outputLabel for="to" value="To:" />
+                                        </div>
+                                        <div class="col-8">
+                                            <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p:outputLabel for="comments" value="Comments:" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p:inputTextarea class="form-control" rows="3" id="comments" value="#{scheduleJava8View.event.description}"/>
+                                        </div>
+                                    </div>
+                                    <p:separator/>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p:outputLabel for="status" value="Reservation status" />
+                                        </div>
+                                        <div class="col-12">
+                                            <p:selectOneMenu id="status" class="form-control">
+                                                <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                                <f:selectItem itemValue="1" itemLabel="Comfirmed"/>
+                                                <f:selectItem itemValue="2" itemLabel="Rejected"/>
+                                                <f:selectItem itemValue="3" itemLabel="Cancelled"/>
+                                            </p:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <p:separator/>
+                                    <div class="row">
+                                        <div class="col-6 align-content-center">
+                                            <p:commandButton type="reset" class="btn btn-secondary" value="Cancel" />
+                                        </div>
+                                        <div class="col-6 align-content-center">
+                                            <p:commandButton id="addButton" class="btn btn-primary" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                                        </div>
+                                    </div>
                                 </p:dialog>    
                             </h:form>
                         </div>

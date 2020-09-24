@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "imagen")
@@ -16,25 +18,26 @@ public class Imagen implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_imagen")
-    public int id;
+    private int id;
     
     @Column(name = "id_activo")
-    public int idActivo;
+    private int idActivo;
     
     @Column(name = "id_sala")
-    public int idSala;
+    private int idSala;
     
     @Column(name = "ruta")
-    public String ruta;
+    private String ruta;
     
     @Column(name = "tipo")
-    public String tipo;
+    private String tipo;
     
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_registro")
-    public Date fechaRegistro;
+    private Date fechaRegistro;
     
     @Column(name = "estado_registro")
-    public String estadoRegistro;
+    private String estadoRegistro;
 
     public int getId() {
         return id;

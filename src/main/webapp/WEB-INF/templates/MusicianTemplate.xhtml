@@ -3,8 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{app.locale}" />
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -34,30 +35,17 @@
                             <ui:insert name="left">
                                 
                                 <h:form>
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Inicio"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Reservar sala"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:commandButton class="btn btn-secondary btn-block" value="Historial"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <p:link class="btn btn-primary btn-block" outcome="/login">
-                                                    <p:outputLabel class="fas fa-sign-out-alt"/> Salir
-                                                </p:link>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                    <p:menu toggleable="true">
+                                        <p:menuitem value="#{msgs['Menu.inicio']}" 
+                                                    outcome="MusicianInicio"/>
+                                        <p:menuitem value="#{msgs['MusicianMenu.reservarSala']}" 
+                                                    outcome="ReservarSala"/>
+                                        <p:menuitem value="#{msgs['MusicianMenu.historial']}"
+                                                    outcome="Historial"/>
+                                        <p:menuitem class="btn btn-primary btn-block" outcome="/login">
+                                            <p:outputLabel class="fas fa-sign-out-alt"/> #{msgs['Menu.salir']}
+                                        </p:menuitem>
+                                    </p:menu>
                                 </h:form>
 
                             </ui:insert>

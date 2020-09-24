@@ -6,6 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/AdminTemplate.xhtml">
@@ -32,18 +33,13 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <style type="text/css">
-                                .value {
-                                    font-weight: bold;
-                                }
-                            </style>
                             <h:form id="form">
                                 <p:dataGrid var="sala" value="#{rehearsalRooms.salas}" columns="4" layout="grid"
                                             rows="12" paginator="true" id="salas"
                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                             rowsPerPageTemplate="6,12,16">
 
-                                    <f:facet name="header">
+                                    <f:facet name="header" id="gridHeader">
                                         Salas de ensayo
                                     </f:facet>
 

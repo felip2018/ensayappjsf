@@ -16,7 +16,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Registrar sala de ensayo</p>	
+                                        <p class="title_section">#{msgs['RegistrarSala.title']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -32,19 +32,19 @@
                             <h:form>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="nombre" value="Nombre Sala"/>
+                                        <p:outputLabel for="nombre" value="#{msgs['RegistrarSala.formulario.nombreSala']}"/>
                                         <p:inputText id="nombre" class="form-control" required="true"
                                                      value="#{registerRoomForm.sala.nombre}"/>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="precio" value="Precio $"/>
+                                        <p:outputLabel for="precio" value="#{msgs['RegistrarSala.formulario.precio']}"/>
                                         <p:inputText id="precio" class="form-control" required="true"
                                                      value="#{registerRoomForm.sala.precio}"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <p:outputLabel for="descripcion" value="Descripción"/>
+                                        <p:outputLabel for="descripcion" value="#{msgs['RegistrarSala.formulario.descripcion']}"/>
                                         <p:inputTextarea rows="4" id="descripcion" class="form-control" required="true"
                                                          value="#{registerRoomForm.sala.descripcion}"/>
                                     </div>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-12">
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                         value="Guardar sala" 
+                                                         value="#{msgs['RegistrarSala.formulario.btnGuardarSala']}" 
                                          action="#{registerRoomForm.registrarSala()}"/>
                                     </div>
                                 </div>
