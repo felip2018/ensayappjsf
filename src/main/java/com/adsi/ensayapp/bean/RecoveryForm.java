@@ -77,7 +77,7 @@ public class RecoveryForm implements Serializable {
                 body += "<hr/>";
                 body += "<p>Se ha realizaco una solicitud para recuperar la clave de acceso a tu cuenta, da clic en el botón para realizar la recuperación:</p>";
                 body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/passwordRecovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
+                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/recovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
@@ -90,6 +90,13 @@ public class RecoveryForm implements Serializable {
         } catch (Exception e) {
             throw e;
         }
+    }
+    
+    public void actualizarClave(){
+        log.info("Actualizar clave RecoveryForm");
+        log.info("ID: "+usuario.getId());
+        log.info("CODIGO: "+usuario.getCodigoValidacion());
+        log.info("CLAVE: "+usuario.getClave());
     }
     
 }
