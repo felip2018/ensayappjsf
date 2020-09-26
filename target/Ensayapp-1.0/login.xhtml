@@ -62,23 +62,23 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <p:dialog header="Regístrate" widgetVar="wdlgRegistro" modal="true" width="600">
+                    <p:dialog header="#{msgs['login.formularioRegistro.header']}" widgetVar="wdlgRegistro" modal="true" width="600">
                         <h:form>
                             <div class="row">
                                 <div class="col-6">
-                                    <p:inputText id="nombres" required="true" class="form-control" placeholder="Nombres"
+                                    <p:inputText id="nombres" required="true" class="form-control" placeholder="#{msgs['login.formularioRegistro.nombres']}"
                                                  value="#{registerForm.usuario.nombre}"/>
                                     <p:message for="nombres"/>
                                 </div>
                                 <div class="col-6">
-                                    <p:inputText id="apellidos" required="true" class="form-control" placeholder="Apellidos"
+                                    <p:inputText id="apellidos" required="true" class="form-control" placeholder="#{msgs['login.formularioRegistro.apellidos']}"
                                                  value="#{registerForm.usuario.apellido}"/>
                                     <p:message for="apellidos"/>
                                 </div>
                                 <div class="col-6">
                                     <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
                                                      value="#{registerForm.usuario.idTipoDocumento}">
-                                        <f:selectItem itemValue="" itemLabel="-Tipo identificación" />
+                                        <f:selectItem itemValue="" itemLabel="#{msgs['login.formularioRegistro.tipoIdentificacion']}" />
                                         <f:selectItem itemValue="1" itemLabel="CÉDULA DE CIUDADANÍA" />
                                         <f:selectItem itemValue="2" itemLabel="CÉDULA DE EXTRANJERÍA" />
                                         <f:selectItem itemValue="3" itemLabel="PASAPORTE" />
@@ -87,28 +87,28 @@
                                     <p:message for="id_tipo_doc"/>
                                 </div>
                                 <div class="col-6">
-                                    <p:inputNumber id="num_doc" required="true" class="form-control" placeholder="Documento"
+                                    <p:inputNumber id="num_doc" required="true" class="form-control" placeholder="#{msgs['login.formularioRegistro.numeroDocumento']}"
                                                    value="#{registerForm.usuario.numDoc}"/>
                                     <p:message for="num_doc"/>
                                 </div>
                                 <div class="col-12">
-                                    <p:inputText id="telefono" required="true" class="form-control" placeholder="Telefono"
+                                    <p:inputText id="telefono" required="true" class="form-control" placeholder="#{msgs['login.formularioRegistro.telefono']}"
                                                  value="#{registerForm.usuario.telefono}"/>
                                     <p:message for="telefono"/>
                                 </div>
                                 <div class="col-12">
-                                    <p:inputText id="correo" required="true" class="form-control" placeholder="Correo electrónico"
+                                    <p:inputText id="correo" required="true" class="form-control" placeholder="#{msgs['login.formularioRegistro.correo']}"
                                                  value="#{registerForm.usuario.correo}"/>
                                     <p:message for="correo"/>
                                 </div>
                                 <div class="col-12">
-                                    <p:password id="clave" class="form-control" required="true" placeholder="Clave" match="clave2"
+                                    <p:password id="clave" class="form-control" required="true" placeholder="#{msgs['login.formularioRegistro.clave']}" match="clave2"
                                                 value="#{registerForm.usuario.clave}"
                                                 feedback="true"/>
                                     <h:message for="clave" style="color:red;"/>
                                 </div>
                                 <div class="col-12">
-                                    <p:password id="clave2" class="form-control" required="true" placeholder="Repetir clave"/>
+                                    <p:password id="clave2" class="form-control" required="true" placeholder="#{msgs['login.formularioRegistro.confirmarClave']}"/>
                                     <h:message for="clave2" style="color:red;"/>
                                 </div>
                                 <div class="col-12">
@@ -119,9 +119,9 @@
                                 <div class="col-12">
                                     <hr></hr>
                                     <p:commandButton class="btn btn-secondary" 
-                                                     value="Cancelar"
+                                                     value="#{msgs['login.formularioRegistro.btnCancelar']}"
                                                      onclick="PF('wdlgRegistro').hide();"/>
-                                    <p:commandButton class="btn btn-primary" value="Registrarse"
+                                    <p:commandButton class="btn btn-primary" value="#{msgs['login.formularioRegistro.btnRegistrar']}"
                                                      actionListener="#{registerForm.registrarUsuario()}"
                                                      update="responseField"/>
                                 </div>
@@ -130,19 +130,27 @@
                     </p:dialog>
                 </div>
                 <div class="col-12">
-                    <p:dialog header="¿Olvidaste tu contraseña?" widgetVar="wdlgRecuperacion" modal="true" width="600">
+                    <p:dialog header="#{msgs['login.formularioRecuperacion.header']}" widgetVar="wdlgRecuperacion" modal="true" width="600">
                         <h:form>
                             <div class="row">
                                 <div class="col-12">
-                                    <p:outputLabel for="correo_recuperacion" value="Ingresa el correo electrónico de tu cuenta para reestablecer tu clave."/>
-                                    <p:inputText id="correo_recuperacion" class="form-control"/>
+                                    <p:outputLabel for="correo_recuperacion" value="#{msgs['login.formularioRecuperacion.mensaje']}"/>
+                                    <p:inputText id="correo_recuperacion" class="form-control"
+                                                 value="#{recoveryForm.usuario.correo}"/>
+                                </div>
+                                <div class="col-12">
+                                    <p:inputTextarea class="form-control" readonly="true" rows="2" 
+                                                     id="responseFieldRecovery"
+                                                     value="#{recoveryForm.respuesta}"/>
                                 </div>
                                 <div class="col-12">
                                     <hr></hr>
                                     <p:commandButton class="btn btn-secondary" 
-                                                     value="Cancelar"
+                                                     value="#{msgs['login.formularioRecuperacion.btnCancelar']}"
                                                      onclick="PF('wdlgRecuperacion').hide();"/>
-                                    <p:commandButton class="btn btn-primary" value="Aceptar"/>
+                                    <p:commandButton class="btn btn-primary" value="#{msgs['login.formularioRecuperacion.btnAceptar']}"
+                                                     actionListener="#{recoveryForm.validarCorreoElectronico()}"
+                                                     update="responseFieldRecovery"/>
                                 </div>
                             </div>
                         </h:form>

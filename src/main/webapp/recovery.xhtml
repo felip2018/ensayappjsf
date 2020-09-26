@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Recovery</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="resources/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="resources/css/cssLayout.css"></link>
+        <link rel="stylesheet" href="resources/css/fontawesome/css/all.css"></link>
+    </h:head>
+    <h:body class="login_body">
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div id="login_container" class="col-3">
+                    <div class="header_back">
+                        <h:form>
+                            <p:link outcome="index">
+                                <h:outputLabel class="fas fa-chevron-left"/> #{msgs['login.btnVolver']}
+                            </p:link>
+                        </h:form>
+                    </div>
+                    <div id="header_login">
+                        <img src="resources/img/Icono.jpg" alt="Logotipo" id="logo" style="width:180px;height: 180px;"></img><br/>
+                    </div>
+                    <h:form class="px-4 py-3">
+                        <div class="form-group">
+                            <h:inputText id="id" class="form-control" required="true" value="#{passwordRecovery.id = param['id']}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:inputText id="code" class="form-control" required="true" value="#{passwordRecovery.code = param['code']}"/>
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel for="clave" value="#{msgs['recovery.nuevaClave']}"/>
+                            <h:inputText id="clave" class="form-control" required="true" 
+                                         value="#{passwordRecovery.usuario.clave}"/>
+                            <h:message class="alert-error" for="clave" />
+                        </div>
+                        <div class="form-group">
+                            <h:outputLabel for="confirmar" value="#{msgs['recovery.confirmarClave']}"/>
+                            <h:inputText id="confirmar" class="form-control" required="true" />
+                            <h:message class="alert-error" for="confirmar" />
+                        </div>
+                    </h:form>
+                    <h:form>
+                        <div class="form-group">
+                            <h:commandButton class="btn btn-primary btn-block btn-login" 
+                                             value="#{msgs['recovery.btnAceptar']}" 
+                                             action="#{passwordRecovery.actualizar()}"/>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>

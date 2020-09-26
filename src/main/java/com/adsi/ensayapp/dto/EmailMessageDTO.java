@@ -7,7 +7,7 @@ public class EmailMessageDTO {
     private String body;
     
     public EmailMessageDTO(){
-        this.structure = new StringBuilder();
+        structure = new StringBuilder();
     }
 
     public String getTo() {

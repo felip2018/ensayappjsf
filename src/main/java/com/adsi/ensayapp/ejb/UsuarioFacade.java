@@ -31,9 +31,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     
     @Override
     public UserValidationResponseDTO validacionUsuario(Usuario usr){
-        Usuario usuario = null;
         UserValidationResponseDTO validacion = new UserValidationResponseDTO();
-        String consulta;
         try {
             StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("SP_UserValidation",UserValidationResponseDTO.class);
             storedProcedure.registerStoredProcedureParameter("idTipoDoc", Integer.class, ParameterMode.IN);
@@ -85,10 +83,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     
     @Override
     public void validarCuenta(String codigoValidacion){
-        String consulta = "";
+        String consulta;
         try {
-            /*em.createNamedQuery("updateValidationAccount",Usuario.class)
-                    .setParameter(1, codigoValidacion).executeUpdate();*/
             consulta = "UPDATE Usuario u SET u.validacionCuenta = 1 WHERE u.codigoValidacion = ?1";
             Query query = em.createQuery(consulta);
             query.setParameter(1, codigoValidacion);
@@ -98,5 +94,27 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    @Override
+    public Usuario validarCorreoRecuperacion(Usuario usr) {
+        Usuario usuario = null;
+        String consulta;
+        try {
+            consulta = "FROM Usuario u WHERE u.correo = ?1";
+            
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, usr.getCorreo());
+            
+            List<Usuario> lista = query.getResultList();
+            
+            if (!lista.isEmpty()) {
+                usuario = lista.get(0);
+            }
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        return usuario;
     }
 }

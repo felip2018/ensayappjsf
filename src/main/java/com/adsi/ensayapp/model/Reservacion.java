@@ -26,6 +26,7 @@ public class Reservacion implements Serializable {
     @Column(name = "id_usuario")
     private int idUsuario;
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "fecha")
     private Date fecha;
     

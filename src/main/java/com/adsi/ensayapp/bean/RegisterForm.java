@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class RegisterForm implements Serializable {
 
     Logger log = LogManager.getRootLogger();
-    private SendEmail sendEmail = new SendEmail();
+    private SendEmail sendEmail;
     
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
@@ -31,6 +31,7 @@ public class RegisterForm implements Serializable {
 
     @PostConstruct
     public void init() {
+        sendEmail = new SendEmail();
         usuario = new Usuario();
         usuario.setIdPerfil(3);
         usuario.setCodigoValidacion(generateRandomString(100));
@@ -66,11 +67,11 @@ public class RegisterForm implements Serializable {
                 body += "<hr/>";
                 body += "<p>Has completado el registro en nuestro sistema de forma exitosa, haz clic en el siguiente enlace para activar tu cuenta:</p>";
                 body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/Ensayapp/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
+                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
-                sendEmail.sengEmailMessage(emailMessageDto);
+                sendEmail.sendEmailMessage(emailMessageDto);
                 
                 this.respuesta = "Has completado el registro! por favor verifica tu correo electrónico para validar la cuenta.";
             }else{

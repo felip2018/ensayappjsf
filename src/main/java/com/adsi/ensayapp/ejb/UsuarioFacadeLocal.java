@@ -36,4 +36,6 @@ public interface UsuarioFacadeLocal {
     Usuario iniciarSesion(Usuario usr);
     
     void validarCuenta(String codigoValidacion);
+    
+    Usuario validarCorreoRecuperacion(Usuario usuario);
 }

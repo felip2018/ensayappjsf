@@ -2,9 +2,7 @@ package com.adsi.ensayapp.bean;
 
 import com.adsi.ensayapp.ejb.UsuarioFacadeLocal;
 import java.io.Serializable;
-import java.util.Map;
 import javax.ejb.EJB;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;

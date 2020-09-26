@@ -17,7 +17,7 @@ public class SendEmail {
     
     private final Logger log = LogManager.getRootLogger();
     
-    public void sengEmailMessage(EmailMessageDTO emailMessageDto) {
+    public void sendEmailMessage(EmailMessageDTO emailMessageDto) {
 
         // Recipient's email ID needs to be mentioned.
         String to = emailMessageDto.getTo();
