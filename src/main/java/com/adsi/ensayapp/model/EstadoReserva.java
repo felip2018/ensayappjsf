@@ -1,6 +1,7 @@
 package com.adsi.ensayapp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class EstadoReserva implements Serializable {
     
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_registro")
-    private String fechaRegistro;
+    private Date fechaRegistro;
     
     @Column(name = "estado_registro")
     private String estadoRegistro;
@@ -66,11 +67,11 @@ public class EstadoReserva implements Serializable {
         this.tipoAlerta = tipoAlerta;
     }
 
-    public String getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(String fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
