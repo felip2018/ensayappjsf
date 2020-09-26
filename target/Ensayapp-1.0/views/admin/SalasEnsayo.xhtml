@@ -48,7 +48,7 @@
                                             <p:graphicImage url="../../resources/img/salas/no_image.jpg" style="width: 100%;"/>
                                             <h:outputText value="#{sala.descripcion}" />
 
-                                            <p:commandLink update=":form:carDetail" oncomplete="PF('roomDialog').show()" title="View Detail">
+                                            <p:commandLink update=":form:roomDetail" oncomplete="PF('roomDialog').show()" title="Ver Sala">
                                                 <h:outputText styleClass="fas fa-eye" style="margin:0 auto;"/>
                                                 <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}" />
                                             </p:commandLink>
@@ -58,23 +58,23 @@
                                 </p:dataGrid>
 
                                 <p:dialog header="Información sala" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                                    <p:outputPanel id="carDetail" style="text-align:center;">
-                                        <p:panelGrid  columns="2" rendered="#{not empty dataGridView.selectedCar}" columnClasses="label,value">
+                                    <p:outputPanel id="roomDetail" style="text-align:center;">
+                                        <p:panelGrid  columns="2" rendered="#{not empty rehearsalRooms.sala}" columnClasses="label,value">
                                             <f:facet name="header">
                                                 <p:graphicImage name="C:/ensayapp-files/salas/no_image.jpg"/> 
                                             </f:facet>
 
                                             <h:outputText value="Id:" />
-                                            <h:outputText value="#{dataGridView.selectedCar.id}" />
+                                            <h:outputText value="#{rehearsalRooms.sala.id}" />
 
-                                            <h:outputText value="Year" />
-                                            <h:outputText value="#{dataGridView.selectedCar.year}" />
+                                            <h:outputText value="Nombre" />
+                                            <h:outputText value="#{rehearsalRooms.sala.nombre}" />
 
-                                            <h:outputText value="Color:" />
-                                            <h:outputText value="#{dataGridView.selectedCar.color}" style="color:#{dataGridView.selectedCar.color}"/>
+                                            <h:outputText value="Precio:" />
+                                            <h:outputText value="#{rehearsalRooms.sala.precio}"/>
 
-                                            <h:outputText value="Price" />
-                                            <h:outputText value="$#{dataGridView.selectedCar.price}" />
+                                            <h:outputText value="Descripcion" />
+                                            <h:outputText value="#{rehearsalRooms.sala.descripcion}" />
                                         </p:panelGrid>
                                     </p:outputPanel>
                                 </p:dialog>

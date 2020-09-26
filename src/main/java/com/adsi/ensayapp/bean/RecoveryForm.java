@@ -96,7 +96,7 @@ public class RecoveryForm implements Serializable {
         log.info("Actualizar clave RecoveryForm");
         log.info("ID: "+usuario.getId());
         log.info("CODIGO: "+usuario.getCodigoValidacion());
-        log.info("CLAVE: "+usuario.getClave());
+        log.info("NOMBRE: "+usuario.getNombre());
     }
     
 }
