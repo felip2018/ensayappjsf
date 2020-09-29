@@ -1,17 +1,97 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+    <h:body>
 
         <ui:composition template="./../../WEB-INF/templates/AdminTemplate.xhtml">
 
             <ui:define name="content">
-                content
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Historial</p>
+                                        <p>Historial de reservaciones</p>		
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <style type="text/css">
+                                .ui-paginator a {
+                                    margin-right: 5px;
+                                }
+                            </style>
+                            <h:form>
+                                <p:dataTable id="tblReservations" var="reservacion" value="#{reservations.listaReservaciones}"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                             paginator="true" rows="8" style="margin-bottom:20px">
+
+                                    <f:facet name="{Exporters}">
+                                        <div style="float:right;padding-top: 5px;">
+                                            <!--<h:commandLink>
+                                                <p:outputLabel value="Excel"/>
+                                                <p:dataExporter type="xlsxstream" target="tblReservations" fileName="reservaciones" />
+                                            </h:commandLink>-->
+
+                                            <h:commandLink>
+                                                <p:outputLabel value="Pdf"/>
+                                                <p:dataExporter type="pdf" target="tblReservations" fileName="reservaciones"/>
+                                            </h:commandLink>                    
+                                        </div>
+                                    </f:facet>
+
+                                    <p:column headerText="Id">
+                                        <h:outputText value="#{reservacion.idReservacion}" />
+                                    </p:column>
+
+                                    <p:column headerText="Sala">
+                                        <h:outputText value="#{reservacion.idSala}">
+                                            <f:converter converterId="roomConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column headerText="Fecha">
+                                        <h:outputText value="#{reservacion.fecha}" />
+                                    </p:column>
+
+                                    <p:column headerText="Hora">
+                                        <h:outputText value="#{reservacion.idSistemHora}">
+                                            <f:converter converterId="timeConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column headerText="Estado">
+                                        <h:outputText value="#{reservacion.idEstadoReserva}">
+                                            <f:converter converterId="stateConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
             </ui:define>
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>

@@ -38,4 +38,6 @@ public interface UsuarioFacadeLocal {
     void validarCuenta(String codigoValidacion);
     
     Usuario validarCorreoRecuperacion(Usuario usuario);
+    
+    void actualizarClave(Usuario usuario);
 }

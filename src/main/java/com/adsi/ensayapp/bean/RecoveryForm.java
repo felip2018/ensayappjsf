@@ -16,12 +16,15 @@ import org.apache.logging.log4j.Logger;
 @ViewScoped
 public class RecoveryForm implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+    
     Logger log = LogManager.getRootLogger();
     private SendEmail sendEmail;
     private Usuario usuario;
     private String respuesta;
     private int id;
     private String code;
+    private String nuevaClave;
     
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
@@ -31,7 +34,47 @@ public class RecoveryForm implements Serializable {
         sendEmail = new SendEmail();
         usuario = new Usuario();
     }
+    
+    public void validarCorreoElectronico(){
+        Usuario usr; 
+        try {
+            usr = usuarioEJB.validarCorreoRecuperacion(usuario);
+            if (usr != null) {
+                log.info("Se enviará el correo electrónico!");
+                EmailMessageDTO emailMessageDto = new EmailMessageDTO();
+                emailMessageDto.setTo(usr.getCorreo());
+                emailMessageDto.setSubject("Ensayapp: Recuperar contraseña");
+                String body = "<h1>Hola "+usr.getNombre()+"</h1>";
+                body += "<hr/>";
+                body += "<p>Se ha realizaco una solicitud para recuperar la clave de acceso a tu cuenta, da clic en el botón para realizar la recuperación:</p>";
+                body += "<div class='containerActivationButton'>";
+                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/recovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
+                body += "</div>";
+                emailMessageDto.setBody(body);
+                
+                String sendEmailMessage = sendEmail.sendEmailMessage(emailMessageDto);
+                
+                this.respuesta = "Se ha enviado un correo electrónico con los pasos a seguir para restablecer tu clave de acceso.";
+            }else{
+                this.respuesta = "El correo electrónico ingresado no pertenece a ninguna cuenta registrada, por favor verifique!";
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void actualizarClave(){
+        try {
+            usuarioEJB.actualizarClave(usuario);
+            respuesta = "La clave de ingreso ha sido actualizada.";
+        } catch (Exception e) {
+            respuesta = "No ha sido posible realizar la actualización de la clave.";
+            throw e;            
+        }
+    }
 
+    
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -63,40 +106,13 @@ public class RecoveryForm implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
-    
-    public void validarCorreoElectronico(){
-        Usuario usr; 
-        try {
-            usr = usuarioEJB.validarCorreoRecuperacion(usuario);
-            if (usr != null) {
-                log.info("Se enviará el correo electrónico!");
-                EmailMessageDTO emailMessageDto = new EmailMessageDTO();
-                emailMessageDto.setTo(usr.getCorreo());
-                emailMessageDto.setSubject("Ensayapp: Recuperar contraseña");
-                String body = "<h1>Hola "+usr.getNombre()+"</h1>";
-                body += "<hr/>";
-                body += "<p>Se ha realizaco una solicitud para recuperar la clave de acceso a tu cuenta, da clic en el botón para realizar la recuperación:</p>";
-                body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/recovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
-                body += "</div>";
-                emailMessageDto.setBody(body);
-                
-                sendEmail.sendEmailMessage(emailMessageDto);
-                
-                this.respuesta = "Se ha enviado un correo electrónico con los pasos a seguir para restablecer tu clave de acceso.";
-            }else{
-                this.respuesta = "El correo electrónico ingresado no pertenece a ninguna cuenta registrada, por favor verifique!";
-            }
-        } catch (Exception e) {
-            throw e;
-        }
+
+    public String getNuevaClave() {
+        return nuevaClave;
     }
-    
-    public void actualizarClave(){
-        log.info("Actualizar clave RecoveryForm");
-        log.info("ID: "+usuario.getId());
-        log.info("CODIGO: "+usuario.getCodigoValidacion());
-        log.info("NOMBRE: "+usuario.getNombre());
+
+    public void setNuevaClave(String nuevaClave) {
+        this.nuevaClave = nuevaClave;
     }
     
 }

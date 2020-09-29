@@ -2,6 +2,7 @@ com\adsi\ensayapp\model\ProveedorContacto.class
 com\adsi\ensayapp\ejb\PerfilFacade.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacade.class
 com\adsi\ensayapp\ejb\ProveedorFacade.class
+com\adsi\ensayapp\converter\StateConverter.class
 com\adsi\ensayapp\model\Reservacion_.class
 com\adsi\ensayapp\model\Gasto.class
 com\adsi\ensayapp\model\Ciudad_.class
@@ -22,8 +23,10 @@ com\adsi\ensayapp\model\MovimientoActivo_.class
 com\adsi\ensayapp\bean\ScheduleJava8View$1.class
 com\adsi\ensayapp\model\MensajeContacto.class
 com\adsi\ensayapp\ejb\MensajeContactoFacade.class
+com\adsi\ensayapp\bean\Reservations.class
 com\adsi\ensayapp\model\Reservacion.class
 com\adsi\ensayapp\model\Favorito.class
+com\adsi\ensayapp\converter\RoomConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacadeLocal.class
 com\adsi\ensayapp\ejb\UsuarioFacade.class
 com\adsi\ensayapp\model\LineamientoCalificacion.class
@@ -56,6 +59,7 @@ com\adsi\ensayapp\ejb\EstablecimientoFacade.class
 com\adsi\ensayapp\ejb\ProveedorFacadeLocal.class
 com\adsi\ensayapp\utilities\Constants.class
 com\adsi\ensayapp\dto\UserValidationResponseDTO.class
+com\adsi\ensayapp\converter\TimeConverter.class
 com\adsi\ensayapp\model\TipoDocumento_.class
 com\adsi\ensayapp\bean\ContactForm.class
 com\adsi\ensayapp\model\Activo_.class
@@ -72,6 +76,7 @@ com\adsi\ensayapp\model\EstadoReserva_.class
 com\adsi\ensayapp\model\Notificacion.class
 com\adsi\ensayapp\backing\App.class
 com\adsi\ensayapp\model\Calificacion.class
+com\adsi\ensayapp\backing\TextExporter.class
 com\adsi\ensayapp\ejb\ActivoFacade.class
 com\adsi\ensayapp\bean\PasswordRecovery.class
 com\adsi\ensayapp\ejb\SalaFacade.class

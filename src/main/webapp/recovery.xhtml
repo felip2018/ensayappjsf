@@ -24,24 +24,31 @@
                     <div id="header_login">
                         <img src="resources/img/Icono.jpg" alt="Logotipo" id="logo" style="width:180px;height: 180px;"></img><br/>
                     </div>
-                    <h:form class="px-4 py-3">
+                    <h:form>
                         <div class="form-group">
                             <p:inputText type="hidden" id="id" class="form-control" required="true" value="#{recoveryForm.usuario.id = param['id']}"/>
                         </div>
                         <div class="form-group">
                             <p:inputText type="hidden" id="code" class="form-control" required="true" value="#{recoveryForm.usuario.codigoValidacion = param['code']}"/>
                         </div>
-                        <div class="form-group">
-                            <h:outputLabel for="clave" value="#{msgs['recovery.nuevaClave']}"/>
-                            <p:inputText id="clave" class="form-control" required="true" value="#{recoveryForm.usuario.nombre = 'Jose'}"/>
-                            <h:message class="alert-error" for="clave" />
-                        </div>
                     </h:form>
                     <h:form>
+                        <div class="form-group">
+                            <h:outputLabel for="clave" value="#{msgs['recovery.nuevaClave']}"/>
+                            <p:password id="clave" class="form-control" required="true" value="#{recoveryForm.usuario.clave}"/>
+                            <h:message class="alert-error" for="clave" />
+                        </div>
+                        <div class="form-group">
+                            <p:inputTextarea id="response" class="form-control" rows="2" readonly="true"
+                                             value="#{recoveryForm.respuesta}"/>
+                        </div>
+                        <div class="form-group">
                             <p:commandButton class="btn btn-primary btn-block btn-login" 
                                              value="#{msgs['recovery.btnAceptar']}" 
-                                             actionListener="#{recoveryForm.actualizarClave()}"
-                                             ajax="true"/>
+                                             ajax="true"
+                                             update="response"
+                                             action="#{recoveryForm.actualizarClave()}"/>
+                        </div>
                     </h:form>
                 </div>
             </div>

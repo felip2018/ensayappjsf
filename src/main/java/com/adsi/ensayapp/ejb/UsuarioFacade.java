@@ -117,4 +117,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         }
         return usuario;
     }
+
+    @Override
+    public void actualizarClave(Usuario usr) {
+        String consulta;
+        try {
+            consulta = "UPDATE Usuario u SET u.clave = ?1 WHERE u.id = ?2 AND u.codigoValidacion = ?3";
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, usr.getClave());
+            query.setParameter(2, usr.getId());
+            query.setParameter(3, usr.getCodigoValidacion());
+            
+            query.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 }
