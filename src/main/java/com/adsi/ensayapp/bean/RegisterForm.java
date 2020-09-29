@@ -71,7 +71,8 @@ public class RegisterForm implements Serializable {
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
-                sendEmail.sendEmailMessage(emailMessageDto);
+                String emailResponse;
+                emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
                 
                 this.respuesta = "Has completado el registro! por favor verifica tu correo electrónico para validar la cuenta.";
             }else{

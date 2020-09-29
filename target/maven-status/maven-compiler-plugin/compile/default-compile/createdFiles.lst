@@ -63,6 +63,7 @@ com\adsi\ensayapp\model\TipoDocumento.class
 com\adsi\ensayapp\ejb\EstadoReservaFacadeLocal.class
 com\adsi\ensayapp\ejb\ImagenFacadeLocal.class
 com\adsi\ensayapp\bean\AccountValidation.class
+com\adsi\ensayapp\ejb\ReservacionFacade.class
 com\adsi\ensayapp\bean\RecoveryForm.class
 com\adsi\ensayapp\model\LineamientoCalificacion_.class
 com\adsi\ensayapp\model\Representante.class
@@ -87,6 +88,7 @@ com\adsi\ensayapp\ejb\DepartamentoFacadeLocal.class
 com\adsi\ensayapp\utilities\SendEmail$1.class
 com\adsi\ensayapp\ejb\GastoFacade.class
 com\adsi\ensayapp\ejb\NotificacionFacadeLocal.class
+com\adsi\ensayapp\ejb\ReservacionFacadeLocal.class
 com\adsi\ensayapp\model\Usuario.class
 com\adsi\ensayapp\ejb\MovimientoActivoFacade.class
 com\adsi\ensayapp\model\Recargo.class

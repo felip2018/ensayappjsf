@@ -5,9 +5,11 @@ C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\en
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ActivoFacade.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\UsuarioFacadeLocal.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\TipoRecargo.java
+C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ReservacionFacadeLocal.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\FavoritoFacadeLocal.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\dto\EmailMessageDTO.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\EstablecimientoFacadeLocal.java
+C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ReservacionFacade.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\AbstractFacade.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SalaFacadeLocal.java
 C:\Users\Felipe\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\ReservacionEstado.java

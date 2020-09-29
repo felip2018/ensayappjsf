@@ -6,8 +6,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
-
+    <h:body>
+        <f:metadata>
+            <p:remoteCommand name="validation" action="#{rehearsalRooms.detalleSala()}" autoRun="true"/>
+            <f:viewParam name="id" value="#{rehearsalRooms.paramId}" />
+        </f:metadata>
         <ui:composition template="./../../WEB-INF/templates/MusicianTemplate.xhtml">
 
             <ui:define name="content">
@@ -17,7 +20,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Reservar sala de ensayo</p>		
+                                        <p class="title_section">Reservar sala</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -30,59 +33,43 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <h:form id="form">
-                                <p:dataGrid var="sala" value="#{rehearsalRooms.salas}" columns="4" layout="grid"
-                                            rows="12" paginator="true" id="salas"
-                                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                            rowsPerPageTemplate="6,12,16">
-
-                                    <f:facet name="header" id="gridHeader">
-                                        Salas de ensayo
-                                    </f:facet>
-
-                                    <p:panel header="#{sala.nombre}" style="text-align:center">
-                                        <h:panelGrid columns="1" style="width:100%">
-                                            <p:graphicImage url="../../resources/img/salas/no_image.jpg" style="width: 100%;"/>
-                                            <h:outputText value="#{sala.descripcion}" />
-
-                                            <p:commandLink update=":form:roomDetail" oncomplete="PF('roomDialog').show()" title="View Detail">
-                                                <h:outputText styleClass="fas fa-eye" style="margin:0 auto;"/>
-                                                <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}" />
-                                            </p:commandLink>
-                                        </h:panelGrid>
-                                    </p:panel>
-
-                                </p:dataGrid>
-
-                                <p:dialog header="Información sala" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                                    <p:outputPanel id="roomDetail" style="text-align:center;">
-                                        <p:panelGrid  columns="2" rendered="#{not empty rehearsalRooms.sala}" columnClasses="label,value">
-                                            <f:facet name="header">
-                                                <p:graphicImage name="C:/ensayapp-files/salas/no_image.jpg"/> 
-                                            </f:facet>
-
-                                            <h:outputText value="Id:" />
-                                            <h:outputText value="#{rehearsalRooms.sala.id}" />
-
-                                            <h:outputText value="Nombre" />
-                                            <h:outputText value="#{rehearsalRooms.sala.nombre}" />
-
-                                            <h:outputText value="Precio:" />
-                                            <h:outputText value="#{rehearsalRooms.sala.precio}"/>
-
-                                            <h:outputText value="Descripcion" />
-                                            <h:outputText value="#{rehearsalRooms.sala.descripcion}" />
-                                        </p:panelGrid>
-                                    </p:outputPanel>
-                                </p:dialog>
+                            <h:form>
+                                
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p:outputLabel for="fecha" value="Fecha de Reservación"/>
+                                        <p:datePicker id="fecha" class="form-control"
+                                                      required="true"
+                                                      value="#{rehearsalRooms.reservacion.fecha}"/>
+                                    </div>
+                                    <div class="col-6">
+                                        <p:outputLabel for="hora" value="Hora"/>
+                                        <p:selectOneMenu id="hora" class="form-control" 
+                                                         required="true"
+                                                         value="#{rehearsalRooms.reservacion.idSistemHora}">
+                                            <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                            <f:selectItem itemValue="1" itemLabel="10:00 - 12:00"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:messages showDetail="true" rendered="true"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:separator/>
+                                        <p:commandButton class="btn btn-primary btn-block btn-login" 
+                                                         value="Realizar reservacion" 
+                                                         ajax="true"
+                                                         action="#{rehearsalRooms.realizarReservacion()}"/>
+                                    </div>
+                                </div>
                             </h:form>
                         </div>
                     </div>
                 </div>
-                
+
             </ui:define>
 
         </ui:composition>
 
-    </body>
+    </h:body>
 </html>

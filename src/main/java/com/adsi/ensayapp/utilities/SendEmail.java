@@ -17,8 +17,8 @@ public class SendEmail {
     
     private final Logger log = LogManager.getRootLogger();
     
-    public void sendEmailMessage(EmailMessageDTO emailMessageDto) {
-
+    public String sendEmailMessage(EmailMessageDTO emailMessageDto) {
+        String response;
         // Recipient's email ID needs to be mentioned.
         String to = emailMessageDto.getTo();
 
@@ -63,11 +63,13 @@ public class SendEmail {
             // Send message
             Transport.send(message);
 
-            log.info("Se ha enviado el correo electrónico correctamente.");
+            response = "Se ha enviado el correo electrónico correctamente.";
             
         } catch (MessagingException e) {
             //throw new RuntimeException(e);
-            log.warn("Ha ocurrido un error: "+e.getMessage());
+            response = "Ha ocurrido un error: "+e.getMessage();
         }
+        
+        return response;
     }
 }
