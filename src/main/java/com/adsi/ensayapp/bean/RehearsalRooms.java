@@ -1,9 +1,11 @@
 package com.adsi.ensayapp.bean;
 
+import com.adsi.ensayapp.ejb.ReservacionFacadeLocal;
 import com.adsi.ensayapp.ejb.SalaFacadeLocal;
 import com.adsi.ensayapp.model.Reservacion;
 import com.adsi.ensayapp.model.Sala;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -28,10 +30,18 @@ public class RehearsalRooms implements Serializable {
     @EJB
     private SalaFacadeLocal salaEJB;
     
+    @EJB
+    private ReservacionFacadeLocal reservacionEJB;
+    
     @PostConstruct
     public void init(){
         salas = buscarListaSalas();
         reservacion = new Reservacion();
+        reservacion.setIdUsuario(8);
+        reservacion.setIdEstadoReserva(1);
+        reservacion.setCalificacion(0);
+        reservacion.setFechaRegistro(new Date());
+        reservacion.setEstadoRegistro("Activo");
     }
 
     public List<Sala> getSalas() {
@@ -78,16 +88,19 @@ public class RehearsalRooms implements Serializable {
     
     public void detalleSala(){
         try {
-            log.info("BUSCAR DETALLE DE LA SALA: "+paramId);
-            sala = salaEJB.find(paramId);
+            sala = salaEJB.find(Integer.parseInt(paramId));
         } catch (NumberFormatException e) {
-            //throw e;
             log.error("ERROR:"+e.getMessage());
         }
     }
     
     public void realizarReservacion(){
-        System.out.println("Hollaaaa, PARAM ID: "+paramId);
-        
+        try {
+            reservacion.setIdSala(sala.getId());
+            reservacion.setPrecio(sala.getPrecio());
+            reservacionEJB.create(reservacion);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

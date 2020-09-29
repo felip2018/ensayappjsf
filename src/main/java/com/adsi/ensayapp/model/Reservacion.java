@@ -33,6 +33,9 @@ public class Reservacion implements Serializable {
     @Column(name = "id_sistema_hora")
     private int idSistemHora;
     
+    @Column(name = "precio")
+    private double precio;
+    
     @Column(name = "comentarios")
     private String comentarios;
     
@@ -87,6 +90,14 @@ public class Reservacion implements Serializable {
 
     public void setIdSistemHora(int idSistemHora) {
         this.idSistemHora = idSistemHora;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public String getComentarios() {
