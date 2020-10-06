@@ -37,6 +37,7 @@ com\adsi\ensayapp\model\Favorito_.class
 com\adsi\ensayapp\ejb\SalaFacadeLocal.class
 com\adsi\ensayapp\model\Activo.class
 com\adsi\ensayapp\model\Sucursal_.class
+.netbeans_automatic_build
 com\adsi\ensayapp\ejb\MovimientoActivoFacadeLocal.class
 com\adsi\ensayapp\model\Calificacion_.class
 com\adsi\ensayapp\model\Establecimiento_.class

@@ -38,23 +38,19 @@
                                 }
                             </style>
                             <h:form>
+                                <div style="float:left;padding-top: 5px;">
+                                    <h:commandLink style="margin-left: 5px;">
+                                        <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
+                                        <p:dataExporter type="xls" target="tblReservations" fileName="reservaciones" />
+                                    </h:commandLink>
+                                    <h:commandLink style="margin-left: 5px;">
+                                        <h:graphicImage url="../../resources/img/pdfIcon.png" style="width:25px;height:25px;" title="Exporta a PDF"/>
+                                        <p:dataExporter type="pdf" target="tblReservations" fileName="reservaciones"/>
+                                    </h:commandLink>                    
+                                </div>
                                 <p:dataTable id="tblReservations" var="reservacion" value="#{reservations.listaReservaciones}"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                              paginator="true" rows="8" style="margin-bottom:20px">
-
-                                    <f:facet name="{Exporters}">
-                                        <div style="float:right;padding-top: 5px;">
-                                            <!--<h:commandLink>
-                                                <p:outputLabel value="Excel"/>
-                                                <p:dataExporter type="xlsxstream" target="tblReservations" fileName="reservaciones" />
-                                            </h:commandLink>-->
-
-                                            <h:commandLink>
-                                                <p:outputLabel value="Pdf"/>
-                                                <p:dataExporter type="pdf" target="tblReservations" fileName="reservaciones"/>
-                                            </h:commandLink>                    
-                                        </div>
-                                    </f:facet>
 
                                     <p:column headerText="Id">
                                         <h:outputText value="#{reservacion.idReservacion}" />
