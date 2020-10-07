@@ -13,6 +13,7 @@ com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
 com\adsi\ensayapp\ejb\GastoFacadeLocal.class
 com\adsi\ensayapp\ejb\MantenimientoFacadeLocal.class
 com\adsi\ensayapp\model\Representante_.class
+com\adsi\ensayapp\converter\DoctypeConverter.class
 com\adsi\ensayapp\ejb\LineamientoCalificacionFacadeLocal.class
 com\adsi\ensayapp\bean\RehearsalRooms.class
 com\adsi\ensayapp\ejb\AbstractFacade.class
@@ -28,6 +29,7 @@ com\adsi\ensayapp\model\Reservacion.class
 com\adsi\ensayapp\model\Favorito.class
 com\adsi\ensayapp\converter\RoomConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacadeLocal.class
+com\adsi\ensayapp\converter\ProfileConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacade.class
 com\adsi\ensayapp\model\LineamientoCalificacion.class
 com\adsi\ensayapp\bean\LoginForm.class
@@ -37,7 +39,6 @@ com\adsi\ensayapp\model\Favorito_.class
 com\adsi\ensayapp\ejb\SalaFacadeLocal.class
 com\adsi\ensayapp\model\Activo.class
 com\adsi\ensayapp\model\Sucursal_.class
-.netbeans_automatic_build
 com\adsi\ensayapp\ejb\MovimientoActivoFacadeLocal.class
 com\adsi\ensayapp\model\Calificacion_.class
 com\adsi\ensayapp\model\Establecimiento_.class
@@ -88,6 +89,7 @@ com\adsi\ensayapp\model\Sala_.class
 com\adsi\ensayapp\model\Mantenimiento_.class
 com\adsi\ensayapp\model\Ciudad.class
 com\adsi\ensayapp\model\TipoRecargo_.class
+com\adsi\ensayapp\bean\UsuarioBean.class
 com\adsi\ensayapp\ejb\FavoritoFacade.class
 com\adsi\ensayapp\utilities\SendEmail.class
 com\adsi\ensayapp\ejb\DepartamentoFacadeLocal.class
@@ -102,7 +104,6 @@ com\adsi\ensayapp\ejb\EstadoReservaFacade.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacadeLocal.class
 com\adsi\ensayapp\model\Mantenimiento.class
 com\adsi\ensayapp\ejb\ProveedorContactoFacade.class
-com\adsi\ensayapp\bean\RegisterForm.class
 com\adsi\ensayapp\model\TipoGasto.class
 com\adsi\ensayapp\model\Recargo_.class
 com\adsi\ensayapp\dto\EmailMessageDTO.class

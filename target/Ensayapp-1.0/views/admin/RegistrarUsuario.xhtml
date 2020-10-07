@@ -1,14 +1,119 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/AdminTemplate.xhtml">
 
             <ui:define name="content">
-                Registrar usuario
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Registrar usuario</p>	
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="nombre" value="Nombre"/>
+                                        <p:inputText id="nombre" class="form-control" required="true"
+                                                     value="#{usuarioBean.usuario.nombre}"/>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="apellido" value="Apellido"/>
+                                        <p:inputText id="apellido" class="form-control" required="true"
+                                                     value="#{usuarioBean.usuario.apellido}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p:outputLabel for="id_tipo_doc" value="Tipo de identificación"/>
+                                        <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
+                                                         value="#{usuarioBean.usuario.idTipoDocumento}">
+                                            <f:selectItem itemValue="" itemLabel="- Seleccione" />
+                                            <f:selectItem itemValue="1" itemLabel="CÉDULA DE CIUDADANÍA" />
+                                            <f:selectItem itemValue="2" itemLabel="CÉDULA DE EXTRANJERÍA" />
+                                            <f:selectItem itemValue="3" itemLabel="PASAPORTE" />
+                                            <f:selectItem itemValue="4" itemLabel="TARJETA DE IDENTIDAD" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col-6">
+                                        <p:outputLabel for="num_doc" value="Número de identificación"/>
+                                        <p:inputNumber id="num_doc" required="true" class="form-control" 
+                                                       value="#{usuarioBean.usuario.numDoc}">
+                                            <f:validateLength minimum="6" maximum="12"/>
+                                        </p:inputNumber>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="telefono" value="Teléfono"/>
+                                        <p:inputText id="telefono" class="form-control" required="true"
+                                                     value="#{usuarioBean.usuario.telefono}"/>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="correo" value="Correo electrónico"/>
+                                        <p:inputText id="correo" class="form-control" required="true"
+                                                     value="#{usuarioBean.usuario.correo}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="clave" value="Clave"/>
+                                        <p:password id="clave" class="form-control" required="true"
+                                                    value="#{usuarioBean.usuario.clave}" 
+                                                    match="confirmar" feedback="true"/>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="confirmar" value="Confirmar Clave"/>
+                                        <p:password id="confirmar" class="form-control" required="true"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:outputLabel for="id_perfil" value="Perfil"/>
+                                        <p:selectOneMenu id="id_perfil" required="true" class="form-control"
+                                                         value="#{usuarioBean.usuario.idPerfil}">
+                                            <f:selectItem itemValue="" itemLabel="- Seleccione" />
+                                            <f:selectItem itemValue="1" itemLabel="ADMINISTRADOR" />
+                                            <f:selectItem itemValue="2" itemLabel="AUXILIAR" />
+                                            <f:selectItem itemValue="3" itemLabel="MUSICO" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:messages showDetail="true" rendered="true"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:separator/>
+                                        <h:commandButton class="btn btn-primary btn-block btn-login" 
+                                                         value="Registrar Usuario" 
+                                                         action="#{usuarioBean.registrarUsuarioDesdeAdmin()}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>
