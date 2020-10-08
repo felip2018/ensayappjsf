@@ -38,8 +38,12 @@
                                     <p:menu toggleable="true">
                                         <p:menuitem value="#{msgs['Menu.inicio']}" outcome="AdminInicio"/>
                                         <p:submenu label="#{msgs['AdminMenu.reservaciones']}">
-                                            <p:menuitem value="Ver Calendario" outcome="Reservaciones"/>
-                                            <p:menuitem value="Historial" outcome="ListaReservaciones"/>
+                                            <p:menuitem outcome="Reservaciones">
+                                                <p:outputLabel class="far fa-calendar-alt" /> Calendario
+                                            </p:menuitem>
+                                            <p:menuitem outcome="ListaReservaciones">
+                                                <p:outputLabel class="fas fa-history" /> Historial
+                                            </p:menuitem>
                                         </p:submenu>
                                         <p:submenu label="#{msgs['AdminMenu.salasEnsayo']}">
                                             <p:menuitem ajax="false" outcome="SalasEnsayo">

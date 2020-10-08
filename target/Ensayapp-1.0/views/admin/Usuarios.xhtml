@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
@@ -31,6 +32,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
+                                <p:outputLabel value="Exportar datos: "/>
                                 <h:commandLink style="margin-left: 5px;">
                                     <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
                                     <p:dataExporter type="xls" target=":form:basicUserList" fileName="UsuariosDelSistema" />
@@ -44,9 +46,6 @@
                         <div class="col-12">
                             <h:form id="form">
                                 <p:dataTable id="basicUserList" var="usuario" value="#{usuarioBean.listadoUsuarios}">
-                                    <p:column headerText="Id">
-                                        <h:outputText value="#{usuario.id}" />
-                                    </p:column>
                                     <p:column headerText="Nombre">
                                         <h:outputText value="#{usuario.nombre}" />
                                     </p:column>
@@ -66,31 +65,147 @@
                                             <f:converter converterId="profileConverter"/>
                                         </h:outputText>
                                     </p:column>
+                                    <p:column headerText="Estado">
+                                        <table>
+                                            <tr>
+                                                <td style="#{usuario.estadoRegistro eq 'Activo' ? 'background:#1dd1a1' : 'background:#ff6b6b'};color:#ffffff;">
+                                                    <p:outputLabel value="#{usuario.estadoRegistro}"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </p:column>
                                     <p:column headerText="Opciones" exportable="false">
-                                        <p:commandButton update="userDetail" oncomplete="PF('userDialog').show()" icon="far fa-eye" title="Ver">
+                                        <p:commandButton update=":formUpdate:userDetail" oncomplete="PF('userDialog').show()" icon="far fa-eye" title="Ver">
                                             <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioSeleccionado}"/>
                                         </p:commandButton>
-                                        <p:commandButton update="userDetail" oncomplete="PF('userDialog').show()" icon="fas fa-trash-alt" title="Eliminar">
+
+                                        <p:commandButton update=":formDelete:userDeleteDetail" 
+                                                         oncomplete="PF('deleteUserDialog').show()" 
+                                                         icon="fas fa-trash-alt" title="Eliminar"
+                                                         rendered="#{usuario.estadoRegistro == 'Activo'}">
                                             <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioSeleccionado}"/>
                                         </p:commandButton>
+
+                                        <p:commandButton update=":formActive:userActiveDetail" 
+                                                         oncomplete="PF('activeUserDialog').show()" 
+                                                         icon="fas fa-check" title="Activar"
+                                                         rendered="#{usuario.estadoRegistro == 'Inactivo'}">
+                                            <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioSeleccionado}"/>
+                                        </p:commandButton>
+
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
-                            <p:dialog header="Información de usuario" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                                <p:outputPanel id="userDetail" style="text-align:center;">
-                                    <p:panelGrid  columns="2" rendered="#{not empty usuarioBean.usuarioSeleccionado}" columnClasses="label,value">
+                            <p:dialog header="Información de usuario" 
+                                      widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formUpdate">
+                                    <p:outputPanel id="userDetail">
 
-                                        <h:outputText value="Id:" />
-                                        <h:outputText value="#{usuarioBean.usuarioSeleccionado.id}" />
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Nombre:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.nombre}" />
+                                            </div>
+                                        </div>
 
-                                        <h:outputText value="Nombre" />
-                                        <h:outputText value="#{usuarioBean.usuarioSeleccionado.nombre}" />
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Apellido:" />
+                                            </div>
+                                            <div class="col-9">
+                                                <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.apellido}"/>
+                                            </div>
+                                        </div>
 
-                                        <h:outputText value="Apellido:" />
-                                        <h:outputText value="#{usuarioBean.usuarioSeleccionado.apellido}"/>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Teléfono:" />
+                                            </div>
+                                            <div class="col-9">
+                                                <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.telefono}" />
+                                            </div>
+                                        </div>
 
-                                    </p:panelGrid>
-                                </p:outputPanel>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Correo:" />
+                                            </div>
+                                            <div class="col-9">
+                                                <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.correo}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:separator/>
+                                                <p:commandButton class="btn btn-primary btn-block" value="Actualizar usuario"
+                                                                 action="#{usuarioBean.actualizarInformacionUsuario()}"
+                                                                 oncomplete="PF('userDialog').hide()"
+                                                                 update=":form:basicUserList"/>
+                                            </div>
+                                        </div>
+
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
+                            <p:dialog header="Eliminar usuario" 
+                                      widgetVar="deleteUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formDelete">
+                                    <p:outputPanel id="userDeleteDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:outputLabel>
+                                                    ¿Esta seguro de eliminar el usuario <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
+                                                </p:outputLabel>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                                 oncomplete="PF('deleteUserDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                                 action="#{usuarioBean.eliminarUsuario()}"
+                                                                 oncomplete="PF('deleteUserDialog').hide()"
+                                                                 update=":form:basicUserList"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
+                            <p:dialog header="Activar usuario" 
+                                      widgetVar="activeUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formActive">
+                                    <p:outputPanel id="userActiveDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:outputLabel>
+                                                    ¿Esta seguro de activar el usuario <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
+                                                </p:outputLabel>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                                 oncomplete="PF('deleteUserDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                                 action="#{usuarioBean.activarUsuario()}"
+                                                                 oncomplete="PF('activeUserDialog').hide()"
+                                                                 update=":form:basicUserList"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
                             </p:dialog>
                         </div>
                     </div>

@@ -107,6 +107,32 @@ public class UsuarioBean implements Serializable {
         }
     }
     
+    public void actualizarInformacionUsuario(){
+        try {
+            usuarioEJB.edit(usuarioSeleccionado);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void eliminarUsuario(){
+        try {
+            usuarioSeleccionado.setEstadoRegistro("Inactivo");
+            usuarioEJB.edit(usuarioSeleccionado);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void activarUsuario(){
+        try {
+            usuarioSeleccionado.setEstadoRegistro("Activo");
+            usuarioEJB.edit(usuarioSeleccionado);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
     public String generateRandomString(int length) {
         // chose a Character random from this String 
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
