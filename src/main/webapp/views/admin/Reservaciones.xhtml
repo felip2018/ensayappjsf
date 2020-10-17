@@ -43,10 +43,10 @@
                                     <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
 
                                         <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                                        <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                                        <p:ajax event="eventMove" listener="#{scheduleJava8View.onEventMove}" update="messages" />
-                                        <p:ajax event="eventResize" listener="#{scheduleJava8View.onEventResize}" update="messages" />
-
+                                        
+                                        <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" 
+                                                update="eventDetails" oncomplete="PF('eventDialog').show();" />
+                                        
                                     </p:schedule>
                                 </h:panelGrid>
 
@@ -56,7 +56,7 @@
                                             <p:outputLabel for="title" value="Room: " />
                                         </div>
                                         <div class="col-8">
-                                            <p:inputText id="title" value="#{scheduleJava8View.event.title}" required="true" />
+                                            <p:outputLabel id="title" value="#{scheduleJava8View.event.title}"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -64,7 +64,9 @@
                                             <p:outputLabel for="from" value="From:" />
                                         </div>
                                         <div class="col-8">
-                                            <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  />
+                                            <p:datePicker id="from" value="#{scheduleJava8View.event.startDate}" 
+                                                          pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)"  
+                                                          disabled="true"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -72,7 +74,9 @@
                                             <p:outputLabel for="to" value="To:" />
                                         </div>
                                         <div class="col-8">
-                                            <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" />
+                                            <p:datePicker id="to" value="#{scheduleJava8View.event.endDate}" 
+                                                          pattern="dd/MM/yyyy" showTime="true" appendTo="@(body)" 
+                                                          disabled="true"/>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -82,7 +86,17 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <p:inputTextarea class="form-control" rows="3" id="comments" value="#{scheduleJava8View.event.description}"/>
+                                            <p:inputTextarea class="form-control" rows="3" id="comments" 
+                                                             value="#{scheduleJava8View.event.description}"
+                                                             readonly="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <p:outputLabel for="currentStatus" value="Current status:" />
+                                        </div>
+                                        <div class="col-8">
+                                            <p:outputLabel id="currentStatus" value="#{scheduleJava8View.event.title}"/>
                                         </div>
                                     </div>
                                     <p:separator/>
@@ -93,9 +107,9 @@
                                         <div class="col-12">
                                             <p:selectOneMenu id="status" class="form-control">
                                                 <f:selectItem itemValue="" itemLabel="-Seleccione"/>
-                                                <f:selectItem itemValue="1" itemLabel="Comfirmed"/>
-                                                <f:selectItem itemValue="2" itemLabel="Rejected"/>
-                                                <f:selectItem itemValue="3" itemLabel="Cancelled"/>
+                                                <f:selectItems value="#{reservationStates.listaEstados}" var="estado" 
+                                                               itemValue="#{estado.idEstadoReserva}" 
+                                                               itemLabel="#{estado.estado}"/>
                                             </p:selectOneMenu>
                                         </div>
                                     </div>

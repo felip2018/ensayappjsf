@@ -43,42 +43,140 @@
                                         Salas de ensayo
                                     </f:facet>
 
-                                    <p:panel header="#{sala.nombre}" style="text-align:center">
-                                        <h:panelGrid columns="1" style="width:100%">
-                                            <p:graphicImage url="../../resources/img/salas/no_image.jpg" style="width: 100%;"/>
-                                            <h:outputText value="#{sala.descripcion}" />
+                                    <p:panel header="#{sala.nombre}">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:graphicImage url="../../resources/img/salas/no_image.jpg" style="width: 100%;"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <h:outputLabel> 
+                                                    <h:outputLabel class="fas fa-dollar-sign"/> #{sala.precio}
+                                                </h:outputLabel>
+                                            </div>
+                                            <div class="col-12">
+                                                <h:outputText value="#{sala.descripcion}" />
+                                            </div>
+                                            <div class="col-12">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td style="#{sala.estadoRegistro eq 'Activo' ? 'background:#1dd1a1' : 'background:#ff6b6b'};color:#ffffff;width:100%;">
+                                                            <p:outputLabel value="#{sala.estadoRegistro}"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:separator/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton update=":formRoomDetail:roomDetail" 
+                                                                 oncomplete="PF('roomDialog').show()"
+                                                                 icon="fas fa-eye"
+                                                                 title="Ver Sala">
+                                                    <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}" />
+                                                </p:commandButton>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton update=":formDelete:roomDeleteDetail" 
+                                                                 oncomplete="PF('deleteRoomDialog').show()" 
+                                                                 icon="fas fa-trash-alt" title="Eliminar"
+                                                                 rendered="#{sala.estadoRegistro == 'Activo'}">
+                                                    <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}"/>
+                                                </p:commandButton>
 
-                                            <p:commandLink update=":form:roomDetail" oncomplete="PF('roomDialog').show()" title="Ver Sala">
-                                                <h:outputText styleClass="fas fa-eye" style="margin:0 auto;"/>
-                                                <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}" />
-                                            </p:commandLink>
-                                        </h:panelGrid>
+                                                <p:commandButton update=":formActive:roomActiveDetail" 
+                                                                 oncomplete="PF('activeRoomDialog').show()" 
+                                                                 icon="fas fa-check" title="Activar"
+                                                                 rendered="#{sala.estadoRegistro == 'Inactivo'}">
+                                                    <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}"/>
+                                                </p:commandButton>
+                                            </div>
+                                        </div>
                                     </p:panel>
 
                                 </p:dataGrid>
-
-                                <p:dialog header="Información sala" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-                                    <p:outputPanel id="roomDetail" style="text-align:center;">
-                                        <p:panelGrid  columns="2" rendered="#{not empty rehearsalRooms.sala}" columnClasses="label,value">
+                            </h:form>
+                            <p:dialog header="Información sala" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                                <h:form id="formRoomDetail">
+                                    <p:outputPanel id="roomDetail">
+                                        <p:panelGrid  columns="1" rendered="#{not empty rehearsalRooms.sala}" columnClasses="label,value">
                                             <f:facet name="header">
                                                 <p:graphicImage name="C:/ensayapp-files/salas/no_image.jpg"/> 
                                             </f:facet>
 
-                                            <h:outputText value="Id:" />
-                                            <h:outputText value="#{rehearsalRooms.sala.id}" />
-
                                             <h:outputText value="Nombre" />
-                                            <h:outputText value="#{rehearsalRooms.sala.nombre}" />
+                                            <h:inputText class="form-control" value="#{rehearsalRooms.sala.nombre}" />
 
                                             <h:outputText value="Precio:" />
-                                            <h:outputText value="#{rehearsalRooms.sala.precio}"/>
+                                            <h:inputText class="form-control" value="#{rehearsalRooms.sala.precio}"/>
 
                                             <h:outputText value="Descripcion" />
-                                            <h:outputText value="#{rehearsalRooms.sala.descripcion}" />
+                                            <h:inputTextarea class="form-control" rows="3" value="#{rehearsalRooms.sala.descripcion}" />
+
+                                            <p:commandButton class="btn btn-primary btn-block" value="Actualizar"
+                                                             action="#{rehearsalRooms.actualizarInformacionSala()}"
+                                                             oncomplete="PF('roomDialog').hide()"
+                                                             update=":form:salas"/>
                                         </p:panelGrid>
                                     </p:outputPanel>
-                                </p:dialog>
-                            </h:form>
+                                </h:form>
+                            </p:dialog>
+                            <p:dialog header="Eliminar sala" 
+                                      widgetVar="deleteRoomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formDelete">
+                                    <p:outputPanel id="roomDeleteDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:outputLabel>
+                                                    ¿Esta seguro de eliminar la sala <b>#{rehearsalRooms.sala.nombre}</b>?
+                                                </p:outputLabel>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                                 oncomplete="PF('deleteRoomDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                                 action="#{rehearsalRooms.eliminarSala()}"
+                                                                 oncomplete="PF('deleteRoomDialog').hide()"
+                                                                 update=":form:salas"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
+                            <p:dialog header="Activar sala" 
+                                      widgetVar="activeRoomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formActive">
+                                    <p:outputPanel id="roomActiveDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:outputLabel>
+                                                    ¿Esta seguro de activar la sala <b>#{rehearsalRooms.sala.nombre}</b>?
+                                                </p:outputLabel>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                                 oncomplete="PF('deleteRoomDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                                 action="#{rehearsalRooms.activarSala()}"
+                                                                 oncomplete="PF('activeRoomDialog').hide()"
+                                                                 update=":form:salas"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
                         </div>
                     </div>
                 </div>

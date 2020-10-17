@@ -52,30 +52,60 @@
                             </style>
                             <h:form id="formReservationsList">
                                 <p:dataTable id="tblReservations" var="reservacion" value="#{reservations.listaReservaciones}"
+                                             widgetVar="reservationsTable"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                              paginator="true" rows="8" style="margin-bottom:20px">
 
-                                    <p:column headerText="Id">
+                                    <p:column headerText="Id" visible="false">
                                         <h:outputText value="#{reservacion.idReservacion}" />
                                     </p:column>
 
-                                    <p:column headerText="Sala">
+                                    <p:column filterBy="#{reservacion.idSala}" filterMatchMode="exact" headerText="Sala">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{rehearsalRooms.salas}" var="sala" itemValue="#{sala.id}"
+                                                               itemLabel="#{sala.nombre}"/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
                                         <h:outputText value="#{reservacion.idSala}">
                                             <f:converter converterId="roomConverter"/>
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column headerText="Fecha">
-                                        <h:outputText value="#{reservacion.fecha}" />
+                                    <p:column filterBy="#{reservacion.fecha}" filterMatchMode="lte" headerText="Fecha">
+                                        <f:facet name="filter">
+                                            <p:datePicker onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
+                                        </f:facet>
+                                        <p:datePicker value="#{reservacion.fecha}" 
+                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
                                     </p:column>
 
-                                    <p:column headerText="Hora">
+                                    <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="Hora">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{hourSystem.listaHoras}" var="hora" itemValue="#{hora.idSistemaHora}"
+                                                               itemLabel='#{hora.concat}'/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
                                         <h:outputText value="#{reservacion.idSistemHora}">
                                             <f:converter converterId="timeConverter"/>
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column headerText="Estado">
+                                    <p:column filterBy="#{reservacion.idEstadoReserva}" filterMatchMode="exact" headerText="Estado">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{reservationStates.listaEstados}" var="estado" itemValue="#{estado.idEstadoReserva}"
+                                                               itemLabel="#{estado.estado}"/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
                                         <h:outputText value="#{reservacion.idEstadoReserva}">
                                             <f:converter converterId="stateConverter"/>
                                         </h:outputText>

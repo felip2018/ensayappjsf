@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table
+@Table(name = "tipo_recargo")
 public class TipoRecargo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

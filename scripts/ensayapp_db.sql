@@ -1331,7 +1331,7 @@ INSERT INTO `estado_reserva` (`id_estado_reserva`, `estado`, `descripcion`, `tip
 (1, 'Abierta', 'Solicitud abierta por confirmar', 'alert alert-success', '2020-09-25 21:26:40', 'Activo'),
 (2, 'Confirmada', 'Solicitud confirmada', 'alert alert-warning', '2020-09-25 21:26:40', 'Activo'),
 (3, 'Cancelada', 'Solicitud cancelada', 'alert alert-danger', '2020-09-25 21:26:40', 'Activo'),
-(4, 'Recardos', 'Solicitud con recargdos adicionales', 'alert alert-info', '2020-09-25 21:26:40', 'Activo'),
+(4, 'Recargos', 'Solicitud con recargos adicionales', 'alert alert-info', '2020-09-25 21:26:40', 'Activo'),
 (5, 'Finalizada', 'Solicitud finalizada', 'alert alert-secondary', '2020-09-25 21:26:40', 'Activo');
 
 -- --------------------------------------------------------

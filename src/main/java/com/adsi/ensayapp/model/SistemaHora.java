@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "sistema_hora")
@@ -35,7 +36,10 @@ public class SistemaHora implements Serializable {
     
     @Column(name = "estado_registro")
     private String estadoRegistro;
-
+    
+    @Transient
+    private String concat;
+    
     public int getIdSistemaHora() {
         return idSistemaHora;
     }
@@ -82,6 +86,14 @@ public class SistemaHora implements Serializable {
 
     public void setEstadoRegistro(String estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
+    }
+
+    public String getConcat() {
+        return horaInicio+" - "+horaFinalizacion;
+    }
+
+    public void setConcat(String concat) {
+        this.concat = concat;
     }
        
     

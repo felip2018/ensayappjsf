@@ -43,7 +43,34 @@ public class RehearsalRooms implements Serializable {
         reservacion.setFechaRegistro(new Date());
         reservacion.setEstadoRegistro("Activo");
     }
-
+    
+    public void actualizarInformacionSala(){
+        try {
+            salaEJB.edit(sala);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void eliminarSala(){
+        try {
+            sala.setEstadoRegistro("Inactivo");
+            salaEJB.edit(sala);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public void activarSala(){
+        try {
+            sala.setEstadoRegistro("Activo");
+            salaEJB.edit(sala);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    // Getters and setters
     public List<Sala> getSalas() {
         return salas;
     }

@@ -21,19 +21,19 @@ public class TimeConverter implements Converter {
 
             switch (idTime) {
                 case 1:
-                    time = "08:00 A.M - 10:00 A.M";
+                    time = "10:00 A.M - 12:00 A.M";
                     break;
                 case 2:
-                    time = "10:00 A.M - 12:00 P.M";
+                    time = "12:00 A.M - 02:00 P.M";
                     break;
                 case 3:
-                    time = "12:00 P.M - 02:00 P.M";
-                    break;
-                case 4:
                     time = "02:00 P.M - 04:00 P.M";
                     break;
-                case 5:
+                case 4:
                     time = "04:00 P.M - 06:00 P.M";
+                    break;
+                case 5:
+                    time = "06:00 P.M - 08:00 P.M";
                     break;
             }
 
