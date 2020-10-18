@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
@@ -96,14 +98,19 @@ public class UsuarioBean implements Serializable {
                 String emailResponse;
                 emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
                 
-                this.respuesta = "Has completado el registro! por favor verifica tu correo electrónico para validar la cuenta.";
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Aviso",
+                    "El usuario ha sido registrado en el sistema."));
             }else{
-                log.info("Usuarios: "+validacion.getCant()+", Mensaje de validacion: "+validacion.getMensaje());
-                this.respuesta = validacion.getMensaje();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Aviso",
+                    "Usuarios: "+validacion.getCant()+", Mensaje de validacion: "+validacion.getMensaje()));
             }
             
         } catch (Exception e) {
-            throw e;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Aviso",
+                    "No fue posible registrar el usuario.\n"+e.getMessage()));
         }
     }
     

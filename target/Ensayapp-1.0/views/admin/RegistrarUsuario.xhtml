@@ -35,12 +35,16 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <p:outputLabel for="nombre" value="Nombre"/>
                                         <p:inputText id="nombre" class="form-control" required="true"
-                                                     value="#{usuarioBean.usuario.nombre}"/>
+                                                     value="#{usuarioBean.usuario.nombre}">
+                                            <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+                                        </p:inputText>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <p:outputLabel for="apellido" value="Apellido"/>
                                         <p:inputText id="apellido" class="form-control" required="true"
-                                                     value="#{usuarioBean.usuario.apellido}"/>
+                                                     value="#{usuarioBean.usuario.apellido}">
+                                            <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+                                        </p:inputText>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -67,12 +71,16 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <p:outputLabel for="telefono" value="Teléfono"/>
                                         <p:inputText id="telefono" class="form-control" required="true"
-                                                     value="#{usuarioBean.usuario.telefono}"/>
+                                                     value="#{usuarioBean.usuario.telefono}">
+                                            <f:validateRegex pattern="^([a-zA-Z0-9]+(.)?[\s]*)$" />
+                                        </p:inputText>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <p:outputLabel for="correo" value="Correo electrónico"/>
                                         <p:inputText id="correo" class="form-control" required="true"
-                                                     value="#{usuarioBean.usuario.correo}"/>
+                                                     value="#{usuarioBean.usuario.correo}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
                                     </div>
                                 </div>
                                 <div class="row">
