@@ -31,6 +31,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ProveedorFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\MensajeContactoFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\MovimientoActivoFacadeLocal.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\ReservationStates.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Ciudad.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\SistemaHora.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Mantenimiento.java
@@ -75,6 +76,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ReservacionFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\NotificacionFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SalaFacadeLocal.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\HourSystem.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\Reservations.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\converter\StateConverter.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\CiudadFacade.java

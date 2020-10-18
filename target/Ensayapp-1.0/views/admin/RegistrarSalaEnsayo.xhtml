@@ -54,9 +54,30 @@
                                     <div class="col-12">
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
                                                          value="#{msgs['RegistrarSala.formulario.btnGuardarSala']}" 
-                                         action="#{registerRoomForm.registrarSala()}"/>
+                                                         action="#{registerRoomForm.registrarSala()}"/>
                                     </div>
                                 </div>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <p:separator/>
+                            <h:form enctype="multipart/form-data">
+                                <p:outputLabel value="Cargue Masivo (Instrucciones)"/>
+                                <ol>
+                                    <li>Descargue el formato requerido para diligenciar la formación de las salas de ensayo: <a href="../../resources/file/rooms_format.xlsx">rooms_format.xlsx</a></li>
+                                    <li>Una vez listo el documento, proceda a seleccionarlo.</li>
+                                    <li>Clic en <b>Realizar cargue</b> para iniciar el proceso de registro masivo.</li>
+                                </ol>
+
+                                <p:outputLabel value="Seleccione el archivo excel: "/><br/>
+                                
+                                <p:fileUpload value="#{registerRoomForm.file}" mode="simple" skinSimple="true"/><br/>
+                                
+                                <p:commandButton value="Realizar cargue" 
+                                                 ajax="false" 
+                                                 action="#{registerRoomForm.cargarArchivo()}"/>
                             </h:form>
                         </div>
                     </div>

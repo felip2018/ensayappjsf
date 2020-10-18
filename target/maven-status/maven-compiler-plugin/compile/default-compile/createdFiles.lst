@@ -5,6 +5,7 @@ com\adsi\ensayapp\ejb\ProveedorFacade.class
 com\adsi\ensayapp\converter\StateConverter.class
 com\adsi\ensayapp\model\Reservacion_.class
 com\adsi\ensayapp\model\Gasto.class
+com\adsi\ensayapp\bean\ReservationStates.class
 com\adsi\ensayapp\model\Ciudad_.class
 com\adsi\ensayapp\model\ReservacionEstado_.class
 com\adsi\ensayapp\ejb\LineamientoCalificacionFacade.class
@@ -60,6 +61,7 @@ com\adsi\ensayapp\ejb\EstablecimientoFacade.class
 com\adsi\ensayapp\ejb\ProveedorFacadeLocal.class
 com\adsi\ensayapp\ejb\SistemaHoraFacadeLocal.class
 com\adsi\ensayapp\utilities\Constants.class
+com\adsi\ensayapp\bean\HourSystem.class
 com\adsi\ensayapp\dto\UserValidationResponseDTO.class
 com\adsi\ensayapp\converter\TimeConverter.class
 com\adsi\ensayapp\model\TipoDocumento_.class
