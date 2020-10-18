@@ -1,5 +1,8 @@
 package com.adsi.ensayapp.converter;
 
+import com.adsi.ensayapp.ejb.TipoDocumentoFacadeLocal;
+import com.adsi.ensayapp.model.TipoDocumento;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -7,7 +10,10 @@ import javax.faces.convert.FacesConverter;
 
 @FacesConverter("doctypeConverter")
 public class DoctypeConverter implements Converter {
-
+    
+    @EJB
+    private TipoDocumentoFacadeLocal tipoDocumentoEJB;
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         return value;
@@ -15,29 +21,14 @@ public class DoctypeConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        String doctype = "";
+        TipoDocumento tipoDocumento = new TipoDocumento();
         if (value != null) {
-            int idDoctype = (int) value;
-
-            switch (idDoctype) {
-                case 1:
-                    doctype = "CC";
-                    break;
-                case 2:
-                    doctype = "CE";
-                    break;
-                case 3:
-                    doctype = "PAS";
-                    break;
-                case 4:
-                    doctype = "TI";
-                    break;
-                case 5:
-                    doctype = "NIT";
-                    break;
-            }
-
+            int idTipoDocumento = (int) value;
+            tipoDocumento = tipoDocumentoEJB.find(idTipoDocumento);
+        }else{
+            tipoDocumento.setNombre("UNDEFINED");
         }
-        return doctype;
+        
+        return tipoDocumento.getNombre();
     }
 }

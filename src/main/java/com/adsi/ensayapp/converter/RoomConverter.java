@@ -1,5 +1,8 @@
 package com.adsi.ensayapp.converter;
 
+import com.adsi.ensayapp.ejb.SalaFacadeLocal;
+import com.adsi.ensayapp.model.Sala;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -7,7 +10,10 @@ import javax.faces.convert.FacesConverter;
 
 @FacesConverter("roomConverter")
 public class RoomConverter implements Converter {
-
+    
+    @EJB
+    private SalaFacadeLocal salaEJB;
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         return value;
@@ -15,26 +21,14 @@ public class RoomConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        String room = "";
+        Sala sala = new Sala();
         if (value != null) {
-            int idRoom = (int) value;
-
-            switch (idRoom) {
-                case 1:
-                    room = "SALA AMARILLA";
-                    break;
-                case 2:
-                    room = "SALA AZUL";
-                    break;
-                case 3:
-                    room = "SALA VERDE";
-                    break;
-                case 4:
-                    room = "SALA MORADA";
-                    break;
-            }
-
+            int idSala = (int) value;
+            sala = salaEJB.find(idSala);
+        }else{
+            sala.setNombre("UNDEFINED");
         }
-        return room;
+        
+        return sala.getNombre();
     }
 }

@@ -1,5 +1,8 @@
 package com.adsi.ensayapp.converter;
 
+import com.adsi.ensayapp.ejb.EstadoReservaFacadeLocal;
+import com.adsi.ensayapp.model.EstadoReserva;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -7,7 +10,10 @@ import javax.faces.convert.FacesConverter;
 
 @FacesConverter("stateConverter")
 public class StateConverter implements Converter {
-
+    
+    @EJB
+    private EstadoReservaFacadeLocal estadoEJB;
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         return value;
@@ -15,29 +21,14 @@ public class StateConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        String state = "";
+        EstadoReserva estado = new EstadoReserva();
         if (value != null) {
-            int idState = (int) value;
-
-            switch (idState) {
-                case 1:
-                    state = "ABIERTA";
-                    break;
-                case 2:
-                    state = "CONFIRMADA";
-                    break;
-                case 3:
-                    state = "CANCELADA";
-                    break;
-                case 4:
-                    state = "RECARGO";
-                    break;
-                case 5:
-                    state = "FINALIZADA";
-                    break;
-            }
-
+            int idEstado = (int) value;
+            estado = estadoEJB.find(idEstado);
+        }else{
+            estado.setEstado("UNDEFINED");
         }
-        return state;
+        
+        return estado.getEstado();
     }
 }
