@@ -32,30 +32,43 @@
                         <div class="col-12">
                             <h:form>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="nombre" value="#{msgs['RegistrarSala.formulario.nombreSala']}"/>
-                                        <p:inputText id="nombre" class="form-control" required="true"
-                                                     value="#{registerRoomForm.sala.nombre}"/>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <p:outputLabel for="id_tipo_gasto" value="Tipo de gasto"/>
+                                        <p:selectOneMenu id="id_tipo_gasto" class="form-control" 
+                                                         value="#{spendings.gasto.idTipoGasto}" required="true">
+                                            <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                            <f:selectItems value="#{spendings.listaTiposGasto}" var="tipo" 
+                                                           itemValue="#{tipo.idTipoGasto}" itemLabel="#{tipo.nombre}"/>
+                                        </p:selectOneMenu>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="precio" value="#{msgs['RegistrarSala.formulario.precio']}"/>
-                                        <p:inputText id="precio" class="form-control" required="true"
-                                                     value="#{registerRoomForm.sala.precio}"/>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <p:outputLabel for="monto" value="valor ($)"/>
+                                        <p:inputNumber id="monto" class="form-control" 
+                                                       value="#{spendings.gasto.monto}" required="true"/>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <p:outputLabel for="fecha_gasto" value="Fecha gasto"/>
+                                        <p:calendar id="fecha_gasto" class="form-control" 
+                                                    value="#{spendings.gasto.fechaGasto}" required="true"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <p:outputLabel for="descripcion" value="#{msgs['RegistrarSala.formulario.descripcion']}"/>
-                                        <p:inputTextarea rows="4" id="descripcion" class="form-control" required="true"
-                                                         value="#{registerRoomForm.sala.descripcion}"/>
+                                        <p:outputLabel for="comentarios" value="Comentarios"/>
+                                        <p:inputTextarea id="comentarios" class="form-control" rows="4" 
+                                                         value="#{spendings.gasto.comentatios}" required="true"/>
                                     </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-12">
                                         <p:messages showDetail="true" rendered="true"/>
                                     </div>
                                     <div class="col-12">
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                                         value="#{msgs['RegistrarSala.formulario.btnGuardarSala']}" 
-                                                         action="#{registerRoomForm.registrarSala()}"/>
+                                                         value="Registrar gasto" 
+                                                         action="#{spendings.registrarGasto()}"/>
                                     </div>
                                 </div>
                             </h:form>
@@ -67,18 +80,18 @@
                             <h:form enctype="multipart/form-data">
                                 <p:outputLabel value="Cargue Masivo (Instrucciones)"/>
                                 <ol>
-                                    <li>Descargue el formato requerido para diligenciar la formación de las salas de ensayo: <a href="../../resources/file/rooms_format.xlsx">rooms_format.xlsx</a></li>
+                                    <li>Descargue el formato requerido para diligenciar la formación de las salas de ensayo: <a href="../../resources/file/spendings_format.xlsx">spendings_format.xlsx</a></li>
                                     <li>Una vez listo el documento, proceda a seleccionarlo.</li>
                                     <li>Clic en <b>Realizar cargue</b> para iniciar el proceso de registro masivo.</li>
                                 </ol>
 
                                 <p:outputLabel value="Seleccione el archivo excel: "/><br/>
                                 
-                                <p:fileUpload value="#{registerRoomForm.file}" mode="simple" skinSimple="true"/><br/>
+                                <p:fileUpload value="#{spendings.file}" mode="simple" skinSimple="true"/><br/>
                                 
                                 <p:commandButton value="Realizar cargue" 
                                                  ajax="false" 
-                                                 action="#{registerRoomForm.cargarArchivo()}"/>
+                                                 action="#{spendings.cargarArchivo()}"/>
                             </h:form>
                         </div>
                     </div>
