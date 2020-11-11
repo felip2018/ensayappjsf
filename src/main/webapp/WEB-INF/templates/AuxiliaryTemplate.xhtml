@@ -38,7 +38,7 @@
                             <ui:insert name="left">
 
                                 <h:form>
-                                    <p:menu toggleable="true">
+                                    <p:menu toggleable="true" class="col-12">
                                         <p:menuitem value="#{msgs['Menu.inicio']}" outcome="AuxiliaryInicio"/>
                                         <p:submenu label="#{msgs['AuxiliaryMenu.activos']}">
                                             <p:menuitem ajax="false" outcome="Activos">
@@ -57,11 +57,11 @@
                                                 <p:outputLabel class="fas fa-plus"/> #{msgs['AuxiliaryMenu.proveedoresSub.registrarProveedor']}
                                             </p:menuitem>
                                         </p:submenu>
-                                        <p:separator/>
-                                        <p:menuitem class="btn btn-primary btn-block" outcome="/login">
-                                            <p:outputLabel class="fas fa-sign-out-alt"/> #{msgs['Menu.salir']}
-                                        </p:menuitem>
                                     </p:menu>
+                                    <p:separator/>
+                                    <p:commandButton class="btn btn-primary btn-block" 
+                                                     value="#{msgs['Menu.salir']}"
+                                                     action="#{loginForm.cerrarSesion()}"/>
                                 </h:form>
 
                             </ui:insert>
