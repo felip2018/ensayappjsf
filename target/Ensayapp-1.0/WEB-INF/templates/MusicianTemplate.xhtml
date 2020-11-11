@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"></link>
         <link rel="stylesheet" href="../../resources/css/cssLayout.css"></link>
         <link rel="stylesheet" href="../../resources/css/fontawesome/css/all.css"></link>
+        
+        <f:event type="preRenderView" listener="#{loginForm.verificarSesion()}"/>
+        
     </h:head>
 
     <h:body>
@@ -42,7 +45,10 @@
                                                     outcome="VerSalas"/>
                                         <p:menuitem value="#{msgs['MusicianMenu.historial']}"
                                                     outcome="Historial"/>
-                                        <p:menuitem class="btn btn-primary btn-block" outcome="/login">
+                                        <!--<p:menuitem class="btn btn-primary btn-block" outcome="/login">
+                                            <p:outputLabel class="fas fa-sign-out-alt"/> #{msgs['Menu.salir']}
+                                        </p:menuitem>-->
+                                        <p:menuitem class="btn btn-primary btn-block" action="#{loginForm.cerrarSesion()}">
                                             <p:outputLabel class="fas fa-sign-out-alt"/> #{msgs['Menu.salir']}
                                         </p:menuitem>
                                     </p:menu>

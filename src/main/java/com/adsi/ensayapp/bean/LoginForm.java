@@ -44,6 +44,10 @@ public class LoginForm implements Serializable {
             if (usr != null) {
                 if (usr.getEstadoRegistro().equals("Activo")) {
                     if (usr.getValidacionCuenta() == 1) {
+                        
+                        // Almacenar en la sesion de JSF
+                        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usr);
+                        
                         switch (usr.getIdPerfil()) {
                             case 1:
                                 urlRedireccion = "views/admin/AdminInicio?faces-redirect=true";
@@ -78,5 +82,30 @@ public class LoginForm implements Serializable {
         }
 
         return urlRedireccion;
+    }
+    
+    public void verificarSesion(){
+        log.info("Verificacion de la sesion");
+        String urlRedireccion = null;
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            Usuario u = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+            if (u == null) {
+                log.info("Error");
+                context.getExternalContext().redirect("../../permisos.xhtml?faces-redirect=true");                
+            }else{
+                log.info("OK");
+            }
+        } catch (Exception e) {
+            log.info("Excepcion::"+e.getMessage());
+        }
+    }
+    
+    public void cerrarSesion(){
+        try {
+            log.info("Cerrar sesion");
+        } catch (Exception e) {
+            log.info("Excepcion::"+e.getMessage());
+        }
     }
 }
