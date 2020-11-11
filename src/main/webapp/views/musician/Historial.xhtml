@@ -1,14 +1,123 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
+        <h:form>
+            <p:remoteCommand name="validation" action="#{reservations.getReservationsByUser()}" autoRun="true"/>
+        </h:form>
         <ui:composition template="./../../WEB-INF/templates/MusicianTemplate.xhtml">
 
             <ui:define name="content">
-                Historial de reservaciones
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Historial</p>
+                                        <p>Historial de reservaciones</p>		
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <p:outputLabel value="Exportar datos: "/>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
+                                    <p:dataExporter type="xls" target=":formReservationsList:tblReservations" fileName="reservaciones" />
+                                </h:commandLink>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/pdfIcon.png" style="width:25px;height:25px;" title="Exporta a PDF"/>
+                                    <p:dataExporter type="pdf" target=":formReservationsList:tblReservations" fileName="reservaciones"/>
+                                </h:commandLink>                    
+                            </h:form>
+                        </div>
+                        <div class="col-12">
+                            <style type="text/css">
+                                .ui-paginator a {
+                                    margin-right: 5px;
+                                }
+                            </style>
+                            <h:form id="formReservationsList">
+                                <p:dataTable id="tblReservations" var="reservacion" value="#{reservations.listaReservacionesPorUsuario}"
+                                             widgetVar="reservationsTable"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                             paginator="true" rows="8" style="margin-bottom:20px">
+
+                                    <p:column headerText="Id" visible="false">
+                                        <h:outputText value="#{reservacion.idReservacion}" />
+                                    </p:column>
+
+                                    <p:column filterBy="#{reservacion.idSala}" filterMatchMode="exact" headerText="Sala">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{rehearsalRooms.salas}" var="sala" itemValue="#{sala.id}"
+                                                               itemLabel="#{sala.nombre}"/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{reservacion.idSala}">
+                                            <f:converter converterId="roomConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column filterBy="#{reservacion.fecha}" filterMatchMode="lte" headerText="Fecha">
+                                        <f:facet name="filter">
+                                            <p:datePicker onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
+                                        </f:facet>
+                                        <p:datePicker value="#{reservacion.fecha}" 
+                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
+                                    </p:column>
+
+                                    <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="Hora">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{hourSystem.listaHoras}" var="hora" itemValue="#{hora.idSistemaHora}"
+                                                               itemLabel='#{hora.concat}'/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{reservacion.idSistemHora}">
+                                            <f:converter converterId="timeConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                    <p:column filterBy="#{reservacion.idEstadoReserva}" filterMatchMode="exact" headerText="Estado">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
+                                                             class="form-control">
+                                                <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                                <f:selectItems value="#{reservationStates.listaEstados}" var="estado" itemValue="#{estado.idEstadoReserva}"
+                                                               itemLabel="#{estado.estado}"/>
+                                            </p:selectOneMenu>
+                                        </f:facet>
+                                        <h:outputText value="#{reservacion.idEstadoReserva}">
+                                            <f:converter converterId="stateConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>

@@ -6,6 +6,7 @@
 package com.adsi.ensayapp.ejb;
 
 import com.adsi.ensayapp.model.Reservacion;
+import com.adsi.ensayapp.model.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,4 +31,5 @@ public interface ReservacionFacadeLocal {
 
     int count();
     
+    List<Reservacion> findAllByUser(Usuario usuario);
 }

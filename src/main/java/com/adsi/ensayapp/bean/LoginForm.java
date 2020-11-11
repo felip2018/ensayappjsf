@@ -2,6 +2,7 @@ package com.adsi.ensayapp.bean;
 
 import com.adsi.ensayapp.ejb.UsuarioFacadeLocal;
 import com.adsi.ensayapp.model.Usuario;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -85,18 +86,14 @@ public class LoginForm implements Serializable {
     }
     
     public void verificarSesion(){
-        log.info("Verificacion de la sesion");
         String urlRedireccion = null;
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             Usuario u = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
             if (u == null) {
-                log.info("Error");
                 context.getExternalContext().redirect("../../permisos.xhtml?faces-redirect=true");                
-            }else{
-                log.info("OK");
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             log.info("Excepcion::"+e.getMessage());
         }
     }
@@ -104,7 +101,10 @@ public class LoginForm implements Serializable {
     public void cerrarSesion(){
         try {
             log.info("Cerrar sesion");
-        } catch (Exception e) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.getExternalContext().getSessionMap().clear();
+            context.getExternalContext().redirect("../../login.xhtml?faces-redirect=true");
+        } catch (IOException e) {
             log.info("Excepcion::"+e.getMessage());
         }
     }

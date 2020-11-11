@@ -5,12 +5,17 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Permisos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <h2>Permisos insuficientes</h2>
-    </body>
+        <p:link outcome="login">
+            #{msgs['landing.ingresar']} <p:outputLabel class="fas fa-sign-in-alt"/>
+        </p:link>
+    </h:body>
 </html>
