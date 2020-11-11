@@ -10,6 +10,7 @@ com\adsi\ensayapp\model\Ciudad_.class
 com\adsi\ensayapp\model\ReservacionEstado_.class
 com\adsi\ensayapp\ejb\LineamientoCalificacionFacade.class
 com\adsi\ensayapp\model\Perfil_.class
+com\adsi\ensayapp\ejb\TipoGastoFacadeLocal.class
 com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
 com\adsi\ensayapp\ejb\GastoFacadeLocal.class
 com\adsi\ensayapp\ejb\MantenimientoFacadeLocal.class
@@ -31,12 +32,14 @@ com\adsi\ensayapp\converter\RoomConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacadeLocal.class
 com\adsi\ensayapp\converter\ProfileConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacade.class
+com\adsi\ensayapp\bean\Spendings.class
 com\adsi\ensayapp\model\LineamientoCalificacion.class
 com\adsi\ensayapp\bean\LoginForm.class
 com\adsi\ensayapp\model\TipoRecargo.class
 com\adsi\ensayapp\bean\ScheduleJava8View.class
 com\adsi\ensayapp\model\Favorito_.class
 com\adsi\ensayapp\ejb\SalaFacadeLocal.class
+com\adsi\ensayapp\converter\SpendingConverter.class
 com\adsi\ensayapp\model\Activo.class
 com\adsi\ensayapp\model\Sucursal_.class
 com\adsi\ensayapp\ejb\MovimientoActivoFacadeLocal.class
@@ -83,6 +86,7 @@ com\adsi\ensayapp\backing\App.class
 com\adsi\ensayapp\model\Calificacion.class
 com\adsi\ensayapp\backing\TextExporter.class
 com\adsi\ensayapp\ejb\ActivoFacade.class
+com\adsi\ensayapp\ejb\TipoGastoFacade.class
 com\adsi\ensayapp\bean\PasswordRecovery.class
 com\adsi\ensayapp\ejb\SalaFacade.class
 com\adsi\ensayapp\model\ReservacionEstado.class
