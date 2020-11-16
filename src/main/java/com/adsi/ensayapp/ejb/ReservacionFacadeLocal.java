@@ -32,4 +32,6 @@ public interface ReservacionFacadeLocal {
     int count();
     
     List<Reservacion> findAllByUser(Usuario usuario);
+    
+    void updateStatus(Reservacion reservacion,Long idStatus);
 }

@@ -5,6 +5,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\TipoDocumentoFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\EstablecimientoFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\TipoDocumento.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\dto\ReservationScoreDTO.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\PasswordRecovery.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\UsuarioFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\DepartamentoFacadeLocal.java
@@ -48,6 +49,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\UsuarioFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\ProveedorContacto.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\TipoGasto.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\ReservationScore.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\backing\TextExporter.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\converter\TimeConverter.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Recargo.java

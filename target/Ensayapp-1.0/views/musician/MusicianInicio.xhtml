@@ -1,14 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/MusicianTemplate.xhtml">
 
             <ui:define name="content">
-                Bienvenido Músico
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="jumbotron">
+                                <h1 class="display-4">Bienvenido #{loginForm.usuario.nombre}</h1>
+                                <p class="lead">Prepárate para vivir esta experiencia!</p>
+                                <!--<a class="btn btn-primary btn-lg" href="#" role="button">Ver salas de ensayo</a>-->
+                                <p:link class="btn btn-primary btn-lg" 
+                                        value="Ver salas de ensayo"
+                                        outcome="VerSalas"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </ui:define>
 
         </ui:composition>

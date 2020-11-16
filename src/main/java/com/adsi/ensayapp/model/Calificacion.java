@@ -16,10 +16,10 @@ import javax.persistence.TemporalType;
 public class Calificacion implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reservacion")
     private int idReservacion;
-
+    
+    @Id
     @Column(name = "id_lineamiento_calificacion")
     private int idLineamientoCalificacion;
     

@@ -53,5 +53,22 @@ public class ReservacionFacade extends AbstractFacade<Reservacion> implements Re
         
         return lista;
     }
+
+    @Override
+    public void updateStatus(Reservacion reservacion, Long idStatus) {
+        String consulta;
+        try {
+            consulta = "UPDATE Reservacion r SET r.idEstadoReserva = ?1 WHERE r.idReservacion = ?2";
+            
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idStatus);
+            query.setParameter(2, reservacion.getIdReservacion());
+            
+            query.executeUpdate();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+    }
     
 }

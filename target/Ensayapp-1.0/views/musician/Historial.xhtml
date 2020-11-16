@@ -51,7 +51,7 @@
                                     margin-right: 5px;
                                 }
                             </style>
-                            <h:form id="formReservationsList">
+                            <h:form id="form">
                                 <p:dataTable id="tblReservations" var="reservacion" value="#{reservations.listaReservacionesPorUsuario}"
                                              widgetVar="reservationsTable"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
@@ -81,7 +81,7 @@
                                                           pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
                                         </f:facet>
                                         <p:datePicker value="#{reservacion.fecha}" 
-                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
+                                                      pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
                                     </p:column>
 
                                     <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="Hora">
@@ -112,10 +112,106 @@
                                         </h:outputText>
                                     </p:column>
 
+                                    <p:column headerText="Opciones">
+                                        <p:commandButton update=":formScore:reservationDetail" 
+                                                         oncomplete="PF('reservationDialog').show()" 
+                                                         icon="fas fa-star" title="Calificar"
+                                                         style="font-size: 10pt;"
+                                                         rendered="#{reservacion.idEstadoReserva == 5}">
+                                            <f:setPropertyActionListener value="#{reservacion}" target="#{reservationScore.reservacion}"/>
+                                        </p:commandButton>
+                                    </p:column>
+
                                 </p:dataTable>
 
                             </h:form>
                         </div>
+                        <div class="col-12">
+                            <h:form id="formScore">
+                                <p:dialog header="Calificar reserva" 
+                                          widgetVar="reservationDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                          width="600">
+
+                                    <p:outputPanel id="reservationDetail">
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Fecha:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <h:inputText readonly="true" class="form-control" value="#{reservationScore.reservacion.fecha}" />
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h:outputText value="Criterios de evaluación: "/>
+                                                <h:outputText value="Indique el puntaje que considere para cada item en un rango de 1 a 5 siendo 5 el mejor y 1 el peor."/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Sonido"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:inputNumber class="form-control" minValue="1" maxValue="5"
+                                                               value="#{reservationScore.sonido}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Instalaciones"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:inputNumber class="form-control" minValue="1" maxValue="5"
+                                                               value="#{reservationScore.instalaciones}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Puntualidad"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:inputNumber class="form-control" minValue="1" maxValue="5"
+                                                               value="#{reservationScore.puntualidad}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <h:outputText class="form-control" value="Equipos"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:inputNumber class="form-control" minValue="1" maxValue="5"
+                                                               value="#{reservationScore.equipos}"/>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:messages id="messagesScore" showDetail="true" rendered="true"/>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:commandButton class="btn btn-primary btn-block"
+                                                                 value="Guardar calificación"
+                                                                 oncomplete="PF('reservationDialog').hide()"
+                                                                 update=":form:tblReservations"
+                                                                 action="#{reservationScore.guardarCalificacion()}"/>
+                                            </div>
+                                        </div>
+
+                                    </p:outputPanel>
+
+                                </p:dialog>
+                            </h:form>
+                        </div>
+
                     </div>
                 </div>
             </ui:define>

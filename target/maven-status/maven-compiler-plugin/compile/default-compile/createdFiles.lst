@@ -115,6 +115,7 @@ com\adsi\ensayapp\ejb\ProveedorContactoFacade.class
 com\adsi\ensayapp\model\TipoGasto.class
 com\adsi\ensayapp\model\Recargo_.class
 com\adsi\ensayapp\dto\EmailMessageDTO.class
+com\adsi\ensayapp\bean\ReservationScore.class
 com\adsi\ensayapp\model\Imagen_.class
 com\adsi\ensayapp\model\Proveedor_.class
 com\adsi\ensayapp\model\SistemaHora.class
@@ -129,4 +130,5 @@ com\adsi\ensayapp\model\Perfil.class
 com\adsi\ensayapp\model\EstadoReserva.class
 com\adsi\ensayapp\ejb\FavoritoFacadeLocal.class
 com\adsi\ensayapp\ejb\EstablecimientoFacadeLocal.class
+com\adsi\ensayapp\dto\ReservationScoreDTO.class
 com\adsi\ensayapp\model\Notificacion_.class

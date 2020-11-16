@@ -90,6 +90,7 @@ public class LoginForm implements Serializable {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
             Usuario u = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+            usuario = u;
             if (u == null) {
                 context.getExternalContext().redirect("../../permisos.xhtml?faces-redirect=true");                
             }
