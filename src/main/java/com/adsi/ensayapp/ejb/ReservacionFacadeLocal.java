@@ -34,4 +34,6 @@ public interface ReservacionFacadeLocal {
     List<Reservacion> findAllByUser(Usuario usuario);
     
     void updateStatus(Reservacion reservacion,Long idStatus);
+    
+    List<Reservacion> findAllByUserAndState(Usuario usuario, Long idState);
 }

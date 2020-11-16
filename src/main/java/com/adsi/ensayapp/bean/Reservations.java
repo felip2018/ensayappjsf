@@ -25,6 +25,7 @@ public class Reservations implements Serializable {
     private List<Reservacion> listaReservaciones;
     private Exporter<DataTable> textExporter;
     private List<Reservacion> listaReservacionesPorUsuario;
+    private List<Reservacion> listaReservacionesUsuarioEstadoReserva;
     
     @EJB
     private ReservacionFacadeLocal reservacionEJB;
@@ -32,6 +33,7 @@ public class Reservations implements Serializable {
     @PostConstruct
     public void init(){
         this.getReservationsByUser();
+        this.getReservationsByUserAndState();
         listaReservaciones = reservacionEJB.findAll();
         textExporter = new TextExporter();
     }
@@ -44,6 +46,17 @@ public class Reservations implements Serializable {
             log.info("Numero de reservaciones: "+listaReservacionesPorUsuario.size());
         } catch (Exception e) {
             log.info("Error al consultar reservaciones por usuario: "+e.getMessage());
+        }
+    }
+    
+    public void getReservationsByUserAndState(){
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            Usuario u = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+            listaReservacionesUsuarioEstadoReserva = reservacionEJB.findAllByUserAndState(u, 1L);
+            
+        } catch (Exception e) {
+            log.info("Error al consultar reservaciones: "+e.getMessage());
         }
     }
     
@@ -69,6 +82,14 @@ public class Reservations implements Serializable {
  
     public void setTextExporter(Exporter<DataTable> textExporter) {
         this.textExporter = textExporter;
+    }
+
+    public List<Reservacion> getListaReservacionesUsuarioEstadoReserva() {
+        return listaReservacionesUsuarioEstadoReserva;
+    }
+
+    public void setListaReservacionesUsuarioEstadoReserva(List<Reservacion> listaReservacionesUsuarioEstadoReserva) {
+        this.listaReservacionesUsuarioEstadoReserva = listaReservacionesUsuarioEstadoReserva;
     }
     
 }

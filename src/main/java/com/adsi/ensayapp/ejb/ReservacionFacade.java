@@ -70,5 +70,27 @@ public class ReservacionFacade extends AbstractFacade<Reservacion> implements Re
             throw e;
         }
     }
+
+    @Override
+    public List<Reservacion> findAllByUserAndState(Usuario usr, Long idState) {
+        List<Reservacion> lista = new ArrayList<>();
+        String consulta;
+        
+        try {
+            
+            consulta = "FROM Reservacion r WHERE r.idUsuario = ?1 AND r.idEstadoReserva = ?2";
+            
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, usr.getId());
+            query.setParameter(2, idState);
+            
+            lista = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return lista;
+    }
     
 }

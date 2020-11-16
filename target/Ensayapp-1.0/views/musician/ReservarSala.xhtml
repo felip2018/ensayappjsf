@@ -20,7 +20,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Reservar sala</p>	
+                                        <p class="title_section">#{msgs['Musician.ReservarSala.subtitulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -39,23 +39,23 @@
                                         <p:outputLabel value="#{rehearsalRooms.sala.nombre}"/>
                                     </div>
                                     <div class="col-12">
-                                        <p:outputLabel value="Precio: $ #{rehearsalRooms.sala.precio}"/>
+                                        <p:outputLabel value="#{msgs['Musician.ReservarSala.precio']} #{rehearsalRooms.sala.precio}"/>
                                     </div>
                                     <div class="col-12">
-                                        <p:outputLabel value="Descripción: #{rehearsalRooms.sala.descripcion}"/>
+                                        <p:outputLabel value="#{msgs['Musician.ReservarSala.descripcion']} #{rehearsalRooms.sala.descripcion}"/>
                                     </div>
                                     <div class="col-6">
-                                        <p:outputLabel for="fecha" value="Fecha de Reservación"/>
+                                        <p:outputLabel for="fecha" value="#{msgs['Musician.ReservarSala.fecha']}"/>
                                         <p:datePicker id="fecha" class="form-control"
                                                       required="true"
                                                       value="#{rehearsalRooms.reservacion.fecha}"/>
                                     </div>
                                     <div class="col-6">
-                                        <p:outputLabel for="hora" value="Hora"/>
+                                        <p:outputLabel for="hora" value="#{msgs['Musician.ReservarSala.hora']}"/>
                                         <p:selectOneMenu id="hora" class="form-control" 
                                                          required="true"
                                                          value="#{rehearsalRooms.reservacion.idSistemHora}">
-                                            <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                            <f:selectItem itemValue="" itemLabel="-Select"/>
                                             <f:selectItem itemValue="1" itemLabel="08:00 - 10:00"/>
                                             <f:selectItem itemValue="2" itemLabel="10:00 - 12:00"/>
                                             <f:selectItem itemValue="3" itemLabel="12:00 - 02:00"/>
@@ -65,7 +65,7 @@
                                         <p:message for="hora"/>
                                     </div>
                                     <div class="col-12">
-                                        <p:outputLabel value="Comentarios"/>
+                                        <p:outputLabel value="#{msgs['Musician.ReservarSala.comentarios']}"/>
                                         <p:inputTextarea class="form-control" rows="3" 
                                                          value="#{rehearsalRooms.reservacion.comentarios}"/>
                                     </div>
@@ -75,7 +75,7 @@
                                     <div class="col-12">
                                         <p:separator/>
                                         <p:commandButton class="btn btn-primary btn-block btn-login" 
-                                                         value="Realizar reservacion" 
+                                                         value="#{msgs['Musician.ReservarSala.boton.reservar']}" 
                                                          ajax="true"
                                                          update="mensajes"
                                                          action="#{rehearsalRooms.realizarReservacion()}"/>

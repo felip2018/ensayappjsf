@@ -19,8 +19,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Historial</p>
-                                        <p>Historial de reservaciones</p>		
+                                        <p class="title_section">#{msgs['Musician.Historial.titulo']}</p>		
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -34,7 +33,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
-                                <p:outputLabel value="Exportar datos: "/>
+                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
                                 <h:commandLink style="margin-left: 5px;">
                                     <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
                                     <p:dataExporter type="xls" target=":formReservationsList:tblReservations" fileName="reservaciones" />
@@ -61,7 +60,7 @@
                                         <h:outputText value="#{reservacion.idReservacion}" />
                                     </p:column>
 
-                                    <p:column filterBy="#{reservacion.idSala}" filterMatchMode="exact" headerText="Sala">
+                                    <p:column filterBy="#{reservacion.idSala}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field1']}">
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
                                                              class="form-control">
@@ -75,7 +74,7 @@
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column filterBy="#{reservacion.fecha}" filterMatchMode="lte" headerText="Fecha">
+                                    <p:column filterBy="#{reservacion.fecha}" filterMatchMode="lte" headerText="#{msgs['Musician.inicio.table.field2']}">
                                         <f:facet name="filter">
                                             <p:datePicker onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
                                                           pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
@@ -84,7 +83,7 @@
                                                       pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
                                     </p:column>
 
-                                    <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="Hora">
+                                    <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field3']}">
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
                                                              class="form-control">
@@ -98,7 +97,7 @@
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column filterBy="#{reservacion.idEstadoReserva}" filterMatchMode="exact" headerText="Estado">
+                                    <p:column filterBy="#{reservacion.idEstadoReserva}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field4']}">
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
                                                              class="form-control">
@@ -112,7 +111,7 @@
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column headerText="Opciones">
+                                    <p:column headerText="#{msgs['Musician.inicio.table.field5']}">
                                         <p:commandButton update=":formScore:reservationDetail" 
                                                          oncomplete="PF('reservationDialog').show()" 
                                                          icon="fas fa-star" title="Calificar"
@@ -128,7 +127,7 @@
                         </div>
                         <div class="col-12">
                             <h:form id="formScore">
-                                <p:dialog header="Calificar reserva" 
+                                <p:dialog header="#{msgs['Musician.Historial.califica.titulo']}" 
                                           widgetVar="reservationDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                           width="600">
 
@@ -136,7 +135,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Fecha:"/>
+                                                <h:outputText class="form-control" value="#{msgs['Musician.Historail.califica.item1']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <h:inputText readonly="true" class="form-control" value="#{reservationScore.reservacion.fecha}" />
@@ -145,14 +144,13 @@
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-12">
-                                                <h:outputText value="Criterios de evaluación: "/>
-                                                <h:outputText value="Indique el puntaje que considere para cada item en un rango de 1 a 5 siendo 5 el mejor y 1 el peor."/>
+                                                <h:outputText value="#{msgs['Musician.Historial.califica.texto']}"/>
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Sonido"/>
+                                                <h:outputText class="form-control" value="#{msgs['Musician.Historail.califica.item2']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:inputNumber class="form-control" minValue="1" maxValue="5"
@@ -162,7 +160,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Instalaciones"/>
+                                                <h:outputText class="form-control" value="#{msgs['Musician.Historail.califica.item3']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:inputNumber class="form-control" minValue="1" maxValue="5"
@@ -172,7 +170,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Puntualidad"/>
+                                                <h:outputText class="form-control" value="#{msgs['Musician.Historail.califica.item4']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:inputNumber class="form-control" minValue="1" maxValue="5"
@@ -182,7 +180,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Equipos"/>
+                                                <h:outputText class="form-control" value="#{msgs['Musician.Historail.califica.item5']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:inputNumber class="form-control" minValue="1" maxValue="5"
@@ -199,7 +197,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:commandButton class="btn btn-primary btn-block"
-                                                                 value="Guardar calificación"
+                                                                 value="#{msgs['Musician.Historail.califica.boton.calificar']}"
                                                                  oncomplete="PF('reservationDialog').hide()"
                                                                  update=":form:tblReservations"
                                                                  action="#{reservationScore.guardarCalificacion()}"/>
