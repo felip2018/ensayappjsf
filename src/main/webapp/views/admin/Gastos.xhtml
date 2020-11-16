@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Gastos</p>	
+                                        <p class="title_section">#{msgs['Admin.Gastos.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
-                                <p:outputLabel value="Exportar datos: "/>
+                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
                                 <h:commandLink style="margin-left: 5px;">
                                     <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
                                     <p:dataExporter type="xls" target=":form:basicSpendingsList" fileName="Gastos" />
@@ -46,7 +46,7 @@
                             <h:form id="form">
                                 <p:dataTable id="basicSpendingsList" var="gasto" value="#{spendings.listaGastos}"
                                              widgetVar="spendingsTable">
-                                    <p:column filterBy="#{gasto.idTipoGasto}" filterMatchMode="exact" headerText="Tipo">
+                                    <p:column filterBy="#{gasto.idTipoGasto}" filterMatchMode="exact" headerText="#{msgs['Admin.Gastos.table.item1']}">
 
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('spendingsTable').filter()" styleClass="custom-filter"
@@ -61,17 +61,17 @@
                                             <f:converter converterId="spendingConverter"/>
                                         </h:outputText>
                                     </p:column>
-                                    <p:column filterBy="#{gasto.monto}" headerText="Monto">
+                                    <p:column filterBy="#{gasto.monto}" headerText="#{msgs['Admin.Gastos.table.item2']}">
                                         <h:outputText value="#{gasto.monto}">
                                             <f:convertNumber currencySymbol="$" type="currency"/>
                                         </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Fecha">
+                                    <p:column headerText="#{msgs['Admin.Gastos.table.item3']}">
                                         <p:datePicker value="#{gasto.fechaGasto}" 
                                                       pattern="dd/MM/yyyy" showTime="false" 
                                                       disabled="true"/>
                                     </p:column>
-                                    <p:column headerText="Opciones" exportable="false">
+                                    <p:column headerText="#{msgs['Admin.Gastos.table.item4']}" exportable="false">
                                         <p:commandButton update=":formUpdate:spendingDetail" oncomplete="PF('spendingDialog').show()" 
                                                          icon="far fa-eye" title="Ver">
                                             <f:setPropertyActionListener value="#{gasto}" target="#{spendings.gasto}"/>
@@ -94,7 +94,7 @@
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
-                            <p:dialog header="Información de gasto" 
+                            <p:dialog header="#{msgs['Admin.Gastos.verGasto.titulo']}" 
                                       widgetVar="spendingDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formUpdate">
@@ -102,10 +102,10 @@
 
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <p:outputLabel for="id_tipo_gasto" value="Tipo de gasto"/>
+                                                <p:outputLabel for="id_tipo_gasto" value="#{msgs['Admin.Gastos.verGasto.item1']}"/>
                                                 <p:selectOneMenu id="id_tipo_gasto" class="form-control" 
                                                                  value="#{spendings.gasto.idTipoGasto}" required="true">
-                                                    <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                                    <f:selectItem itemValue="" itemLabel="-Select"/>
                                                     <f:selectItems value="#{spendings.listaTiposGasto}" var="tipo" 
                                                                    itemValue="#{tipo.idTipoGasto}" itemLabel="#{tipo.nombre}"/>
                                                 </p:selectOneMenu>
@@ -113,19 +113,19 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <p:outputLabel for="monto" value="valor ($)"/>
+                                                <p:outputLabel for="monto" value="#{msgs['Admin.Gastos.verGasto.item2']}"/>
                                                 <p:inputNumber id="monto" class="form-control" 
                                                                value="#{spendings.gasto.monto}" required="true"/>
                                             </div>
                                             <div class="col-xs-12 col-sm-12 col-md-6">
-                                                <p:outputLabel for="fecha_gasto" value="Fecha gasto"/>
+                                                <p:outputLabel for="fecha_gasto" value="#{msgs['Admin.Gastos.verGasto.item3']}"/>
                                                 <p:calendar id="fecha_gasto" class="form-control" 
                                                             value="#{spendings.gasto.fechaGasto}" required="true"/>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-12">
-                                                <p:outputLabel for="comentarios" value="Comentarios"/>
+                                                <p:outputLabel for="comentarios" value="#{msgs['Admin.Gastos.verGasto.item4']}"/>
                                                 <p:inputTextarea id="comentarios" class="form-control" rows="4" 
                                                                  value="#{spendings.gasto.comentatios}" required="true"/>
                                             </div>
@@ -136,7 +136,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                                                 value="Actualizar gasto" 
+                                                                 value="#{msgs['Admin.Gastos.verGasto.boton.actualizar']}" 
                                                                  action="#{spendings.actualizarGasto()}"/>
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Eliminar gasto" 
+                            <p:dialog header="#{msgs['Admin.Gastos.eliminar.titulo']}" 
                                       widgetVar="deleteSpendingDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formDelete">
@@ -152,18 +152,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:outputLabel>
-                                                    ¿Esta seguro de eliminar el gasto <b>$ #{spendings.gasto.monto}</b>?
+                                                    #{msgs['Admin.Gastos.eliminar.texto']} <b>$ #{spendings.gasto.monto}</b>?
                                                 </p:outputLabel>
                                             </div>
                                         </div>
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.cancelar']}"
                                                                  oncomplete="PF('deleteSpendingDialog').hide()"/>
                                             </div>
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.confirmar']}"
                                                                  oncomplete="PF('deleteSpendingDialog').hide()"
                                                                  action="#{spendings.activarInactivarGesto('Inactivo')}"
                                                                  update=":form:basicSpendingsList"/>
@@ -172,7 +174,7 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Activar usuario" 
+                            <p:dialog header="#{msgs['Admin.Gastos.activar.titulo']}" 
                                       widgetVar="activeSpendingDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formActive">
@@ -180,18 +182,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:outputLabel>
-                                                    ¿Esta seguro de activar el registro del gasto <b>$#{spendings.gasto.monto}</b>?
+                                                    #{msgs['Admin.Gastos.activar.texto']} <b>$#{spendings.gasto.monto}</b>?
                                                 </p:outputLabel>
                                             </div>
                                         </div>
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.cancelar']}"
                                                                  oncomplete="PF('activeSpendingDialog').hide()"/>
                                             </div>
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.Gastos.activar.boton.confirmar']}"
                                                                  oncomplete="PF('activeSpendingDialog').hide()"
                                                                  action="#{spendings.activarInactivarGesto('Activo')}"
                                                                  update=":form:basicSpendingsList"/>

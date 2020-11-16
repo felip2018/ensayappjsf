@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Registrar gastos</p>	
+                                        <p class="title_section">#{msgs['Admin.RegistrarGastos.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -33,10 +33,10 @@
                             <h:form>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <p:outputLabel for="id_tipo_gasto" value="Tipo de gasto"/>
+                                        <p:outputLabel for="id_tipo_gasto" value="#{msgs['Admin.RegistrarGastos.item1']}"/>
                                         <p:selectOneMenu id="id_tipo_gasto" class="form-control" 
                                                          value="#{spendings.gasto.idTipoGasto}" required="true">
-                                            <f:selectItem itemValue="" itemLabel="-Seleccione"/>
+                                            <f:selectItem itemValue="" itemLabel="-Select"/>
                                             <f:selectItems value="#{spendings.listaTiposGasto}" var="tipo" 
                                                            itemValue="#{tipo.idTipoGasto}" itemLabel="#{tipo.nombre}"/>
                                         </p:selectOneMenu>
@@ -44,19 +44,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <p:outputLabel for="monto" value="valor ($)"/>
+                                        <p:outputLabel for="monto" value="#{msgs['Admin.RegistrarGastos.item2']}"/>
                                         <p:inputNumber id="monto" class="form-control" 
                                                        value="#{spendings.gasto.monto}" required="true"/>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <p:outputLabel for="fecha_gasto" value="Fecha gasto"/>
+                                        <p:outputLabel for="fecha_gasto" value="#{msgs['Admin.RegistrarGastos.item3']}"/>
                                         <p:calendar id="fecha_gasto" class="form-control" 
                                                     value="#{spendings.gasto.fechaGasto}" required="true"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <p:outputLabel for="comentarios" value="Comentarios"/>
+                                        <p:outputLabel for="comentarios" value="#{msgs['Admin.RegistrarGastos.item4']}"/>
                                         <p:inputTextarea id="comentarios" class="form-control" rows="4" 
                                                          value="#{spendings.gasto.comentatios}" required="true"/>
                                     </div>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-12">
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                                         value="Registrar gasto" 
+                                                         value="#{msgs['Admin.RegistrarGastos.boton.registrar']}" 
                                                          action="#{spendings.registrarGasto()}"/>
                                     </div>
                                 </div>
@@ -78,18 +78,18 @@
                         <div class="col-12">
                             <p:separator/>
                             <h:form enctype="multipart/form-data">
-                                <p:outputLabel value="Cargue Masivo (Instrucciones)"/>
+                                <p:outputLabel value="#{msgs['Admin.RegistrarGastos.cargue.titulo']}"/>
                                 <ol>
-                                    <li>Descargue el formato requerido para diligenciar la formación de las salas de ensayo: <a href="../../resources/file/spendings_format.xlsx">spendings_format.xlsx</a></li>
-                                    <li>Una vez listo el documento, proceda a seleccionarlo.</li>
-                                    <li>Clic en <b>Realizar cargue</b> para iniciar el proceso de registro masivo.</li>
+                                    <li>#{msgs['Admin.RegistrarGastos.cargue.item1']} <a href="../../resources/file/spendings_format.xlsx">spendings_format.xlsx</a></li>
+                                    <li>#{msgs['Admin.RegistrarGastos.cargue.item2']}</li>
+                                    <li>#{msgs['Admin.RegistrarGastos.cargue.item3']}</li>
                                 </ol>
 
-                                <p:outputLabel value="Seleccione el archivo excel: "/><br/>
+                                <p:outputLabel value="#{msgs['Admin.RegistrarGastos.cargue.item1']}"/><br/>
                                 
                                 <p:fileUpload value="#{spendings.file}" mode="simple" skinSimple="true"/><br/>
                                 
-                                <p:commandButton value="Realizar cargue" 
+                                <p:commandButton value="#{msgs['Admin.RegistrarGastos.cargue.boton.cargar']}" 
                                                  ajax="false" 
                                                  action="#{spendings.cargarArchivo()}"/>
                             </h:form>

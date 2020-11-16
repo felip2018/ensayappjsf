@@ -40,7 +40,7 @@
                                             rowsPerPageTemplate="6,12,16">
 
                                     <f:facet name="header" id="gridHeader">
-                                        Salas de ensayo
+                                        #{msgs['Musician.ReservarSala.titulo.tabla']}
                                     </f:facet>
 
                                     <p:panel header="#{sala.nombre}">
@@ -96,7 +96,7 @@
 
                                 </p:dataGrid>
                             </h:form>
-                            <p:dialog header="Información sala" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:dialog header="#{msgs['Admin.SalasEnsayo.verSala.titulo']}" widgetVar="roomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
                                 <h:form id="formRoomDetail">
                                     <p:outputPanel id="roomDetail">
                                         <p:panelGrid  columns="1" rendered="#{not empty rehearsalRooms.sala}" columnClasses="label,value">
@@ -104,16 +104,17 @@
                                                 <p:graphicImage name="C:/ensayapp-files/salas/no_image.jpg"/> 
                                             </f:facet>
 
-                                            <h:outputText value="Nombre" />
+                                            <h:outputText value="#{msgs['Admin.SalasEnsayo.verSala.item1']}" />
                                             <h:inputText class="form-control" value="#{rehearsalRooms.sala.nombre}" />
 
-                                            <h:outputText value="Precio:" />
+                                            <h:outputText value="#{msgs['Admin.SalasEnsayo.verSala.item2']}" />
                                             <h:inputText class="form-control" value="#{rehearsalRooms.sala.precio}"/>
 
-                                            <h:outputText value="Descripcion" />
+                                            <h:outputText value="#{msgs['Admin.SalasEnsayo.verSala.item3']}" />
                                             <h:inputTextarea class="form-control" rows="3" value="#{rehearsalRooms.sala.descripcion}" />
 
-                                            <p:commandButton class="btn btn-primary btn-block" value="Actualizar"
+                                            <p:commandButton class="btn btn-primary btn-block" 
+                                                             value="#{msgs['Admin.SalasEnsayo.verSala.boton.actualizar']}"
                                                              action="#{rehearsalRooms.actualizarInformacionSala()}"
                                                              oncomplete="PF('roomDialog').hide()"
                                                              update=":form:salas"/>
@@ -121,7 +122,7 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Eliminar sala" 
+                            <p:dialog header="#{msgs['Admin.SalasEnsayo.eliminar.titulo']}" 
                                       widgetVar="deleteRoomDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formDelete">
@@ -129,18 +130,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:outputLabel>
-                                                    ¿Esta seguro de eliminar la sala <b>#{rehearsalRooms.sala.nombre}</b>?
+                                                    #{msgs['Admin.SalasEnsayo.eliminar.texto']}
                                                 </p:outputLabel>
                                             </div>
                                         </div>
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.cancelar']}"
                                                                  oncomplete="PF('deleteRoomDialog').hide()"/>
                                             </div>
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.confirmar']}"
                                                                  action="#{rehearsalRooms.eliminarSala()}"
                                                                  oncomplete="PF('deleteRoomDialog').hide()"
                                                                  update=":form:salas"/>

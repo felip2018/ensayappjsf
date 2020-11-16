@@ -42,10 +42,10 @@
                                         <p:menuitem value="#{msgs['Menu.inicio']}" outcome="AdminInicio"/>
                                         <p:submenu label="#{msgs['AdminMenu.reservaciones']}">
                                             <p:menuitem outcome="Reservaciones">
-                                                <p:outputLabel class="far fa-calendar-alt" /> Calendario
+                                                <p:outputLabel class="far fa-calendar-alt" /> #{msgs['AdminMenu.calendario']}
                                             </p:menuitem>
                                             <p:menuitem outcome="ListaReservaciones">
-                                                <p:outputLabel class="fas fa-history" /> Historial
+                                                <p:outputLabel class="fas fa-history" /> #{msgs['AdminMenu.historial']}
                                             </p:menuitem>
                                         </p:submenu>
                                         <p:submenu label="#{msgs['AdminMenu.salasEnsayo']}">

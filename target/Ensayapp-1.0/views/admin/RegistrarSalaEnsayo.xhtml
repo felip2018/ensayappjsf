@@ -64,18 +64,18 @@
                         <div class="col-12">
                             <p:separator/>
                             <h:form enctype="multipart/form-data">
-                                <p:outputLabel value="Cargue Masivo (Instrucciones)"/>
+                                <p:outputLabel value="#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.titulo']}"/>
                                 <ol>
-                                    <li>Descargue el formato requerido para diligenciar la formación de las salas de ensayo: <a href="../../resources/file/rooms_format.xlsx">rooms_format.xlsx</a></li>
-                                    <li>Una vez listo el documento, proceda a seleccionarlo.</li>
-                                    <li>Clic en <b>Realizar cargue</b> para iniciar el proceso de registro masivo.</li>
+                                    <li>#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.item1']} <a href="../../resources/file/rooms_format.xlsx">rooms_format.xlsx</a></li>
+                                    <li>#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.item2']}</li>
+                                    <li>#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.item3']}</li>
                                 </ol>
 
-                                <p:outputLabel value="Seleccione el archivo excel: "/><br/>
+                                <p:outputLabel value="#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.seleccione']}"/><br/>
                                 
                                 <p:fileUpload value="#{registerRoomForm.file}" mode="simple" skinSimple="true"/><br/>
                                 
-                                <p:commandButton value="Realizar cargue" 
+                                <p:commandButton value="#{msgs['Admin.RegistrarSalaEnsayo.instrucciones.boton.cargar']}" 
                                                  ajax="false" 
                                                  action="#{registerRoomForm.cargarArchivo()}"/>
                             </h:form>
