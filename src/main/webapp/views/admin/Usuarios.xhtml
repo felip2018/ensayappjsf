@@ -18,7 +18,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Usuarios del sistema</p>	
+                                        <p class="title_section">#{msgs['Admin.Usuarios.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
-                                <p:outputLabel value="Exportar datos: "/>
+                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
                                 <h:commandLink style="margin-left: 5px;">
                                     <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
                                     <p:dataExporter type="xls" target=":form:basicUserList" fileName="UsuariosDelSistema" />
@@ -46,26 +46,26 @@
                         <div class="col-12">
                             <h:form id="form">
                                 <p:dataTable id="basicUserList" var="usuario" value="#{usuarioBean.listadoUsuarios}">
-                                    <p:column headerText="Nombre">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field1']}">
                                         <h:outputText value="#{usuario.nombre}" />
                                     </p:column>
-                                    <p:column headerText="Apellido">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field2']}">
                                         <h:outputText value="#{usuario.apellido}" />
                                     </p:column>
-                                    <p:column headerText="Documento">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field3']}">
                                         <h:outputText value="#{usuario.idTipoDocumento}">
                                             <f:converter converterId="doctypeConverter"/>
                                         </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Número">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field4']}">
                                         <h:outputText value="#{usuario.numDoc}" />
                                     </p:column>
-                                    <p:column headerText="Perfil">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field5']}">
                                         <h:outputText value="#{usuario.idPerfil}" >
                                             <f:converter converterId="profileConverter"/>
                                         </h:outputText>
                                     </p:column>
-                                    <p:column headerText="Estado">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field6']}">
                                         <table>
                                             <tr>
                                                 <td style="#{usuario.estadoRegistro eq 'Activo' ? 'background:#1dd1a1' : 'background:#ff6b6b'};color:#ffffff;">
@@ -74,7 +74,7 @@
                                             </tr>
                                         </table>
                                     </p:column>
-                                    <p:column headerText="Opciones" exportable="false">
+                                    <p:column headerText="#{msgs['Admin.Usuarios.table.field7']}" exportable="false">
                                         <p:commandButton update=":formUpdate:userDetail" oncomplete="PF('userDialog').show()" icon="far fa-eye" title="Ver">
                                             <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioSeleccionado}"/>
                                         </p:commandButton>
@@ -96,7 +96,7 @@
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
-                            <p:dialog header="Información de usuario" 
+                            <p:dialog header="#{msgs['Admin.Usuarios.verUsuario.titulo']}" 
                                       widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formUpdate">
@@ -104,7 +104,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Nombre:"/>
+                                                <h:outputText class="form-control" value="#{msgs['Admin.Usuarios.verUsuario.item1']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.nombre}" />
@@ -113,7 +113,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Apellido:" />
+                                                <h:outputText class="form-control" value="#{msgs['Admin.Usuarios.verUsuario.item2']}" />
                                             </div>
                                             <div class="col-9">
                                                 <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.apellido}"/>
@@ -122,7 +122,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Teléfono:" />
+                                                <h:outputText class="form-control" value="#{msgs['Admin.Usuarios.verUsuario.item3']}" />
                                             </div>
                                             <div class="col-9">
                                                 <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.telefono}" />
@@ -131,7 +131,7 @@
 
                                         <div class="row">
                                             <div class="col-3">
-                                                <h:outputText class="form-control" value="Correo:" />
+                                                <h:outputText class="form-control" value="#{msgs['Admin.Usuarios.verUsuario.item4']}" />
                                             </div>
                                             <div class="col-9">
                                                 <h:inputText class="form-control" value="#{usuarioBean.usuarioSeleccionado.correo}" />
@@ -141,7 +141,8 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:separator/>
-                                                <p:commandButton class="btn btn-primary btn-block" value="Actualizar usuario"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.Usuarios.verUsuario.boton.actualizar']}"
                                                                  action="#{usuarioBean.actualizarInformacionUsuario()}"
                                                                  oncomplete="PF('userDialog').hide()"
                                                                  update=":form:basicUserList"/>
@@ -151,7 +152,7 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Eliminar usuario" 
+                            <p:dialog header="#{msgs['Admin.Usuarios.eliminar.titulo']}"
                                       widgetVar="deleteUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formDelete">
@@ -159,18 +160,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:outputLabel>
-                                                    ¿Esta seguro de eliminar el usuario <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
+                                                    #{msgs['Admin.Usuarios.eliminar.texto']} <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
                                                 </p:outputLabel>
                                             </div>
                                         </div>
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.cancelar']}"
                                                                  oncomplete="PF('deleteUserDialog').hide()"/>
                                             </div>
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.confirmar']}"
                                                                  action="#{usuarioBean.eliminarUsuario()}"
                                                                  oncomplete="PF('deleteUserDialog').hide()"
                                                                  update=":form:basicUserList"/>
@@ -179,7 +182,7 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Activar usuario" 
+                            <p:dialog header="#{msgs['Admin.Usuarios.activar.titulo']}" 
                                       widgetVar="activeUserDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formActive">
@@ -187,18 +190,20 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <p:outputLabel>
-                                                    ¿Esta seguro de activar el usuario <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
+                                                    #{msgs['Admin.Usuarios.activar.texto']} <b>#{usuarioBean.usuarioSeleccionado.nombre}</b>?
                                                 </p:outputLabel>
                                             </div>
                                         </div>
                                         <p:separator/>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-secondary btn-block" value="No, cancelar"
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="#{msgs['Admin.SalasEnsayo.eliminar.boton.cancelar']}"
                                                                  oncomplete="PF('deleteUserDialog').hide()"/>
                                             </div>
                                             <div class="col-6">
-                                                <p:commandButton class="btn btn-primary btn-block" value="Si, confirmar"
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="#{msgs['Admin.Gastos.activar.boton.confirmar']}"
                                                                  action="#{usuarioBean.activarUsuario()}"
                                                                  oncomplete="PF('activeUserDialog').hide()"
                                                                  update=":form:basicUserList"/>
