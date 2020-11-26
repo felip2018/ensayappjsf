@@ -4,11 +4,14 @@ import com.adsi.ensayapp.ejb.ReservacionFacadeLocal;
 import com.adsi.ensayapp.ejb.SalaFacadeLocal;
 import com.adsi.ensayapp.model.Reservacion;
 import com.adsi.ensayapp.model.Sala;
+import com.adsi.ensayapp.model.Usuario;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +29,7 @@ public class RehearsalRooms implements Serializable {
     private Sala sala;
     private Reservacion reservacion;
     private String paramId;
+    private Usuario musico;
     
     @EJB
     private SalaFacadeLocal salaEJB;
@@ -35,9 +39,12 @@ public class RehearsalRooms implements Serializable {
     
     @PostConstruct
     public void init(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        musico = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
+        
         salas = buscarListaSalas();
         reservacion = new Reservacion();
-        reservacion.setIdUsuario(8);
+        reservacion.setIdUsuario(musico.getId());
         reservacion.setIdEstadoReserva(1);
         reservacion.setCalificacion(0);
         reservacion.setFechaRegistro(new Date());
@@ -126,8 +133,13 @@ public class RehearsalRooms implements Serializable {
             reservacion.setIdSala(sala.getId());
             reservacion.setPrecio(sala.getPrecio());
             reservacionEJB.create(reservacion);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Aviso",
+                    "Se ha realizado la reservación de la sala de ensayo."));
         } catch (Exception e) {
-            throw e;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Aviso",
+                    "Ha ocurrido un error: "+e.getMessage()));
         }
     }
 }

@@ -73,13 +73,10 @@
                                         </h:outputText>
                                     </p:column>
 
-                                    <p:column filterBy="#{reservacion.fecha}" filterMatchMode="lte" headerText="#{msgs['Musician.inicio.table.field2']}">
-                                        <f:facet name="filter">
-                                            <p:datePicker onchange="PF('reservationsTable').filter()" styleClass="custom-filter"
-                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
-                                        </f:facet>
+                                    <p:column headerText="#{msgs['Musician.inicio.table.field2']}">
                                         <p:datePicker value="#{reservacion.fecha}" 
-                                                          pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  />
+                                                      pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  
+                                                      readonly="true"/>
                                     </p:column>
 
                                     <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field3']}">
@@ -109,10 +106,62 @@
                                             <f:converter converterId="stateConverter"/>
                                         </h:outputText>
                                     </p:column>
+                                    
+                                    <p:column headerText="Options">
+                                        <p:commandButton icon="fas fa-file-invoice-dollar" title="Agregar recargo"
+                                                         update=":formRecargo:recargoDetail"
+                                                         oncomplete="PF('recargoDialog').show()">
+                                            <f:setPropertyActionListener value="#{reservacion}" target="#{recargoBean.reservacion}"/>
+                                        </p:commandButton>
+                                    </p:column>
 
                                 </p:dataTable>
-
                             </h:form>
+                            <p:dialog header="Recargo" widgetVar="recargoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                                <h:form id="formRecargo">
+                                    <p:outputPanel id="recargoDetail">
+                                        <p:panelGrid  columns="1" rendered="#{not empty recargoBean.reservacion}" columnClasses="label,value">
+                                            
+                                            <h:outputText value="Sala" />
+                                            <h:outputText value="#{recargoBean.reservacion.idSala}">
+                                                <f:converter converterId="roomConverter"/>
+                                            </h:outputText>
+
+                                            <h:outputText value="Fecha" />
+                                            <p:datePicker value="#{recargoBean.reservacion.fecha}" 
+                                                      pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  
+                                                      disabled="true"/>
+                                            
+                                            <h:outputText value="Músico"/>
+                                            <h:outputText value="#{recargoBean.reservacion.idUsuario}">
+                                                <f:converter converterId="userConverter"/>
+                                            </h:outputText>
+                                            
+                                            <h:outputText value="Tipo recargo"/>
+                                            <p:selectOneMenu class="form-control" value="#{recargoBean.recargo.idTipoRecargo}">
+                                                <f:selectItem itemValue="0" itemLabel="-Select"/>
+                                                <f:selectItems value="#{recargoBean.listaTiposRecargo}" var="tipoRecargo" 
+                                                               itemValue="#{tipoRecargo.idTipoRecargo}" 
+                                                               itemLabel="#{tipoRecargo.nombre}"/>
+                                            </p:selectOneMenu>
+                                            
+                                            <h:outputText value="Monto $"/>
+                                            <p:inputNumber value="#{recargoBean.recargo.monto}"/>
+                                            
+                                            <h:outputText value="Descripción del caso"/>
+                                            <p:inputTextarea class="form-control" rows="4" value="#{recargoBean.recargo.descripcionCaso}"/>
+                                            
+                                            <h:outputText value=""/>
+                                            <p:commandButton class="btn btn-primary btn-block" 
+                                                             value="Registrar recargo"
+                                                             oncomplete="PF('recargoDialog').hide()"
+                                                             update=":formReservationsList:tblReservations"
+                                                             action="#{recargoBean.registrarRecargo()}"/>
+                                            
+                                        </p:panelGrid>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
                         </div>
                     </div>
                 </div>

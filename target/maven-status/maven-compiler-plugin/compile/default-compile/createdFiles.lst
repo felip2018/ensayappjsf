@@ -1,4 +1,5 @@
 com\adsi\ensayapp\model\ProveedorContacto.class
+com\adsi\ensayapp\bean\RecargoBean.class
 com\adsi\ensayapp\ejb\PerfilFacade.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacade.class
 com\adsi\ensayapp\ejb\ProveedorFacade.class
@@ -11,6 +12,7 @@ com\adsi\ensayapp\model\ReservacionEstado_.class
 com\adsi\ensayapp\ejb\LineamientoCalificacionFacade.class
 com\adsi\ensayapp\model\Perfil_.class
 com\adsi\ensayapp\ejb\TipoGastoFacadeLocal.class
+com\adsi\ensayapp\ejb\TipoRecargoFacadeLocal.class
 com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
 com\adsi\ensayapp\ejb\GastoFacadeLocal.class
 com\adsi\ensayapp\ejb\MantenimientoFacadeLocal.class
@@ -33,6 +35,7 @@ com\adsi\ensayapp\ejb\UsuarioFacadeLocal.class
 com\adsi\ensayapp\converter\ProfileConverter.class
 com\adsi\ensayapp\ejb\UsuarioFacade.class
 com\adsi\ensayapp\bean\Spendings.class
+com\adsi\ensayapp\bean\TipoRecargoFacadeLocal.class
 com\adsi\ensayapp\model\LineamientoCalificacion.class
 com\adsi\ensayapp\bean\LoginForm.class
 com\adsi\ensayapp\model\TipoRecargo.class
@@ -56,6 +59,7 @@ com\adsi\ensayapp\ejb\NotificacionFacade.class
 com\adsi\ensayapp\model\Establecimiento.class
 com\adsi\ensayapp\ejb\MensajeContactoFacadeLocal.class
 com\adsi\ensayapp\ejb\RecargoFacade.class
+com\adsi\ensayapp\ejb\TipoRecargoFacade.class
 com\adsi\ensayapp\bean\RegisterRoomForm.class
 com\adsi\ensayapp\ejb\CiudadFacadeLocal.class
 com\adsi\ensayapp\ejb\CalificacionFacade.class
@@ -90,6 +94,7 @@ com\adsi\ensayapp\ejb\TipoGastoFacade.class
 com\adsi\ensayapp\bean\PasswordRecovery.class
 com\adsi\ensayapp\ejb\SalaFacade.class
 com\adsi\ensayapp\model\ReservacionEstado.class
+com\adsi\ensayapp\converter\UserConverter.class
 com\adsi\ensayapp\model\MovimientoActivo.class
 com\adsi\ensayapp\ejb\MantenimientoFacade.class
 com\adsi\ensayapp\model\Sala_.class
