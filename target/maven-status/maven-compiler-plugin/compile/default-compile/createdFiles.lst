@@ -41,11 +41,13 @@ com\adsi\ensayapp\bean\LoginForm.class
 com\adsi\ensayapp\model\TipoRecargo.class
 com\adsi\ensayapp\bean\ScheduleJava8View.class
 com\adsi\ensayapp\model\Favorito_.class
+com\adsi\ensayapp\ejb\SucursalFacade.class
 com\adsi\ensayapp\ejb\SalaFacadeLocal.class
 com\adsi\ensayapp\converter\SpendingConverter.class
 com\adsi\ensayapp\model\Activo.class
 com\adsi\ensayapp\model\Sucursal_.class
 com\adsi\ensayapp\ejb\MovimientoActivoFacadeLocal.class
+com\adsi\ensayapp\ejb\SucursalFacadeLocal.class
 com\adsi\ensayapp\model\Calificacion_.class
 com\adsi\ensayapp\model\Establecimiento_.class
 com\adsi\ensayapp\model\Imagen.class
@@ -100,6 +102,7 @@ com\adsi\ensayapp\ejb\MantenimientoFacade.class
 com\adsi\ensayapp\model\Sala_.class
 com\adsi\ensayapp\dto\ReservationInfo.class
 com\adsi\ensayapp\model\Mantenimiento_.class
+com\adsi\ensayapp\bean\AddMarkersView.class
 com\adsi\ensayapp\model\Ciudad.class
 com\adsi\ensayapp\model\TipoRecargo_.class
 com\adsi\ensayapp\bean\UsuarioBean.class

@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table
+@Table(name = "sucursal")
 public class Sucursal implements Serializable {
 
     @Id
@@ -34,6 +34,12 @@ public class Sucursal implements Serializable {
     
     @Column(name = "direccion")
     private String direccion;
+    
+    @Column(name = "lat")
+    private String lat;
+    
+    @Column(name = "lng")
+    private String lng;
     
     @Column(name = "telefono")
     private String telefono;
@@ -91,6 +97,22 @@ public class Sucursal implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     public String getTelefono() {

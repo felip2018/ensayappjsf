@@ -29,6 +29,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\AbstractFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ProveedorContactoFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\ReservacionEstado.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SucursalFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Calificacion.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\PerfilFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ProveedorFacade.java
@@ -80,9 +81,11 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\dto\EmailMessageDTO.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ReservacionFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\RegisterRoomForm.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\AddMarkersView.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Favorito.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ReservacionFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\NotificacionFacadeLocal.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SucursalFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SalaFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\HourSystem.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\Reservations.java
