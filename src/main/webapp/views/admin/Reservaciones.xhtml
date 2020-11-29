@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./../../WEB-INF/templates/AdminTemplate.xhtml">
 
             <ui:define name="content">
@@ -39,11 +38,9 @@
                             <h:form>
                                 <p:growl id="messages" showDetail="true" />
 
-                                <h:panelGrid columnClasses="value">
+                                <h:panelGrid columnClasses="value" style="width: 100%;">
                                     <p:schedule id="schedule" value="#{scheduleJava8View.eventModel}" widgetVar="myschedule" >
 
-                                        <p:ajax event="dateSelect" listener="#{scheduleJava8View.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                                        
                                         <p:ajax event="eventSelect" listener="#{scheduleJava8View.onEventSelect}" 
                                                 update="eventDetails" oncomplete="PF('eventDialog').show();" />
                                         
@@ -91,21 +88,14 @@
                                                              readonly="true"/>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <p:outputLabel for="currentStatus" value="Current status:" />
-                                        </div>
-                                        <div class="col-8">
-                                            <p:outputLabel id="currentStatus" value="#{scheduleJava8View.event.title}"/>
-                                        </div>
-                                    </div>
                                     <p:separator/>
                                     <div class="row">
                                         <div class="col-12">
                                             <p:outputLabel for="status" value="Reservation status" />
                                         </div>
                                         <div class="col-12">
-                                            <p:selectOneMenu id="status" class="form-control">
+                                            <p:selectOneMenu id="status" class="form-control" 
+                                                             value="#{scheduleJava8View.reservacionSeleccionada.idEstadoReserva}">
                                                 <f:selectItem itemValue="" itemLabel="-Seleccione"/>
                                                 <f:selectItems value="#{reservationStates.listaEstados}" var="estado" 
                                                                itemValue="#{estado.idEstadoReserva}" 
@@ -116,10 +106,13 @@
                                     <p:separator/>
                                     <div class="row">
                                         <div class="col-6 align-content-center">
-                                            <p:commandButton type="reset" class="btn btn-secondary" value="Cancel" />
+                                            <p:commandButton type="reset" class="btn btn-secondary" value="Cancel" 
+                                                             onclick="PF('eventDialog').hide();"/>
                                         </div>
                                         <div class="col-6 align-content-center">
-                                            <p:commandButton id="addButton" class="btn btn-primary" value="Save" action="#{scheduleJava8View.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                                            <p:commandButton id="addButton" class="btn btn-primary" value="Save" 
+                                                             action="#{scheduleJava8View.updateEvent()}" 
+                                                             oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
                                         </div>
                                     </div>
                                 </p:dialog>    

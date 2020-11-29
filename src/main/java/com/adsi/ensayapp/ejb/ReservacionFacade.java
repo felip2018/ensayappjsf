@@ -155,4 +155,28 @@ public class ReservacionFacade extends AbstractFacade<Reservacion> implements Re
         return response;
     }
 
+    @Override
+    public List<Reservacion> getReservationsByStates(List<Integer> list) {
+        List<Reservacion> lista = new ArrayList<>();
+        String consulta;
+
+        try {
+
+            consulta = "FROM Reservacion r WHERE r.idEstadoReserva IN :listIds";
+
+            Query query = em.createQuery(consulta);
+
+            if (list.size() > 0) {
+                query.setParameter("listIds", list);
+            }
+
+            lista = query.getResultList();
+
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return lista;
+    }
+
 }

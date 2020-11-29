@@ -9,7 +9,6 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\PasswordRecovery.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\UsuarioFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\DepartamentoFacadeLocal.java
-C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\RecargoFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Perfil.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\RecargoBean.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\LineamientoCalificacionFacade.java
@@ -68,6 +67,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\BranchOfficeBean.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\converter\RoomConverter.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Proveedor.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\dto\ChargeInfoDTO.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Sala.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\AccountValidation.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\utilities\Constants.java
@@ -92,7 +92,6 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\Reservations.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\converter\StateConverter.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\CiudadFacade.java
-C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\RecargoFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\utilities\SendEmail.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\AdminStatsBean.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\ImagenFacadeLocal.java
@@ -109,6 +108,7 @@ C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensa
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\SalaFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\CalificacionFacadeLocal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\GastoFacade.java
+C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\bean\ChargesBean.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Sucursal.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\ejb\NotificacionFacade.java
 C:\Users\User\Documents\NetBeansProjects\ensayappjsf\src\main\java\com\adsi\ensayapp\model\Representante.java

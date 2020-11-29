@@ -4,6 +4,7 @@ com\adsi\ensayapp\ejb\PerfilFacade.class
 com\adsi\ensayapp\ejb\TipoDocumentoFacade.class
 com\adsi\ensayapp\ejb\ProveedorFacade.class
 com\adsi\ensayapp\converter\StateConverter.class
+com\adsi\ensayapp\dto\ChargeInfoDTO.class
 com\adsi\ensayapp\model\Reservacion_.class
 com\adsi\ensayapp\model\Gasto.class
 com\adsi\ensayapp\bean\ReservationStates.class
@@ -27,6 +28,7 @@ com\adsi\ensayapp\model\TipoGasto_.class
 com\adsi\ensayapp\model\Departamento.class
 com\adsi\ensayapp\model\MovimientoActivo_.class
 com\adsi\ensayapp\model\MensajeContacto.class
+com\adsi\ensayapp\bean\ChargesBean.class
 com\adsi\ensayapp\ejb\MensajeContactoFacade.class
 com\adsi\ensayapp\bean\Reservations.class
 com\adsi\ensayapp\model\Reservacion.class
@@ -61,7 +63,6 @@ com\adsi\ensayapp\model\Gasto_.class
 com\adsi\ensayapp\ejb\NotificacionFacade.class
 com\adsi\ensayapp\model\Establecimiento.class
 com\adsi\ensayapp\ejb\MensajeContactoFacadeLocal.class
-com\adsi\ensayapp\ejb\RecargoFacade.class
 com\adsi\ensayapp\ejb\TipoRecargoFacade.class
 com\adsi\ensayapp\bean\RegisterRoomForm.class
 com\adsi\ensayapp\ejb\CiudadFacadeLocal.class
@@ -133,7 +134,6 @@ com\adsi\ensayapp\ejb\CalificacionFacadeLocal.class
 com\adsi\ensayapp\ejb\DepartamentoFacade.class
 com\adsi\ensayapp\ejb\CiudadFacade.class
 com\adsi\ensayapp\ejb\ProveedorContactoFacadeLocal.class
-com\adsi\ensayapp\ejb\RecargoFacadeLocal.class
 com\adsi\ensayapp\ejb\ActivoFacadeLocal.class
 com\adsi\ensayapp\model\Proveedor.class
 com\adsi\ensayapp\model\Perfil.class

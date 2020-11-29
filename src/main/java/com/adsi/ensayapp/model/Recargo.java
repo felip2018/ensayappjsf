@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -14,10 +16,13 @@ import javax.persistence.TemporalType;
 public class Recargo implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_recargo")
+    private int idRecargo;
+    
     @Column(name = "id_reservacion")
     private int idReservacion;
     
-    @Id
     @Column(name = "id_tipo_recargo")
     private int idTipoRecargo;
     
@@ -40,6 +45,14 @@ public class Recargo implements Serializable {
     
     @Column(name = "estado_registro")
     private String estadoRegistro;
+
+    public int getIdRecargo() {
+        return idRecargo;
+    }
+
+    public void setIdRecargo(int idRecargo) {
+        this.idRecargo = idRecargo;
+    }
 
     public int getIdReservacion() {
         return idReservacion;

@@ -10,6 +10,7 @@ import com.adsi.ensayapp.model.SistemaHora;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -17,6 +18,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.primefaces.event.ScheduleEntryMoveEvent;
 import org.primefaces.event.ScheduleEntryResizeEvent;
 import org.primefaces.event.SelectEvent;
@@ -28,6 +31,8 @@ import org.primefaces.model.ScheduleModel;
 @Named
 @ViewScoped
 public class ScheduleJava8View implements Serializable {
+
+    Logger log = LogManager.getRootLogger();
 
     private ScheduleModel eventModel;
 
@@ -56,67 +61,133 @@ public class ScheduleJava8View implements Serializable {
 
     @EJB
     private SistemaHoraFacadeLocal sistemaHoraEJB;
-    
+
     @EJB
     private SalaFacadeLocal salaEJB;
 
-    private Reservacion reservacion;
+    private Reservacion reservacionSeleccionada;
     private List<Reservacion> listaReservaciones;
 
     @PostConstruct
     public void init() {
+        reservacionSeleccionada = new Reservacion();
         eventModel = new DefaultScheduleModel();
-        listaReservaciones = reservacionEJB.findAll();
-
+        
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(2);
+        
+        listaReservaciones = reservacionEJB.getReservationsByStates(ids);
         for (Reservacion reserva : listaReservaciones) {
 
-            if (reserva.getIdEstadoReserva() == 1 || reserva.getIdEstadoReserva() == 2) {
-                
-                ReservationInfo reservationInfo = getReservationInfo(reserva);
-
+            ReservationInfo reservationInfo = getReservationInfo(reserva);
+            
+            if (reservationInfo!=null) {
                 event = DefaultScheduleEvent.builder()
                         .title(reservationInfo.getSala().getNombre())
                         .startDate(reservationInfo.getInicio())
                         .endDate(reservationInfo.getFinalizacion())
                         .description(reserva.getComentarios())
                         .overlapAllowed(true)
+                        .data(reserva.getIdReservacion())
                         .build();
                 eventModel.addEvent(event);
-            } 
+                event = null;
+            }
         }
     }
-    
 
     public ReservationInfo getReservationInfo(Reservacion reserva) {
         ReservationInfo reservationInfo = new ReservationInfo();
         LocalDateTime date;
         String[] horaInicio;
         String[] horaFinalizacion;
-        
-        Sala sala = salaEJB.find(reserva.getIdSala());
-        SistemaHora sistemaHora = sistemaHoraEJB.find(reserva.getIdReservacion());
+        try {
+            Sala sala = salaEJB.find(reserva.getIdSala());
+            SistemaHora sistemaHora = sistemaHoraEJB.find(reserva.getIdSistemHora());
+            horaInicio = sistemaHora.getHoraInicio().split(":");
+            horaFinalizacion = sistemaHora.getHoraFinalizacion().split(":");
 
-        horaInicio = sistemaHora.getHoraInicio().split(":");
-        horaFinalizacion = sistemaHora.getHoraFinalizacion().split(":");
+            date = reserva.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                    .withHour(Integer.parseInt(horaInicio[0]))
+                    .withMinute(Integer.parseInt(horaInicio[1]))
+                    .withSecond(Integer.parseInt(horaInicio[2]));
 
-        date = reserva.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-                .withHour(Integer.parseInt(horaInicio[0]))
-                .withMinute(Integer.parseInt(horaInicio[1]))
-                .withSecond(Integer.parseInt(horaInicio[2]));
+            reservationInfo.setInicio(date);
 
-        reservationInfo.setInicio(date);
+            date = reserva.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+                    .withHour(Integer.parseInt(horaFinalizacion[0]))
+                    .withMinute(Integer.parseInt(horaFinalizacion[1]))
+                    .withSecond(Integer.parseInt(horaFinalizacion[2]));
 
-        date = reserva.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
-                .withHour(Integer.parseInt(horaFinalizacion[0]))
-                .withMinute(Integer.parseInt(horaFinalizacion[1]))
-                .withSecond(Integer.parseInt(horaFinalizacion[2]));
+            reservationInfo.setFinalizacion(date);
+            reservationInfo.setSala(sala);
+            
+        } catch (Exception e) {
+            log.info("Error---");
+            reservationInfo = null;
+        }
 
-        reservationInfo.setFinalizacion(date);
-        reservationInfo.setSala(sala);
-                
         return reservationInfo;
     }
 
+    public void onEventSelect(SelectEvent<ScheduleEvent> selectEvent) {
+        event = selectEvent.getObject();
+        reservacionSeleccionada = reservacionEJB.find(event.getData());
+        log.info("Evento seleccionado: "+event.getTitle()+", Id Reserva: "+reservacionSeleccionada.getIdReservacion());
+    }
+    
+    public void updateEvent(){
+        log.info("Actualizar reservacion: "+reservacionSeleccionada.getIdEstadoReserva());
+        reservacionEJB.edit(reservacionSeleccionada);
+        
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(2);
+        listaReservaciones = reservacionEJB.getReservationsByStates(ids);
+    }
+
+    public void onDateSelect(SelectEvent<LocalDateTime> selectEvent) {
+        event = DefaultScheduleEvent.builder().startDate(selectEvent.getObject()).endDate(selectEvent.getObject().plusHours(1)).build();
+    }
+
+    public void onEventMove(ScheduleEntryMoveEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Delta:" + event.getDeltaAsDuration());
+
+        addMessage(message);
+    }
+
+    public void onEventResize(ScheduleEntryResizeEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Start-Delta:" + event.getDeltaStartAsDuration() + ", End-Delta: " + event.getDeltaEndAsDuration());
+
+        addMessage(message);
+    }
+    
+    
+    
+    // Getters and setters
+    
+    public Reservacion getReservacionSeleccionada() {    
+        return reservacionSeleccionada;
+    }
+
+    public void setReservacionSeleccionada(Reservacion reservacionSeleccionada) {
+        this.reservacionSeleccionada = reservacionSeleccionada;
+    }
+
+    public List<Reservacion> getListaReservaciones() {
+        return listaReservaciones;
+    }
+
+    
+    public void setListaReservaciones(List<Reservacion> listaReservaciones) {
+        this.listaReservaciones = listaReservaciones;
+    }
+
+    private void addMessage(FacesMessage message) {
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
     public LocalDateTime getRandomDateTime(LocalDateTime base) {
         LocalDateTime dateTime = base.withMinute(0).withSecond(0).withNano(0);
         return dateTime.plusDays(((int) (Math.random() * 30)));
@@ -137,51 +208,7 @@ public class ScheduleJava8View implements Serializable {
     public ScheduleEvent getEvent() {
         return event;
     }
-
-    public void setEvent(ScheduleEvent event) {
-        this.event = event;
-    }
-
-    public void addEvent() {
-        if (event.isAllDay()) {
-            if (event.getStartDate().toLocalDate().equals(event.getEndDate().toLocalDate())) {
-                event.setEndDate(event.getEndDate().plusDays(1));
-            }
-        }
-
-        if (event.getId() == null) {
-            eventModel.addEvent(event);
-        } else {
-            eventModel.updateEvent(event);
-        }
-
-        event = new DefaultScheduleEvent();
-    }
-
-    public void onEventSelect(SelectEvent<ScheduleEvent> selectEvent) {
-        event = selectEvent.getObject();
-    }
-
-    public void onDateSelect(SelectEvent<LocalDateTime> selectEvent) {
-        event = DefaultScheduleEvent.builder().startDate(selectEvent.getObject()).endDate(selectEvent.getObject().plusHours(1)).build();
-    }
-
-    public void onEventMove(ScheduleEntryMoveEvent event) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Delta:" + event.getDeltaAsDuration());
-
-        addMessage(message);
-    }
-
-    public void onEventResize(ScheduleEntryResizeEvent event) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Start-Delta:" + event.getDeltaStartAsDuration() + ", End-Delta: " + event.getDeltaEndAsDuration());
-
-        addMessage(message);
-    }
-
-    private void addMessage(FacesMessage message) {
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
+    
     public boolean isShowWeekends() {
         return showWeekends;
     }

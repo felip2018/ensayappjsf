@@ -42,4 +42,6 @@ public interface ReservacionFacadeLocal {
     List<Object[]> getReservationsByState();
     
     List<Object[]> getReservationsNumberByRoom();
+    
+    List<Reservacion> getReservationsByStates(List<Integer> states);
 }
