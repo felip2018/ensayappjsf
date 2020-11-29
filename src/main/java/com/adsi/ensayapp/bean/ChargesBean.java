@@ -1,8 +1,7 @@
 package com.adsi.ensayapp.bean;
 
 import com.adsi.ensayapp.dto.ChargeInfoDTO;
-//import com.adsi.ensayapp.ejb.RecargoFacadeLocal;
-import com.adsi.ensayapp.model.Recargo;
+import com.adsi.ensayapp.ejb.RecargoFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 @ViewScoped
 public class ChargesBean implements Serializable {
     
-    /*Logger log = LogManager.getRootLogger();
+    Logger log = LogManager.getRootLogger();
     
     @EJB
     private RecargoFacadeLocal recargoEJB;
@@ -67,6 +66,6 @@ public class ChargesBean implements Serializable {
 
     public void setCargo(ChargeInfoDTO cargo) {
         this.cargo = cargo;
-    }*/
+    }
     
 }

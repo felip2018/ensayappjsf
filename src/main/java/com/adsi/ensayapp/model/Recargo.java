@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 public class Recargo implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_recargo")
     private int idRecargo;
     
