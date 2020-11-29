@@ -38,4 +38,8 @@ public interface ReservacionFacadeLocal {
     List<Reservacion> findAllByUserAndState(Usuario usuario, Long idState);
     
     Long countActiveReservations(int idUsuario);
+    
+    List<Object[]> getReservationsByState();
+    
+    List<Object[]> getReservationsNumberByRoom();
 }
