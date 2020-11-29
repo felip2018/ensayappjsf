@@ -18,16 +18,16 @@ public class Sucursal implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_sucursal")
-    private int idSucursal;
+    private Long idSucursal;
     
     @Column(name = "id_establecimiento")
-    private int idEstablecimiento;
+    private Long idEstablecimiento;
     
     @Column(name = "id_ciudad")
-    private int idCiudad;
+    private Long idCiudad;
     
     @Column(name = "id_usuario")
-    private int idUsuario;
+    private Long idUsuario;
     
     @Column(name = "nombre")
     private String nombre;
@@ -51,35 +51,35 @@ public class Sucursal implements Serializable {
     @Column(name = "estado_registro")
     private String estadoRegistro;
 
-    public int getIdSucursal() {
+    public Long getIdSucursal() {
         return idSucursal;
     }
 
-    public void setIdSucursal(int idSucursal) {
+    public void setIdSucursal(Long idSucursal) {
         this.idSucursal = idSucursal;
     }
 
-    public int getIdEstablecimiento() {
+    public Long getIdEstablecimiento() {
         return idEstablecimiento;
     }
 
-    public void setIdEstablecimiento(int idEstablecimiento) {
+    public void setIdEstablecimiento(Long idEstablecimiento) {
         this.idEstablecimiento = idEstablecimiento;
     }
 
-    public int getIdCiudad() {
+    public Long getIdCiudad() {
         return idCiudad;
     }
 
-    public void setIdCiudad(int idCiudad) {
+    public void setIdCiudad(Long idCiudad) {
         this.idCiudad = idCiudad;
     }
 
-    public int getIdUsuario() {
+    public Long getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
 

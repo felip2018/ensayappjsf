@@ -14,6 +14,7 @@ com\adsi\ensayapp\model\Perfil_.class
 com\adsi\ensayapp\ejb\TipoGastoFacadeLocal.class
 com\adsi\ensayapp\ejb\TipoRecargoFacadeLocal.class
 com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
+com\adsi\ensayapp\bean\BranchOfficeBean.class
 com\adsi\ensayapp\ejb\GastoFacadeLocal.class
 com\adsi\ensayapp\ejb\MantenimientoFacadeLocal.class
 com\adsi\ensayapp\model\Representante_.class

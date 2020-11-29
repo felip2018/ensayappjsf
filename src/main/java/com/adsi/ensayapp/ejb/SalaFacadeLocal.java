@@ -30,4 +30,5 @@ public interface SalaFacadeLocal {
 
     int count();
     
+    List<Sala> findAllByBranchOffice(Long idSucursal);
 }

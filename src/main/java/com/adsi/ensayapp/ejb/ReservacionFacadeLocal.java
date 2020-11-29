@@ -36,4 +36,6 @@ public interface ReservacionFacadeLocal {
     void updateStatus(Reservacion reservacion,Long idStatus);
     
     List<Reservacion> findAllByUserAndState(Usuario usuario, Long idState);
+    
+    Long countActiveReservations(int idUsuario);
 }

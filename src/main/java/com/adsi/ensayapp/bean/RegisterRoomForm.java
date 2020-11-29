@@ -36,7 +36,6 @@ public class RegisterRoomForm implements Serializable {
     @PostConstruct
     public void init() {
         sala = new Sala();
-        sala.setIdSucursal(1);
         sala.setFechaRegistro(new Date());
         sala.setEstadoRegistro("Activo");
     }

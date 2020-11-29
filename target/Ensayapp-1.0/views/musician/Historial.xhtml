@@ -32,6 +32,9 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
+                            <p:messages showDetail="true" rendered="true"/>
+                        </div>
+                        <div class="col-12">
                             <h:form>
                                 <p:outputLabel value="#{msgs['Export.data.text']}"/>
                                 <h:commandLink style="margin-left: 5px;">
@@ -119,10 +122,46 @@
                                                          rendered="#{reservacion.idEstadoReserva == 5}">
                                             <f:setPropertyActionListener value="#{reservacion}" target="#{reservationScore.reservacion}"/>
                                         </p:commandButton>
+                                        <p:commandButton update=":formStatus:reservation" 
+                                                         oncomplete="PF('reservationStatusDialog').show()" 
+                                                         icon="fas fa-times" title="Cancelar"
+                                                         style="font-size: 10pt;"
+                                                         rendered="#{reservacion.idEstadoReserva == 1}">
+                                            <f:setPropertyActionListener value="#{reservacion}" target="#{reservationScore.reservacion}"/>
+                                        </p:commandButton>
                                     </p:column>
 
                                 </p:dataTable>
 
+                            </h:form>
+                        </div>
+                        <div class="col-12">
+                            <h:form id="formStatus">
+                                <p:dialog header="Reservación" 
+                                          widgetVar="reservationStatusDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                          width="600">
+                                    <p:outputPanel id="reservation">
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <h:outputText value="¿Esta seguro de cancelar la reservación programada?"/>
+                                                <p:datePicker value="#{reservationScore.reservacion.fecha}" 
+                                                              pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)" disabled="true"/>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p:commandButton class="btn btn-primary btn-block"
+                                                                 value="Si, cancelar reservación"
+                                                                 oncomplete="PF('reservationStatusDialog').hide()"
+                                                                 update=":form:tblReservations"
+                                                                 action="#{reservationScore.cancelReservation()}"/>
+                                            </div>
+                                        </div>
+
+                                    </p:outputPanel>
+                                </p:dialog>
                             </h:form>
                         </div>
                         <div class="col-12">
@@ -209,7 +248,7 @@
                                 </p:dialog>
                             </h:form>
                         </div>
-
+                        
                     </div>
                 </div>
             </ui:define>

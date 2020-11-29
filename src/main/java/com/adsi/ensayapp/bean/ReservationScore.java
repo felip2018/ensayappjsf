@@ -60,6 +60,20 @@ public class ReservationScore implements Serializable {
         }
     }    
     
+    public void cancelReservation(){
+        try {
+            reservacion.setIdEstadoReserva(3);
+            reservacionEJB.edit(reservacion);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Aviso",
+                    "Error en el sistema: "+e.getMessage()));
+        }
+    }
+    
+    
+    // Getters and setters
+    
     public Reservacion getReservacion() {
         return reservacion;
     }

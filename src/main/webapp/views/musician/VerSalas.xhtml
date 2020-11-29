@@ -29,6 +29,37 @@
                         </div>
                     </div>
                     <div class="row">
+
+                        <div class="col-12">
+                            <h:form id="searchFilter">
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <p:selectOneMenu class="form-control"
+                                                         value="#{rehearsalRooms.sucursal.idSucursal}">
+                                            <f:selectItem itemValue="0" itemLabel="-Select"/>
+                                            <f:selectItems value="#{branchOfficeBean.listadoSucursales}"
+                                                           var="sucursal"
+                                                           itemValue="#{sucursal.idSucursal}" itemLabel="#{sucursal.nombre}"/>
+                                        </p:selectOneMenu>
+
+                                    </div>
+                                    <div class="col-2">
+                                        <p:commandButton class="btn btn-primary"
+                                                         value="Buscar"
+                                                         actionListener="#{rehearsalRooms.consultarSalas()}"
+                                                         update=":form:salas"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:messages showDetail="true" rendered="true"/>
+                                    </div>
+                                </div>
+                                
+                            </h:form>
+                        </div>
+                        <div class="col-12">
+                            <p:separator/>
+                        </div>
                         <div class="col-12">
                             <h:form id="form">
                                 <p:dataGrid var="sala" value="#{rehearsalRooms.salas}" columns="4" layout="grid"

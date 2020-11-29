@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -30,6 +31,16 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:outputLabel for="id_sucursal" value="Sucursal"/>
+                                        <p:selectOneMenu id="id_sucursal" class="form-control" value="#{registerRoomForm.sala.idSucursal}">
+                                            <f:selectItem itemValue="0" itemLabel="-Select"/>
+                                            <f:selectItems value="#{branchOfficeBean.listadoSucursales}" var="sucursal" 
+                                                           itemValue="#{sucursal.idSucursal}" itemLabel="#{sucursal.nombre}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                         <p:outputLabel for="nombre" value="#{msgs['RegistrarSala.formulario.nombreSala']}"/>

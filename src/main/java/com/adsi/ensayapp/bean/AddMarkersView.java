@@ -43,30 +43,28 @@ public class AddMarkersView implements Serializable {
         emptyModel = new DefaultMapModel();
         listaSucursales = sucursalEJB.findAll();
         for (Sucursal sucursal : listaSucursales) {
-            Marker marker = new Marker(new LatLng(Double.parseDouble(sucursal.getLat()), 
-                    Double.parseDouble(sucursal.getLng())), 
-                    sucursal.getNombre());
-            marker.setIcon("../../../resources/img/MarkerIcon_preview_rev_1.png");
-            emptyModel.addOverlay(marker);
+            Marker m;
+            m = new Marker(new LatLng(Double.parseDouble(sucursal.getLat()), 
+                    Double.parseDouble(sucursal.getLng())),
+                    sucursal.getIdSucursal()+"-"+sucursal.getNombre());
+            
+            m.setData(sucursal.getDireccion());
+            m.setIcon("../../../resources/img/MarkerIcon_preview_rev_1.png");
+            m.setId(String.valueOf(sucursal.getIdSucursal()));
+            
+            emptyModel.addOverlay(m);
         }
     }
       
     
     public void onMarkerSelect(OverlaySelectEvent event) {
         marker = (Marker) event.getOverlay();
-         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Selected", marker.getTitle()));
     }
     
-    
-    public void addMarker() {
-        System.out.println("Add Marker Function()-> Lat: "+lat+", Lng: "+lng);
-        Marker marker = new Marker(new LatLng(lat, lng), title);
-        emptyModel.addOverlay(marker);
-          
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Marker Added", "Lat:" + lat + ", Lng:" + lng));
+    public void openRooms(){
+        System.out.println("Ver salas de la sucursal: "+marker.getTitle());
     }
-    
     
     // Getters and setters
     public MapModel getEmptyModel() {

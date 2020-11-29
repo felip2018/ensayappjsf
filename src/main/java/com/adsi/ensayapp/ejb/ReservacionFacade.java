@@ -92,5 +92,23 @@ public class ReservacionFacade extends AbstractFacade<Reservacion> implements Re
         
         return lista;
     }
+
+    @Override
+    public Long countActiveReservations(int idUsuario) {
+        Long response = null;
+        String consulta;
+        try {
+            consulta = "SELECT COUNT(r) FROM Reservacion r WHERE r.idUsuario = ?1 AND r.idEstadoReserva = 1";
+            
+            Query query = em.createQuery(consulta);
+            query.setParameter(1, idUsuario);
+            
+            response = (Long) query.getSingleResult();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        return response;
+    }
     
 }
