@@ -71,6 +71,7 @@ public class LoginForm implements Serializable {
                                 new FacesMessage(FacesMessage.SEVERITY_WARN,
                                         "Aviso",
                                         "La cuenta de usuario se encuentra en estado: "+usr.getEstadoRegistro()));
+                    usr = new Usuario();
                 }
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
