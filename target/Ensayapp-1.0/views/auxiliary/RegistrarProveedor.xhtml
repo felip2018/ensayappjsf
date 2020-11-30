@@ -1,14 +1,100 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/AuxiliaryTemplate.xhtml">
 
             <ui:define name="content">
-                Registrar Proveedor
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">#{msgs['Auxiliary.RegistrarProveedor.titulo']}</p>	
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="id_tipo_doc" value="#{msgs['Auxiliary.RegistrarProveedor.item1']}"/>
+                                        <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
+                                                         value="#{proveedorBean.proveedor.idTipoDoc}">
+                                            <f:selectItem itemValue="" itemLabel="- Select" />
+                                            <f:selectItem itemValue="1" itemLabel="CÉDULA DE CIUDADANÍA" />
+                                            <f:selectItem itemValue="2" itemLabel="CÉDULA DE EXTRANJERÍA" />
+                                            <f:selectItem itemValue="3" itemLabel="PASAPORTE" />
+                                            <f:selectItem itemValue="4" itemLabel="TARJETA DE IDENTIDAD" />
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col-6">
+                                        <p:outputLabel for="num_doc" value="#{msgs['Auxiliary.RegistrarProveedor.item2']}"/>
+                                        <p:inputNumber id="num_doc" required="true" class="form-control" 
+                                                       value="#{proveedorBean.proveedor.numDoc}">
+                                            <f:validateLength minimum="6" maximum="12"/>
+                                        </p:inputNumber>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="razon_social" value="#{msgs['Auxiliary.RegistrarProveedor.item3']}"/>
+                                        <p:inputText id="razon_social" class="form-control" required="true"
+                                                     value="#{proveedorBean.proveedor.razonSocial}">
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="telefono" value="#{msgs['Auxiliary.RegistrarProveedor.item4']}"/>
+                                        <p:inputText id="telefono" class="form-control" required="true"
+                                                     value="#{proveedorBean.proveedor.telefono}">
+                                            <f:validateRegex pattern="^([a-zA-Z0-9]+(.)?[\s]*)$" />
+                                        </p:inputText>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="correo" value="#{msgs['Auxiliary.RegistrarProveedor.item5']}"/>
+                                        <p:inputText id="correo" class="form-control" required="true"
+                                                     value="#{proveedorBean.proveedor.correo}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <p:outputLabel for="direccion" value="#{msgs['Auxiliary.RegistrarProveedor.item6']}"/>
+                                        <p:inputText id="direccion" class="form-control" required="true"
+                                                     value="#{proveedorBean.proveedor.direccion}">
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:messages showDetail="true" rendered="true"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:separator/>
+                                        <h:commandButton class="btn btn-primary btn-block btn-login" 
+                                                         value="#{msgs['Auxiliary.RegistrarProveedor.boton.registrar']}" 
+                                                         action="#{proveedorBean.registrarProveedorDesdeAuxiliary()}"/>
+                                    </div>
+                                </div>
+                            </h:form>
             </ui:define>
 
         </ui:composition>

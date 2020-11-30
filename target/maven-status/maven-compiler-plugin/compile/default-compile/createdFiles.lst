@@ -57,6 +57,7 @@ com\adsi\ensayapp\model\Establecimiento.class
 com\adsi\ensayapp\ejb\MensajeContactoFacadeLocal.class
 com\adsi\ensayapp\ejb\RecargoFacade.class
 com\adsi\ensayapp\bean\RegisterRoomForm.class
+com\adsi\ensayapp\bean\ProveedorBean.class
 com\adsi\ensayapp\ejb\CiudadFacadeLocal.class
 com\adsi\ensayapp\ejb\CalificacionFacade.class
 com\adsi\ensayapp\model\Usuario_.class
