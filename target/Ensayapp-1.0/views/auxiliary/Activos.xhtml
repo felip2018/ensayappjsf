@@ -122,6 +122,48 @@
                                       width="600">
                                 <h:form id="formSalida">
                                     <p:outputPanel id="salida">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <p:outputLabel value="Nombre: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.nombre}"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Referencia: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.referencia}"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Marca: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.marca}"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Sala:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:selectOneMenu required="true" class="form-control" value="#{movementBean.movimiento.idSala}">
+                                                    <f:selectItem itemValue="" itemLabel="-Select"/>
+                                                    <f:selectItems value="#{rehearsalRooms.salas}"
+                                                                   var="sala"
+                                                                   itemValue="#{sala.id}" itemLabel="#{sala.nombre}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:separator/>
+                                                <p:outputLabel value="¿Desea confirmar asignación del activo a la sala de ensayo?"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:commandButton class="btn btn-primary btn-block"
+                                                                 value="Si, confirmar"
+                                                                 oncomplete="PF('movementOutDialog').hide()"
+                                                                 update=":form:basicAssetsList"
+                                                                 action="#{movementBean.registrarSalida()}"/>
+                                            </div>
+                                        </div>
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
@@ -130,6 +172,67 @@
                                       width="600">
                                 <h:form id="formMantenimiento">
                                     <p:outputPanel id="mantenimiento">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <p:outputLabel value="Nombre: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.nombre}"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Referencia: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.referencia}"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Marca: "/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:outputLabel value="#{movementBean.activo.marca}"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:outputLabel value="Datos de mantenimiento"/>
+                                            </div>                                            
+                                            <div class="col-3">
+                                                <p:outputLabel value="Proveedor:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:selectOneMenu required="true" class="form-control" value="#{movementBean.mantenimiento.idProveedor}">
+                                                    <f:selectItem itemValue="" itemLabel="-Select"/>
+                                                    <f:selectItems value="#{proveedorBean.listaProveedores}"
+                                                                   var="proveedor"
+                                                                   itemValue="#{proveedor.idProveedor}" 
+                                                                   itemLabel="#{proveedor.razonSocial}"/>
+                                                </p:selectOneMenu>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Fecha ingreso:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:calendar value="#{movementBean.mantenimiento.fechaIngreso}"
+                                                            class="form-control"/>
+                                            </div>
+                                            <div class="col-3">
+                                                <p:outputLabel value="Observaciones:"/>
+                                            </div>
+                                            <div class="col-9">
+                                                <p:inputTextarea value="#{movementBean.mantenimiento.observacionesIngreso}"
+                                                                 class="form-control"
+                                                                 rows="4"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:separator/>
+                                                <p:outputLabel value="¿Confirmar salida por mantenimiento del activo?"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <p:commandButton class="btn btn-primary btn-block"
+                                                                 value="Si, confirmar"
+                                                                 oncomplete="PF('movementFixDialog').hide()"
+                                                                 update=":form:basicAssetsList"
+                                                                 action="#{movementBean.registrarMantenimiento()}"/>
+                                            </div>
+                                        </div>
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>

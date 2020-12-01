@@ -1,9 +1,11 @@
 package com.adsi.ensayapp.bean;
 
 import com.adsi.ensayapp.ejb.ActivoFacadeLocal;
+import com.adsi.ensayapp.ejb.MantenimientoFacadeLocal;
 import com.adsi.ensayapp.model.MovimientoActivo;
 import com.adsi.ensayapp.ejb.MovimientoActivoFacadeLocal;
 import com.adsi.ensayapp.model.Activo;
+import com.adsi.ensayapp.model.Mantenimiento;
 import com.adsi.ensayapp.utilities.Util;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +16,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 @Named
@@ -30,7 +31,12 @@ public class MovementBean implements Serializable{
     @EJB
     private ActivoFacadeLocal activoEJB;
     
+    @EJB
+    private MantenimientoFacadeLocal mantenimientoEJB;
+        
     private MovimientoActivo movimiento;
+    
+    private Mantenimiento mantenimiento;
     
     private Activo activo;
     
@@ -38,6 +44,10 @@ public class MovementBean implements Serializable{
     public void init(){
         activo = new Activo();
         movimiento = new MovimientoActivo();
+        
+        mantenimiento = new Mantenimiento();
+        mantenimiento.setFechaRegistro(new Date());
+        mantenimiento.setEstadoRegistro("Activo");
     }
     
     public void registrarEntrada(){
@@ -46,7 +56,7 @@ public class MovementBean implements Serializable{
             movimiento.setIdActivo(activo.getIdActivo());
             movimiento.setIdSala(0);
             movimiento.setTipoMovimiento("ENTRADA");
-            movimiento.setMotivo("ENTRADA");
+            movimiento.setMotivo("EN BODEGA");
             movimiento.setFechaRegistro(new Date());
             movimiento.setEstadoRegistro("Activo");
             
@@ -70,10 +80,57 @@ public class MovementBean implements Serializable{
     
     public void registrarSalida(){
         log.info("Registro de salida!");
+        try {
+            movimiento.setIdActivo(activo.getIdActivo());
+            movimiento.setTipoMovimiento("SALIDA");
+            movimiento.setMotivo("ASIGNACION");
+            movimiento.setFechaRegistro(new Date());
+            movimiento.setEstadoRegistro("Activo");
+            
+            movimientoEJB.create(movimiento);
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Aviso",
+                    "Se ha realizado la salida del activo correctamente!"));
+            
+            activo.setEstadoActivo("ASIGNADO");
+            activoEJB.edit(activo);
+            
+            movimiento = new MovimientoActivo();
+            
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Aviso",
+                    "No ha sido posible registrar la salida del activo."));
+        }
     }
     
     public void registrarMantenimiento(){
         log.info("Registro de mantenimiento!");
+        try {
+            movimiento.setIdActivo(activo.getIdActivo());
+            movimiento.setIdSala(0);
+            movimiento.setTipoMovimiento("SALIDA");
+            movimiento.setMotivo("MANTENIMIENTO");
+            movimiento.setFechaRegistro(new Date());
+            movimiento.setEstadoRegistro("Activo");
+            
+            movimientoEJB.create(movimiento);
+            
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Aviso",
+                    "Se ha realizado el registro del mantenimiento del activo correctamente!"));
+            
+            activo.setEstadoActivo("MANTENIMIENTO");
+            activoEJB.edit(activo);
+            
+            movimiento = new MovimientoActivo();
+            
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Aviso",
+                    "No ha sido posible registrar el mantenimiento del activo."));
+        }
     }
     
     // Getters and setters
@@ -92,6 +149,14 @@ public class MovementBean implements Serializable{
 
     public void setActivo(Activo activo) {
         this.activo = activo;
+    }
+
+    public Mantenimiento getMantenimiento() {
+        return mantenimiento;
+    }
+
+    public void setMantenimiento(Mantenimiento mantenimiento) {
+        this.mantenimiento = mantenimiento;
     }
     
     
