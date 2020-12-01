@@ -6,9 +6,11 @@
 package com.adsi.ensayapp.ejb;
 
 import com.adsi.ensayapp.model.Activo;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,25 @@ public class ActivoFacade extends AbstractFacade<Activo> implements ActivoFacade
     public ActivoFacade() {
         super(Activo.class);
     }
-    
+
+    @Override
+    public List<Object[]> getAssetsByCurrentState() {
+        List<Object[]> response = null;
+        String consulta;
+        try {
+            consulta = "SELECT \n"
+                    + "estado_activo,\n"
+                    + "COUNT(*)\n"
+                    + "FROM activo\n"
+                    + "GROUP BY estado_activo";
+
+            Query query = em.createNativeQuery(consulta);
+            response = query.getResultList();
+
+        } catch (Exception e) {
+            response = null;
+        }
+        return response;
+    }
+
 }

@@ -48,7 +48,9 @@
                                                 <p:outputLabel class="fas fa-plus"/> #{msgs['AuxiliaryMenu.activosSub.registrarActivo']}
                                             </p:menuitem>
                                         </p:submenu>
-                                        <p:menuitem value="#{msgs['AuxiliaryMenu.movimientos']}" outcome="Movimientos"/>
+                                        <p:menuitem outcome="Movimientos">
+                                            <p:outputLabel class="fas fa-exchange-alt"/> #{msgs['AuxiliaryMenu.movimientos']} 
+                                        </p:menuitem>
                                         <p:submenu label="#{msgs['AuxiliaryMenu.proveedores']}">
                                             <p:menuitem ajax="false" outcome="Proveedores">
                                                 <p:outputLabel class="fas fa-eye"/> #{msgs['AuxiliaryMenu.proveedoresSub.verProveedores']}

@@ -1,6 +1,7 @@
 package com.adsi.ensayapp.bean;
 
 import com.adsi.ensayapp.ejb.ReservacionFacadeLocal;
+import com.adsi.ensayapp.utilities.Util;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ import org.primefaces.model.charts.optionconfig.title.Title;
 public class AdminStatsBean implements Serializable{
     
     Logger log = LogManager.getRootLogger();
+    private Util util = new Util();
     
     @EJB
     private ReservacionFacadeLocal reservacionEJB;
@@ -58,7 +60,7 @@ public class AdminStatsBean implements Serializable{
         for (Object[] reservation : reservations) {
             //log.info("Estado: "+reservation[0]+" Cantidad: "+reservation[1]);
             values.add((long) reservation[1]);
-            bgColors.add(getBackgroundColor());
+            bgColors.add(util.getBackgroundColor());
             labels.add((String) reservation[0]);
             
             i++;
@@ -90,7 +92,7 @@ public class AdminStatsBean implements Serializable{
         int i = 0;
         for (Object[] reservation : reservations) {
             values.add((long) reservation[1]);
-            bgColor.add(getBackgroundColor());
+            bgColor.add(util.getBackgroundColor());
             labels.add((String) reservation[0]);
         }
         
@@ -130,16 +132,7 @@ public class AdminStatsBean implements Serializable{
         barModel.setOptions(options);
     }
     
-    public String getBackgroundColor(){
-                
-        double x = Math.floor(Math.random()*256);
-        double y = Math.floor(Math.random()*256);
-        double z = Math.floor(Math.random()*256);
-        
-        String response = "rgba("+x+","+y+","+z+", 0.2)";
-        //log.info("Background: "+response);
-        return response;
-    }
+    
     
     // Getters and setters
     public DonutChartModel getDonutModel() {

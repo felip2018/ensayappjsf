@@ -24,7 +24,7 @@ public class Activo implements Serializable{
     private int idSucursal;
     
     @Column(name = "nombre")
-    private int nombre;
+    private String nombre;
     
     private String descripcion;
     
@@ -58,11 +58,11 @@ public class Activo implements Serializable{
         this.idSucursal = idSucursal;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

@@ -1,14 +1,42 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/AuxiliaryTemplate.xhtml">
 
             <ui:define name="content">
-                Bienvenido Auxiliar de Bodega
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Bienvenido</p>
+                                        <p>Has iniciado sesión como Auxiliar de bodega.</p>		
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                            
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                            <p:outputLabel style="text-align: center;width: 100%;" value="Instrumentos por estado"/>
+                            <p:barChart model="#{instrumentBean.barModel}" style="width: 100%; height: 500px;"/>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>

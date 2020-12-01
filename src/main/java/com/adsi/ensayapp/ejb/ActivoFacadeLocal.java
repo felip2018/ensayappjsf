@@ -30,4 +30,5 @@ public interface ActivoFacadeLocal {
 
     int count();
     
+    List<Object[]> getAssetsByCurrentState();
 }

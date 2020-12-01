@@ -1,14 +1,109 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../WEB-INF/templates/AuxiliaryTemplate.xhtml">
 
             <ui:define name="content">
-                Registrar Activo
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Registrar proveedor</p>	
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:outputLabel for="id_sucursal" value="Sucursal"/>
+                                        <p:selectOneMenu id="id_sucursal" required="true" class="form-control"
+                                                         value="#{instrumentBean.activo.idSucursal}">
+                                            <f:selectItem itemValue="0" itemLabel="- Select" />
+                                            <f:selectItems value="#{branchOfficeBean.listadoSucursales}"
+                                                           var="sucursal" itemValue="#{sucursal.idSucursal}" itemLabel="#{sucursal.nombre}"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:outputLabel for="nombre" value="Nombre"/>
+                                        <p:inputText id="nombre" required="true" class="form-control" value="#{instrumentBean.activo.nombre}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:outputLabel for="descripcion" value="Descripción"/>
+                                        <p:inputTextarea id="descripcion" class="form-control" required="true"
+                                                         rows="4" 
+                                                         value="#{instrumentBean.activo.descripcion}"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <p:outputLabel for="marca" value="Marca"/>
+                                        <p:selectOneMenu id="marca" class="form-control" value="#{instrumentBean.activo.marca}">
+                                            <f:selectItem itemValue="Yamaha" itemLabel="Yamaha"/>
+                                            <f:selectItem itemValue="Sennheiser" itemLabel="Sennheiser"/>
+                                            <f:selectItem itemValue="Herco" itemLabel="Herco"/>
+                                            <f:selectItem itemValue="Vandoren" itemLabel="Vandoren"/>
+                                            <f:selectItem itemValue="Roxtone" itemLabel="Roxtone"/>
+                                            <f:selectItem itemValue="Rico" itemLabel="Rico"/>
+                                            <f:selectItem itemValue="D'addario" itemLabel="D'addario"/>
+                                            <f:selectItem itemValue="DiMarzio" itemLabel="DiMarzio"/>
+                                            <f:selectItem itemValue="Rico" itemLabel="Rico"/>
+                                            <f:selectItem itemValue="Digitech" itemLabel="Digitech"/>
+                                            <f:selectItem itemValue="Gretsch" itemLabel="Gretsch"/>
+                                            <f:selectItem itemValue="Bose" itemLabel="Bose"/>
+                                            <f:selectItem itemValue="Mackie" itemLabel="Mackie"/>
+                                            <f:selectItem itemValue="Washburn" itemLabel="Washburn"/>
+                                            <f:selectItem itemValue="PearlRiver" itemLabel="PearlRiver"/>
+                                            <f:selectItem itemValue="Evans" itemLabel="Evans"/>
+                                            <f:selectItem itemValue="Kaplan" itemLabel="Kaplan"/>
+                                            <f:selectItem itemValue="Cerwinvega" itemLabel="Cerwinvega"/>
+                                            <f:selectItem itemValue="Dod" itemLabel="Dod"/>
+                                            <f:selectItem itemValue="Stanton" itemLabel="Stanton"/>
+                                            <f:selectItem itemValue="Boss" itemLabel="Boss"/>
+                                            <f:selectItem itemValue="VicFirth" itemLabel="VicFirth"/>
+                                        </p:selectOneMenu>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <p:outputLabel for="referencia" value="Referencia"/>
+                                        <p:inputText id="referencia" class="form-control" required="true"
+                                                     value="#{instrumentBean.activo.referencia}">
+                                        </p:inputText>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p:messages showDetail="true" rendered="true"/>
+                                    </div>
+                                    <div class="col-12">
+                                        <p:separator/>
+                                        <h:commandButton class="btn btn-primary btn-block btn-login" 
+                                                         value="Registrar activo" 
+                                                         action="#{instrumentBean.registrarActivo()}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
             </ui:define>
 
         </ui:composition>

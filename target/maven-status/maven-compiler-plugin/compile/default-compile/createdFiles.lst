@@ -109,6 +109,8 @@ com\adsi\ensayapp\model\Mantenimiento_.class
 com\adsi\ensayapp\bean\AddMarkersView.class
 com\adsi\ensayapp\model\Ciudad.class
 com\adsi\ensayapp\model\TipoRecargo_.class
+com\adsi\ensayapp\bean\InstrumentBean.class
+com\adsi\ensayapp\utilities\Util.class
 com\adsi\ensayapp\bean\UsuarioBean.class
 com\adsi\ensayapp\ejb\FavoritoFacade.class
 com\adsi\ensayapp\utilities\SendEmail.class
