@@ -31,7 +31,7 @@ import org.primefaces.model.charts.optionconfig.title.Title;
 public class InstrumentBean implements Serializable {
     
     Logger log = LogManager.getRootLogger();
-    private Util util = new Util();
+    private final Util util = new Util();
     
     @EJB
     private ActivoFacadeLocal activoEJB;

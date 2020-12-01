@@ -1,3 +1,4 @@
+com\adsi\ensayapp\bean\MovementBean.class
 com\adsi\ensayapp\model\ProveedorContacto.class
 com\adsi\ensayapp\bean\RecargoBean.class
 com\adsi\ensayapp\ejb\PerfilFacade.class
