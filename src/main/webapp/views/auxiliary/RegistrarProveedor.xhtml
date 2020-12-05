@@ -37,10 +37,9 @@
                                         <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
                                                          value="#{proveedorBean.proveedor.idTipoDoc}">
                                             <f:selectItem itemValue="" itemLabel="- Select" />
-                                            <f:selectItem itemValue="1" itemLabel="CÉDULA DE CIUDADANÍA" />
-                                            <f:selectItem itemValue="2" itemLabel="CÉDULA DE EXTRANJERÍA" />
-                                            <f:selectItem itemValue="3" itemLabel="PASAPORTE" />
-                                            <f:selectItem itemValue="4" itemLabel="TARJETA DE IDENTIDAD" />
+                                            <f:selectItems value="#{doctypeBean.listadoTipoDocumentos}" var="tipo"
+                                                           itemValue="#{tipo.id}" itemLabel="#{tipo.abreviacion}"/>
+                                            
                                         </p:selectOneMenu>
                                     </div>
                                     <div class="col-6">

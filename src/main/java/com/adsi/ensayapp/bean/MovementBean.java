@@ -9,6 +9,7 @@ import com.adsi.ensayapp.model.Mantenimiento;
 import com.adsi.ensayapp.utilities.Util;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -40,8 +41,11 @@ public class MovementBean implements Serializable{
     
     private Activo activo;
     
+    private List<MovimientoActivo> listaMovimientos;
+    
     @PostConstruct
     public void init(){
+        listaMovimientos = movimientoEJB.findAll();
         activo = new Activo();
         movimiento = new MovimientoActivo();
         
@@ -157,6 +161,14 @@ public class MovementBean implements Serializable{
 
     public void setMantenimiento(Mantenimiento mantenimiento) {
         this.mantenimiento = mantenimiento;
+    }
+
+    public List<MovimientoActivo> getListaMovimientos() {
+        return listaMovimientos;
+    }
+
+    public void setListaMovimientos(List<MovimientoActivo> listaMovimientos) {
+        this.listaMovimientos = listaMovimientos;
     }
     
     
