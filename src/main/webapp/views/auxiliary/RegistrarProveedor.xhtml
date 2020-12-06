@@ -33,7 +33,7 @@
                             <h:form>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="id_tipo_doc" value="Tipo de identificación"/>
+                                        <p:outputLabel for="id_tipo_doc" value="#{msgs['Auxiliary.RegistrarProveedor.item1']}"/>
                                         <p:selectOneMenu id="id_tipo_doc" required="true" class="form-control"
                                                          value="#{proveedorBean.proveedor.idTipoDoc}">
                                             <f:selectItem itemValue="" itemLabel="- Select" />
@@ -43,7 +43,7 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div class="col-6">
-                                        <p:outputLabel for="num_doc" value="Número de identificación"/>
+                                        <p:outputLabel for="num_doc" value="#{msgs['Auxiliary.RegistrarProveedor.item2']}"/>
                                         <p:inputNumber id="num_doc" required="true" class="form-control" 
                                                        value="#{proveedorBean.proveedor.numDoc}">
                                             <f:validateLength minimum="6" maximum="12"/>
@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <p:outputLabel for="razon_social" value="Razón social"/>
+                                        <p:outputLabel for="razon_social" value="#{msgs['Auxiliary.RegistrarProveedor.item3']}"/>
                                         <p:inputText id="razon_social" class="form-control" required="true"
                                                      value="#{proveedorBean.proveedor.razonSocial}">
                                         </p:inputText>
@@ -60,14 +60,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="telefono" value="Teléfono"/>
+                                        <p:outputLabel for="telefono" value="#{msgs['Auxiliary.RegistrarProveedor.item4']}"/>
                                         <p:inputText id="telefono" class="form-control" required="true"
                                                      value="#{proveedorBean.proveedor.telefono}">
                                             <f:validateRegex pattern="^([a-zA-Z0-9]+(.)?[\s]*)$" />
                                         </p:inputText>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="correo" value="Correo electrónico"/>
+                                        <p:outputLabel for="correo" value="#{msgs['Auxiliary.RegistrarProveedor.item5']}"/>
                                         <p:inputText id="correo" class="form-control" required="true"
                                                      value="#{proveedorBean.proveedor.correo}">
                                             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <p:outputLabel for="direccion" value="Dirección"/>
+                                        <p:outputLabel for="direccion" value="#{msgs['Auxiliary.RegistrarProveedor.item6']}"/>
                                         <p:inputText id="direccion" class="form-control" required="true"
                                                      value="#{proveedorBean.proveedor.direccion}">
                                         </p:inputText>
@@ -89,7 +89,7 @@
                                     <div class="col-12">
                                         <p:separator/>
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                                         value="Registrar proveedor" 
+                                                         value="#{msgs['Auxiliary.RegistrarProveedor.btnRegistrar']}" 
                                                          action="#{proveedorBean.guardarProveedor()}"/>
                                     </div>
                                 </div>
