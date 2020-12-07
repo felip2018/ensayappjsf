@@ -15,8 +15,8 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Bienvenido</p>
-                                        <p>Has iniciado sesión como Auxiliar de bodega.</p>		
+                                        <p class="title_section">#{msgs['Auxiliary.titulo.bienvenida']}</p>
+                                        <p>#{msgs['Auxiliary.titulo.texto']}</p>		
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -29,8 +29,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <p:outputLabel style="text-align: center;width: 100%;" value="Instrumentos por estado"/>
+                            <p:outputLabel style="text-align: center;width: 100%;" value="#{msgs['Auxiliary.titulo.texto2']}"/>
                             <p:barChart model="#{instrumentBean.barModel}" style="width: 100%; height: 500px;"/>
+                      
                         </div>
                     </div>
                 </div>

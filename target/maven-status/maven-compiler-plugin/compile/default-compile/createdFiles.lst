@@ -15,6 +15,7 @@ com\adsi\ensayapp\ejb\LineamientoCalificacionFacade.class
 com\adsi\ensayapp\model\Perfil_.class
 com\adsi\ensayapp\ejb\TipoGastoFacadeLocal.class
 com\adsi\ensayapp\ejb\TipoRecargoFacadeLocal.class
+com\adsi\ensayapp\bean\DoctypeBean.class
 com\adsi\ensayapp\ejb\PerfilFacadeLocal.class
 com\adsi\ensayapp\bean\BranchOfficeBean.class
 com\adsi\ensayapp\ejb\GastoFacadeLocal.class
@@ -134,6 +135,7 @@ com\adsi\ensayapp\dto\EmailMessageDTO.class
 com\adsi\ensayapp\bean\ReservationScore.class
 com\adsi\ensayapp\model\Imagen_.class
 com\adsi\ensayapp\model\Proveedor_.class
+com\adsi\ensayapp\converter\InstrumentConverter.class
 com\adsi\ensayapp\model\SistemaHora.class
 com\adsi\ensayapp\ejb\CalificacionFacadeLocal.class
 com\adsi\ensayapp\ejb\DepartamentoFacade.class

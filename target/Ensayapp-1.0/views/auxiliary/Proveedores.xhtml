@@ -18,7 +18,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Proveedores</p>	
+                                        <p class="title_section">#{msgs['Auxiliary.ProveedoresActivos.titulo']}</p>
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -46,16 +46,16 @@
                         <div class="col-12">
                             <h:form id="form">
                                 <p:dataTable id="basicProviderList" var="proveedor" value="#{proveedorBean.listaProveedores}">
-                                    <p:column headerText="Razon social">
+                                    <p:column headerText="#{msgs['Auxiliary.ProveedoresActivos.item1']}">
                                         <h:outputText value="#{proveedor.razonSocial}" />
                                     </p:column>
-                                    <p:column headerText="Telefono">
+                                    <p:column headerText="#{msgs['Auxiliary.ProveedoresActivos.item2']}">
                                         <h:outputText value="#{proveedor.telefono}"/>
                                     </p:column>
-                                    <p:column headerText="Dirección">
+                                    <p:column headerText="#{msgs['Auxiliary.ProveedoresActivos.item3']}">
                                         <h:outputText value="#{proveedor.direccion}" />
                                     </p:column>
-                                    <p:column headerText="Correo">
+                                    <p:column headerText="#{msgs['Auxiliary.ProveedoresActivos.item4']}">
                                         <h:outputText value="#{proveedor.correo}" />
                                     </p:column>
                                     

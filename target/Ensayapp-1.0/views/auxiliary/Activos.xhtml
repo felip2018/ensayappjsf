@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Activos</p>	
+                                        <p class="title_section">#{msgs['Auxiliary.Activos.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -51,19 +51,19 @@
                                              widgetVar="tablaActivos"
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                              paginator="true" rows="15" style="margin-bottom:20px">
-                                    <p:column filterBy="#{activo.nombre}" filterMatchMode="contains" headerText="Nombre">
+                                    <p:column filterBy="#{activo.nombre}" filterMatchMode="contains" headerText="#{msgs['Auxiliary.verActivos.item1']}">
                                         <h:outputText value="#{activo.nombre}" />
                                     </p:column>
-                                    <p:column filterBy="#{activo.marca}" filterMatchMode="contains" headerText="Marca">
+                                    <p:column filterBy="#{activo.marca}" filterMatchMode="contains" headerText="#{msgs['Auxiliary.verActivos.item2']}">
                                         <h:outputText value="#{activo.marca}"/>
                                     </p:column>
-                                    <p:column filterBy="#{activo.referencia}" filterMatchMode="contains" headerText="Referencia">
+                                    <p:column filterBy="#{activo.referencia}" filterMatchMode="contains" headerText="#{msgs['Auxiliary.verActivos.item3']}">
                                         <h:outputText value="#{activo.referencia}" />
                                     </p:column>
-                                    <p:column filterBy="#{activo.estadoActivo}" filterMatchMode="contains" headerText="Estado">
+                                    <p:column filterBy="#{activo.estadoActivo}" filterMatchMode="contains" headerText="#{msgs['Auxiliary.verActivos.item4']}">
                                         <h:outputText value="#{activo.estadoActivo}" />
                                     </p:column>
-                                    <p:column headerText="Opciones" exportable="false">
+                                    <p:column headerText="#{msgs['Auxiliary.verActivos.item5']}" exportable="false">
                                         <p:commandButton update=":formEntrada:entrada" oncomplete="PF('movementInDialog').show()" icon="fas fa-arrow-down" title="Entrada"
                                                          rendered="#{activo.estadoActivo != 'EN BODEGA'}">
                                             <f:setPropertyActionListener value="#{activo}" target="#{movementBean.activo}"/>
@@ -79,36 +79,36 @@
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
-                            <p:dialog header="Entrada" 
+                            <p:dialog header="#{msgs['Auxiliary.entradaActivo.titulo']}"  
                                       widgetVar="movementInDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formEntrada">
                                     <p:outputPanel id="entrada">
                                         <div class="row">
                                             <div class="col-3">
-                                                <p:outputLabel value="Nombre: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.entradaActivo.item1']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.nombre}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Referencia: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.entradaActivo.item2']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.referencia}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Marca: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.entradaActivo.item3']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.marca}"/>
                                             </div>
                                             <div class="col-12">
-                                                <p:outputLabel value="¿Esta seguro de realizar la entrada del activo al almacenamiento en bodega?"/>
+                                                <p:outputLabel value= "#{msgs['Auxiliary.entradaActivo.texto']}"/>
                                             </div>
                                             <div class="col-12">
                                                 <p:commandButton class="btn btn-primary btn-block"
-                                                                 value="Registrar ingreso"
+                                                                 value="#{msgs['Auxiliary.entradaActivo.boton']}"
                                                                  oncomplete="PF('movementInDialog').hide()"
                                                                  update=":form:basicAssetsList"
                                                                  action="#{movementBean.registrarEntrada()}"/>
@@ -117,32 +117,32 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Salida" 
+                            <p:dialog header="#{msgs['Auxiliary.salidaActivo.titulo']}" 
                                       widgetVar="movementOutDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formSalida">
                                     <p:outputPanel id="salida">
                                         <div class="row">
                                             <div class="col-3">
-                                                <p:outputLabel value="Nombre: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.salidaActivo.item1']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.nombre}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Referencia: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.salidaActivo.item2']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.referencia}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Marca: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.salidaActivo.item3']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.marca}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Sala:"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.salidaActivo.item4']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:selectOneMenu required="true" class="form-control" value="#{movementBean.movimiento.idSala}">
@@ -154,11 +154,11 @@
                                             </div>
                                             <div class="col-12">
                                                 <p:separator/>
-                                                <p:outputLabel value="¿Desea confirmar asignación del activo a la sala de ensayo?"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.salidaActivo.texto']}"/>
                                             </div>
                                             <div class="col-12">
                                                 <p:commandButton class="btn btn-primary btn-block"
-                                                                 value="Si, confirmar"
+                                                                 value="#{msgs['Auxiliary.salidaActivo.boton']}"
                                                                  oncomplete="PF('movementOutDialog').hide()"
                                                                  update=":form:basicAssetsList"
                                                                  action="#{movementBean.registrarSalida()}"/>
@@ -167,35 +167,35 @@
                                     </p:outputPanel>
                                 </h:form>
                             </p:dialog>
-                            <p:dialog header="Mantenimiento" 
+                            <p:dialog header="#{msgs['Auxiliary.mantenimientoActivo.titulo']}"
                                       widgetVar="movementFixDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
                                       width="600">
                                 <h:form id="formMantenimiento">
                                     <p:outputPanel id="mantenimiento">
                                         <div class="row">
                                             <div class="col-3">
-                                                <p:outputLabel value="Nombre: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item1']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.nombre}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Referencia: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item2']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.referencia}"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Marca: "/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item3']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:outputLabel value="#{movementBean.activo.marca}"/>
                                             </div>
                                             <div class="col-12">
-                                                <p:outputLabel value="Datos de mantenimiento"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.texto']}"/>
                                             </div>                                            
                                             <div class="col-3">
-                                                <p:outputLabel value="Proveedor:"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item4']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:selectOneMenu required="true" class="form-control" value="#{movementBean.mantenimiento.idProveedor}">
@@ -207,14 +207,14 @@
                                                 </p:selectOneMenu>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Fecha ingreso:"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item5']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:calendar value="#{movementBean.mantenimiento.fechaIngreso}"
                                                             class="form-control"/>
                                             </div>
                                             <div class="col-3">
-                                                <p:outputLabel value="Observaciones:"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.item6']}"/>
                                             </div>
                                             <div class="col-9">
                                                 <p:inputTextarea value="#{movementBean.mantenimiento.observacionesIngreso}"
@@ -223,11 +223,11 @@
                                             </div>
                                             <div class="col-12">
                                                 <p:separator/>
-                                                <p:outputLabel value="¿Confirmar salida por mantenimiento del activo?"/>
+                                                <p:outputLabel value="#{msgs['Auxiliary.mantenimientoActivo.texto2']}"/>
                                             </div>
                                             <div class="col-12">
                                                 <p:commandButton class="btn btn-primary btn-block"
-                                                                 value="Si, confirmar"
+                                                                 value="#{msgs['Auxiliary.mantenimientoActivo.boton']}"
                                                                  oncomplete="PF('movementFixDialog').hide()"
                                                                  update=":form:basicAssetsList"
                                                                  action="#{movementBean.registrarMantenimiento()}"/>

@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Registrar proveedor</p>	
+                                        <p class="title_section">#{msgs['Auxiliary.RegistrarActivo.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -33,7 +33,7 @@
                             <h:form>
                                 <div class="row">
                                     <div class="col-12">
-                                        <p:outputLabel for="id_sucursal" value="Sucursal"/>
+                                        <p:outputLabel for="id_sucursal" value="#{msgs['Auxiliary.RegistrarActivo.item1']}"/>
                                         <p:selectOneMenu id="id_sucursal" required="true" class="form-control"
                                                          value="#{instrumentBean.activo.idSucursal}">
                                             <f:selectItem itemValue="0" itemLabel="- Select" />
@@ -42,13 +42,13 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div class="col-12">
-                                        <p:outputLabel for="nombre" value="Nombre"/>
+                                        <p:outputLabel for="nombre" value="#{msgs['Auxiliary.RegistrarActivo.item2']}"/>
                                         <p:inputText id="nombre" required="true" class="form-control" value="#{instrumentBean.activo.nombre}"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-12">
-                                        <p:outputLabel for="descripcion" value="Descripción"/>
+                                        <p:outputLabel for="descripcion" value="#{msgs['Auxiliary.RegistrarActivo.item3']}"/>
                                         <p:inputTextarea id="descripcion" class="form-control" required="true"
                                                          rows="4" 
                                                          value="#{instrumentBean.activo.descripcion}"/>
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
-                                        <p:outputLabel for="marca" value="Marca"/>
+                                        <p:outputLabel for="marca" value="#{msgs['Auxiliary.RegistrarActivo.item4']}"/>
                                         <p:selectOneMenu id="marca" class="form-control" value="#{instrumentBean.activo.marca}">
                                             <f:selectItem itemValue="Yamaha" itemLabel="Yamaha"/>
                                             <f:selectItem itemValue="Sennheiser" itemLabel="Sennheiser"/>
@@ -83,7 +83,7 @@
                                         </p:selectOneMenu>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <p:outputLabel for="referencia" value="Referencia"/>
+                                        <p:outputLabel for="referencia" value="#{msgs['Auxiliary.RegistrarActivo.item5']}"/>
                                         <p:inputText id="referencia" class="form-control" required="true"
                                                      value="#{instrumentBean.activo.referencia}">
                                         </p:inputText>
@@ -96,7 +96,7 @@
                                     <div class="col-12">
                                         <p:separator/>
                                         <h:commandButton class="btn btn-primary btn-block btn-login" 
-                                                         value="Registrar activo" 
+                                                         value="#{msgs['Auxiliary.RegistrarActivo.boton']}"
                                                          action="#{instrumentBean.registrarActivo()}"/>
                                     </div>
                                 </div>
