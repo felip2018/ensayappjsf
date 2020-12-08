@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-11">
-                                        <p class="title_section">Recargos</p>	
+                                        <p class="title_section">#{msgs['Admin.Recargos.titulo']}</p>	
                                     </div>
                                     <div class="col-1">
                                         <button class="btn btn-info float-right">
@@ -45,22 +45,22 @@
                         <div class="col-12">
                             <h:form id="form">
                                 <p:dataTable id="basicChargesList" var="charge" value="#{chargesBean.listaRecargos}">
-                                    <p:column headerText="Usuario">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item1']}">
                                         <h:outputText value="#{charge.usuario}" />
                                     </p:column>
-                                    <p:column headerText="Identificación">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item2']}">
                                         <h:outputText value="#{charge.identificacion}" />
                                     </p:column>
-                                    <p:column headerText="Tipo">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item3']}">
                                         <h:outputText value="#{charge.tipoRecargo}" />
                                     </p:column>
-                                    <p:column headerText="Monto ($)">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item4']} ($)">
                                         <h:outputText value="#{charge.monto}"/>
                                     </p:column>
-                                    <p:column headerText="Estado">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item5']}">
                                         <h:outputText value="#{charge.estadoRecargo}" />
                                     </p:column>
-                                    <p:column headerText="Options">
+                                    <p:column headerText="#{msgs['Admin.Recargos.item6']}">
                                         <p:commandButton icon="fas fa-file-invoice-dollar" title="Agregar recargo"
                                                          update=":formRecargo:recargoDetail"
                                                          oncomplete="PF('recargoDialog').show()">
