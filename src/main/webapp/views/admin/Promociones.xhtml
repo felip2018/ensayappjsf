@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/AdminTemplate.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">Promociones</p>	
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
+                                    <p:dataExporter type="xls" target=":form:basicPromos" fileName="Gastos" />
+                                </h:commandLink>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/pdfIcon.png" style="width:25px;height:25px;" title="Exporta a PDF"/>
+                                    <p:dataExporter type="pdf" target=":form:basicPromos" fileName="Gastos"/>
+                                </h:commandLink>                    
+                            </h:form>
+                        </div>
+                        <div class="col-12">
+                           
+                            <h:form id="form">
+                                <p:dataTable id="basicPromos" var="promo" value="#{promotionBean.listaPromociones}">
+                                    <p:column headerText="No.">
+                                        <h:outputText value="#{promo.id}" />
+                                    </p:column>
+                                    <p:column headerText="Título">
+                                        <h:outputText value="#{promo.titulo}" />
+                                    </p:column>
+                                    <p:column headerText="Descripción">
+                                        <h:outputText value="#{promo.descripcion}"/>
+                                    </p:column>
+                                    <p:column headerText="Estado">
+                                        <table>
+                                            <tr>
+                                                <td style="#{promo.estado eq 'Activo' ? 'background:#1dd1a1' : 'background:#ff6b6b'};color:#ffffff;">
+                                                    <p:outputLabel value="#{promo.estado}"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </p:column>
+                                    <p:column headerText="Opciones" exportable="false">
+
+                                        <p:commandButton update=":formDelete:promoDeleteDetail" 
+                                                         oncomplete="PF('deletePromoDialog').show()" 
+                                                         icon="fas fa-trash-alt" title="Eliminar"
+                                                         rendered="#{promo.estado == 'Activo'}">
+                                            <f:setPropertyActionListener value="#{promo}" target="#{promotionBean.promocion}"/>
+                                        </p:commandButton>
+
+                                        <p:commandButton update=":formActive:promoActiveDetail" 
+                                                         oncomplete="PF('activePromoDialog').show()" 
+                                                         icon="fas fa-check" title="Activar"
+                                                         rendered="#{promo.estado == 'Inactivo'}">
+                                            <f:setPropertyActionListener value="#{promo}" target="#{promotionBean.promocion}"/>
+                                        </p:commandButton>
+
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                            <p:dialog header="Inactivar promoción"
+                                      widgetVar="deletePromoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formDelete">
+                                    <p:outputPanel id="promoDeleteDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    Esta seguro de inactivar la promoción seleccionada?<br/>
+                                                    Título: <b>#{promotionBean.promocion.titulo}</b><br/>
+                                                    Descripción: <b>#{promotionBean.promocion.descripcion}</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="Cancelar"
+                                                                 oncomplete="PF('deletePromoDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="Aceptar"
+                                                                 action="#{promotionBean.eliminarPromocion()}"
+                                                                 oncomplete="PF('deletePromoDialog').hide()"
+                                                                 update=":form:basicPromos"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
+                            <p:dialog header="Activar promoción"
+                                      widgetVar="activePromoDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false"
+                                      width="600">
+                                <h:form id="formActive">
+                                    <p:outputPanel id="promoDeleteDetail">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    Esta seguro de activar la promoción seleccionada?<br/>
+                                                    Título: <b>#{promotionBean.promocion.titulo}</b><br/>
+                                                    Descripción: <b>#{promotionBean.promocion.descripcion}</b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p:separator/>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-secondary btn-block" 
+                                                                 value="Cancelar"
+                                                                 oncomplete="PF('activePromoDialog').hide()"/>
+                                            </div>
+                                            <div class="col-6">
+                                                <p:commandButton class="btn btn-primary btn-block" 
+                                                                 value="Aceptar"
+                                                                 action="#{promotionBean.activarPromocion()}"
+                                                                 oncomplete="PF('activePromoDialog').hide()"
+                                                                 update=":form:basicPromos"/>
+                                            </div>
+                                        </div>
+                                    </p:outputPanel>
+                                </h:form>
+                            </p:dialog>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

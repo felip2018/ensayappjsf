@@ -75,6 +75,14 @@
                                                 <p:outputLabel class="fas fa-plus"/> #{msgs['AdminMenu.usuariosSub.registrarUsuario']}
                                             </p:menuitem>
                                         </p:submenu>
+                                        <p:submenu label="Promociones">
+                                            <p:menuitem ajax="false" outcome="Promociones">
+                                                <p:outputLabel class="fas fa-eye"/> Ver Promociones
+                                            </p:menuitem>
+                                            <p:menuitem ajax="false" outcome="RegistrarPromocion">
+                                                <p:outputLabel class="fas fa-plus"/> Registrar
+                                            </p:menuitem>
+                                        </p:submenu>
                                     </p:menu>
                                     <p:separator/>
                                     <p:commandButton class="btn btn-primary btn-block" 
