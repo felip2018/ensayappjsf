@@ -54,7 +54,9 @@ public class UsuarioBean implements Serializable {
             UserValidationResponseDTO validacion = usuarioEJB.validacionUsuario(usuario);
             if (validacion.getCant() == 0){
                 usuarioEJB.create(usuario);
+                
                 EmailMessageDTO emailMessageDto = new EmailMessageDTO();
+                emailMessageDto.setMassive(false);
                 emailMessageDto.setTo(usuario.getCorreo());
                 emailMessageDto.setSubject("Ensayapp: Registro exitoso");
                 String body = "<h1>Bienvenido "+usuario.getNombre()+"</h1>";

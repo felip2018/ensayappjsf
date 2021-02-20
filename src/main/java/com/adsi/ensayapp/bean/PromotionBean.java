@@ -1,8 +1,12 @@
 
 package com.adsi.ensayapp.bean;
 
+import com.adsi.ensayapp.dto.EmailMessageDTO;
+import com.adsi.ensayapp.utilities.SendEmail;
 import com.adsi.ensayapp.ejb.PromocionFacadeLocal;
+import com.adsi.ensayapp.ejb.UsuarioFacadeLocal;
 import com.adsi.ensayapp.model.Promocion;
+import com.adsi.ensayapp.model.Usuario;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +24,8 @@ import org.apache.logging.log4j.Logger;
 public class PromotionBean implements Serializable {
     Logger log = LogManager.getRootLogger();
     
+    private SendEmail sendEmail;
+    
     @EJB
     private PromocionFacadeLocal promocionEJB;
     
@@ -27,8 +33,12 @@ public class PromotionBean implements Serializable {
     
     private List<Promocion> listaPromociones;
     
+    @EJB
+    private UsuarioFacadeLocal usuarioEJB;
+    
     @PostConstruct
     public void init(){
+        sendEmail = new SendEmail();
         promocion = new Promocion();
         listaPromociones = promocionEJB.findAll();
         
@@ -42,11 +52,31 @@ public class PromotionBean implements Serializable {
         log.info("Se va a registrar una nueva promocion.");
         
         try {
-            promocionEJB.create(promocion);
+            //promocionEJB.create(promocion);
+            for(Usuario usr:usuarioEJB.findAll()){
+                if(usr.getIdPerfil() == 3){
+                    EmailMessageDTO emailMessageDto = new EmailMessageDTO();
+                    emailMessageDto.setMassive(true);
+                    emailMessageDto.setTo(usr.getCorreo());
+                    emailMessageDto.setSubject("Ensayapp: Aprovecha nuestra promo");
+                    String body = "<h1>"+promocion.getTitulo()+"</h1>";
+                    body += "<hr/>";
+                    body += "<p>"+promocion.getDescripcion()+"</p>";
+
+                    emailMessageDto.setBody(body);
+
+                    String emailResponse;
+                    emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
+
+                    log.info("Email response: "+emailResponse);
+                }
+            }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Aviso",
-                    "La promoción ha sido registrado en el sistema."));
+                    "La promoción ha sido registrado en el sistema.\n"));
+            
         } catch (Exception e) {
+            log.info("EXCEPTION::: \n"+e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Aviso",
                     "No fue posible registrar la promoción.\n"+e.getMessage()));

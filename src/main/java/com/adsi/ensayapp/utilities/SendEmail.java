@@ -1,7 +1,9 @@
 package com.adsi.ensayapp.utilities;
 
 import com.adsi.ensayapp.dto.EmailMessageDTO;
+import com.adsi.ensayapp.model.Usuario;
 import java.util.Properties;
+import javax.mail.Address;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -50,10 +52,11 @@ public class SendEmail {
 
             // Set From: header field of the header.
             message.setFrom(new InternetAddress(from));
-
+            
             // Set To: header field of the header.
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(to));
+            
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            
 
             // Set Subject: header field
             message.setSubject(emailMessageDto.getSubject());

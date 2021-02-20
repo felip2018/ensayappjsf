@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../WEB-INF/templates/AuxiliaryTemplate.xhtml">
+
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <p class="title_section">#{msgs['Auxiliary.MovimientoActivos.titulo']}</p>	
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-info float-right">
+                                            <i class="fa fa-info"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h:form>
+                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
+                                    <p:dataExporter type="xls" target=":form:basicAssetsList" fileName="MovimientosDeActivos" />
+                                </h:commandLink>
+                                <h:commandLink style="margin-left: 5px;">
+                                    <h:graphicImage url="../../resources/img/pdfIcon.png" style="width:25px;height:25px;" title="Exporta a PDF"/>
+                                    <p:dataExporter type="pdf" target=":form:basicAssetsList" fileName="MovimientosDeActivos"/>
+                                </h:commandLink>                    
+                            </h:form>
+                        </div>
+                        <div class="col-12">
+                            <h:form id="form">
+                                <p:dataTable id="basicAssetsList" var="activo" value="#{movementBean.listaMovimientos}"
+                                             rows="10" paginator="true">
+                                    <p:column headerText="#{msgs['Auxiliary.MovimientoActivos.item1']}">
+                                        <h:outputText value="#{activo.idActivo}">
+                                            <f:converter converterId="instrumentConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['Auxiliary.MovimientoActivos.item2']}">
+                                        <h:outputText value="#{activo.idSala}">
+                                            <f:converter converterId="roomConverter"/>
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['Auxiliary.MovimientoActivos.item3']}">
+                                        <h:outputText value="#{activo.tipoMovimiento}" />
+                                    </p:column>
+                                    <p:column headerText="#{msgs['Auxiliary.MovimientoActivos.item4']}">
+                                        <h:outputText value="#{activo.motivo}" />
+                                    </p:column>
+                                    <p:column headerText="#{msgs['Auxiliary.MovimientoActivos.item5']}">
+                                        <p:datePicker value="#{activo.fechaRegistro}" pattern="dd/MM/yyyy" 
+                                                      showTime="false" appendTo="@(body)" disabled="true"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

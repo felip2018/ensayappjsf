@@ -1,13 +1,34 @@
 package com.adsi.ensayapp.dto;
 
+import com.adsi.ensayapp.model.Usuario;
+import java.util.List;
+
 public class EmailMessageDTO {
     private StringBuilder structure;
     private String to;
+    private List<Usuario> usuarios;
     private String subject;
     private String body;
+    private boolean massive;
     
     public EmailMessageDTO(){
         structure = new StringBuilder();
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public boolean isMassive() {
+        return massive;
+    }
+
+    public void setMassive(boolean massive) {
+        this.massive = massive;
     }
 
     public String getTo() {
