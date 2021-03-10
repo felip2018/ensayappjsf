@@ -66,9 +66,8 @@ public class PromotionBean implements Serializable {
                     emailMessageDto.setBody(body);
 
                     String emailResponse;
-                    emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
+                    sendEmail.sendEmailMessage(emailMessageDto);
 
-                    log.info("Email response: "+emailResponse);
                 }
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,

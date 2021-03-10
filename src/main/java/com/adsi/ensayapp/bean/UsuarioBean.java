@@ -4,6 +4,7 @@ import com.adsi.ensayapp.dto.EmailMessageDTO;
 import com.adsi.ensayapp.dto.UserValidationResponseDTO;
 import com.adsi.ensayapp.ejb.UsuarioFacadeLocal;
 import com.adsi.ensayapp.model.Usuario;
+import com.adsi.ensayapp.utilities.Constants;
 import com.adsi.ensayapp.utilities.SendEmail;
 import java.io.Serializable;
 import java.util.Date;
@@ -63,12 +64,12 @@ public class UsuarioBean implements Serializable {
                 body += "<hr/>";
                 body += "<p>Has completado el registro en nuestro sistema de forma exitosa, haz clic en el siguiente enlace para activar tu cuenta:</p>";
                 body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
+                body += "<a class='btn-activation' href='http://"+Constants.SERVER+":8080/Ensayapp-1.0/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
                 String emailResponse;
-                emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
+                sendEmail.sendEmailMessage(emailMessageDto);
                 
                 this.respuesta = "Has completado el registro! por favor verifica tu correo electrónico para validar la cuenta.";
             }else{
@@ -93,12 +94,12 @@ public class UsuarioBean implements Serializable {
                 body += "<hr/>";
                 body += "<p>Has completado el registro en nuestro sistema de forma exitosa, haz clic en el siguiente enlace para activar tu cuenta:</p>";
                 body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
+                body += "<a class='btn-activation' href='http://"+Constants.SERVER+":8080/Ensayapp-1.0/faces/accountValidation.xhtml?code="+usuario.getCodigoValidacion()+"' target='_blank'>Activar Cuenta</a>";
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
                 String emailResponse;
-                emailResponse = sendEmail.sendEmailMessage(emailMessageDto);
+                sendEmail.sendEmailMessage(emailMessageDto);
                 
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                     "Aviso",

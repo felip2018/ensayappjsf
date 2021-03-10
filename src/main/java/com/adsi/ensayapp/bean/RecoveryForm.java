@@ -3,6 +3,7 @@ package com.adsi.ensayapp.bean;
 import com.adsi.ensayapp.dto.EmailMessageDTO;
 import com.adsi.ensayapp.ejb.UsuarioFacadeLocal;
 import com.adsi.ensayapp.model.Usuario;
+import com.adsi.ensayapp.utilities.Constants;
 import com.adsi.ensayapp.utilities.SendEmail;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -46,14 +47,13 @@ public class RecoveryForm implements Serializable {
                 emailMessageDto.setSubject("Ensayapp: Recuperar contraseña");
                 String body = "<h1>Hola "+usr.getNombre()+"</h1>";
                 body += "<hr/>";
-                body += "<p>Se ha realizaco una solicitud para recuperar la clave de acceso a tu cuenta, da clic en el botón para realizar la recuperación:</p>";
+                body += "<p>Se ha realizado una solicitud para recuperar la clave de acceso a tu cuenta, da clic en el botón para realizar la recuperación:</p>";
                 body += "<div class='containerActivationButton'>";
-                body += "<a class='btn-activation' href='http://localhost:8080/ensayappjsf/faces/recovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
+                body += "<a class='btn-activation' href='http://"+Constants.SERVER+":8080/Ensayapp-1.0/faces/recovery.xhtml?id="+usr.getId()+"&code="+usr.getCodigoValidacion()+"' target='_blank'>Recuperar Clave</a>";
                 body += "</div>";
                 emailMessageDto.setBody(body);
                 
-                String sendEmailMessage = sendEmail.sendEmailMessage(emailMessageDto);
-                
+                sendEmail.sendEmailMessage(emailMessageDto);
                 this.respuesta = "Se ha enviado un correo electrónico con los pasos a seguir para restablecer tu clave de acceso.";
             }else{
                 this.respuesta = "El correo electrónico ingresado no pertenece a ninguna cuenta registrada, por favor verifique!";
