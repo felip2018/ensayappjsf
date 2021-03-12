@@ -5,14 +5,18 @@
  */
 package com.adsi.ensayapp.ejb;
 
+import com.adsi.ensayapp.dto.RoomValidationResponseDTO;
 import com.adsi.ensayapp.model.Reservacion;
 import com.adsi.ensayapp.model.Usuario;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 /**
  *
@@ -177,6 +181,33 @@ public class ReservacionFacade extends AbstractFacade<Reservacion> implements Re
         }
 
         return lista;
+    }
+
+    @Override
+    public RoomValidationResponseDTO validacionSalaEnsayo(Reservacion reservacion) {
+        RoomValidationResponseDTO validacion = new RoomValidationResponseDTO();
+        try{
+            StoredProcedureQuery storedProcedure = em.createStoredProcedureQuery("SP_ReservationValidation",RoomValidationResponseDTO.class);
+            storedProcedure.registerStoredProcedureParameter("idSala", Integer.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("idSistemaHora", Integer.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("fechaReserva", Date.class, ParameterMode.IN);
+            storedProcedure.registerStoredProcedureParameter("cant", Integer.class, ParameterMode.OUT);
+            storedProcedure.registerStoredProcedureParameter("mensaje", String.class, ParameterMode.OUT);
+            
+            storedProcedure.setParameter("idSala", reservacion.getIdSala());
+            storedProcedure.setParameter("idSistemaHora", reservacion.getIdSistemHora());
+            storedProcedure.setParameter("fechaReserva", reservacion.getFecha());
+            
+            storedProcedure.execute();
+            
+            validacion.setCant((int) storedProcedure.getOutputParameterValue("cant"));
+            validacion.setMensaje((String) storedProcedure.getOutputParameterValue("mensaje"));
+            
+        }catch (Exception e) {
+            throw e;
+        } 
+        
+        return validacion;
     }
 
 }

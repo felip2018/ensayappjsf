@@ -5,6 +5,7 @@
  */
 package com.adsi.ensayapp.ejb;
 
+import com.adsi.ensayapp.dto.RoomValidationResponseDTO;
 import com.adsi.ensayapp.model.Reservacion;
 import com.adsi.ensayapp.model.Usuario;
 import java.util.List;
@@ -44,4 +45,6 @@ public interface ReservacionFacadeLocal {
     List<Object[]> getReservationsNumberByRoom();
     
     List<Reservacion> getReservationsByStates(List<Integer> states);
+    
+    RoomValidationResponseDTO validacionSalaEnsayo(Reservacion reservacion);
 }

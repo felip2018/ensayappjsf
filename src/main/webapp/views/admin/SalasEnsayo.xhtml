@@ -79,7 +79,7 @@
                                             <div class="col-6">
                                                 <p:commandButton update=":formDelete:roomDeleteDetail" 
                                                                  oncomplete="PF('deleteRoomDialog').show()" 
-                                                                 icon="fas fa-trash-alt" title="Eliminar"
+                                                                 icon="fas fa-trash-alt" title="Inactivar"
                                                                  rendered="#{sala.estadoRegistro == 'Activo'}">
                                                     <f:setPropertyActionListener value="#{sala}" target="#{rehearsalRooms.sala}"/>
                                                 </p:commandButton>

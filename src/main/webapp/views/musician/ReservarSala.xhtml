@@ -48,7 +48,9 @@
                                         <p:outputLabel for="fecha" value="#{msgs['Musician.ReservarSala.fecha']}"/>
                                         <p:datePicker id="fecha" class="form-control"
                                                       required="true"
-                                                      value="#{rehearsalRooms.reservacion.fecha}"/>
+                                                      pattern="yyyy-MM-dd"
+                                                      value="#{rehearsalRooms.reservacion.fecha}"
+                                                      mindate="#{rehearsalRooms.currentDate}"/>
                                     </div>
                                     <div class="col-6">
                                         <p:outputLabel for="hora" value="#{msgs['Musician.ReservarSala.hora']}"/>

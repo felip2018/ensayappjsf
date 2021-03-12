@@ -36,10 +36,28 @@ public class SalaFacade extends AbstractFacade<Sala> implements SalaFacadeLocal 
         List<Sala> response = null;
         String consulta;
         try {
-            consulta = "FROM Sala s WHERE s.idSucursal = ?1";
+            consulta = "FROM Sala s WHERE s.idSucursal = ?1 AND s.estadoRegistro = 'Activo' AND s.id != 0";
             
             Query query = em.createQuery(consulta);
             query.setParameter(1, idSucursal);
+            
+            response = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return response;
+    }
+
+    @Override
+    public List<Sala> findAllActiveRooms() {
+        List<Sala> response = null;
+        String consulta;
+        try {
+            consulta = "FROM Sala s WHERE s.estadoRegistro = 'Activo' AND s.id != 0";
+            
+            Query query = em.createQuery(consulta);
             
             response = query.getResultList();
             

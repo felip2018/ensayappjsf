@@ -25,6 +25,8 @@ public interface SalaFacadeLocal {
     Sala find(Object id);
 
     List<Sala> findAll();
+    
+    List<Sala> findAllActiveRooms();
 
     List<Sala> findRange(int[] range);
 
