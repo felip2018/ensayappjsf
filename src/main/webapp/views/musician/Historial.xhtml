@@ -83,7 +83,7 @@
                                                           pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"/>
                                         </f:facet>
                                         <p:datePicker value="#{reservacion.fecha}" 
-                                                      pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)" readonly="true"/>
+                                                      pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)" readonly="true" disabled="true"/>
                                     </p:column>
 
                                     <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field3']}">
