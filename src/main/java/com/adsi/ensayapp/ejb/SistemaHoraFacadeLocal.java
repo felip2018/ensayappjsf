@@ -30,4 +30,5 @@ public interface SistemaHoraFacadeLocal {
 
     int count();
     
+    List<SistemaHora> findAllByState();
 }

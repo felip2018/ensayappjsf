@@ -6,9 +6,11 @@
 package com.adsi.ensayapp.ejb;
 
 import com.adsi.ensayapp.model.SistemaHora;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,22 @@ public class SistemaHoraFacade extends AbstractFacade<SistemaHora> implements Si
     public SistemaHoraFacade() {
         super(SistemaHora.class);
     }
-    
+
+    @Override
+    public List<SistemaHora> findAllByState() {
+        List<SistemaHora> response = null;
+        String consulta;
+        try {
+            consulta = "FROM SistemaHora sh WHERE sh.estadoRegistro = 'Activo' ORDER BY sh.idSistemaHora ASC";
+            
+            Query query = em.createQuery(consulta);
+            
+            response = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return response;
+    }
 }

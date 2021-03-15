@@ -3,13 +3,14 @@ package com.adsi.ensayapp.bean;
 import com.adsi.ensayapp.dto.RoomValidationResponseDTO;
 import com.adsi.ensayapp.ejb.ReservacionFacadeLocal;
 import com.adsi.ensayapp.ejb.SalaFacadeLocal;
+import com.adsi.ensayapp.ejb.SistemaHoraFacadeLocal;
 import com.adsi.ensayapp.model.Reservacion;
 import com.adsi.ensayapp.model.Sala;
+import com.adsi.ensayapp.model.SistemaHora;
 import com.adsi.ensayapp.model.Usuario;
 import com.adsi.ensayapp.model.Sucursal;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.apache.logging.log4j.LogManager;
@@ -46,6 +46,11 @@ public class RehearsalRooms implements Serializable {
     @EJB
     private ReservacionFacadeLocal reservacionEJB;
     
+    @EJB
+    private SistemaHoraFacadeLocal sistemaHoraEJB;
+    
+    private List<SistemaHora> listaHoras;
+        
     @PostConstruct
     public void init(){
         
@@ -67,6 +72,8 @@ public class RehearsalRooms implements Serializable {
         reservacion.setEstadoRegistro("Activo");
         
         sucursal = new Sucursal();
+        
+        listaHoras = sistemaHoraEJB.findAllByState();
     }
     
     public void actualizarInformacionSala(){
@@ -123,11 +130,8 @@ public class RehearsalRooms implements Serializable {
                 String pattern = "yyyy-MM-dd";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String fechaReserva = simpleDateFormat.format(reservacion.getFecha());
-                log.info("Reservation params => (idSala = "+reservacion.getIdSala()+") (idSistemaHora = "+reservacion.getIdSistemHora()+") (fechaReserva = "+fechaReserva+")");
+                
                 RoomValidationResponseDTO roomDisponibility = reservacionEJB.validacionSalaEnsayo(reservacion);
-                log.info("Validacion de disponibilidad: ");
-                log.info("Cantidad: "+roomDisponibility.getCant());
-                log.info("Mensaje: "+roomDisponibility.getMensaje());
                 
                 if(roomDisponibility.getCant() == 0){
                     
@@ -229,4 +233,13 @@ public class RehearsalRooms implements Serializable {
     public Date getCurrentDate(){
         return currentDate;
     }
+
+    public List<SistemaHora> getListaHoras() {
+        return listaHoras;
+    }
+
+    public void setListaHoras(List<SistemaHora> listaHoras) {
+        this.listaHoras = listaHoras;
+    }
+    
 }

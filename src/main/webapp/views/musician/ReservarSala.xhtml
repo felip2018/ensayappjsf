@@ -57,12 +57,10 @@
                                         <p:selectOneMenu id="hora" class="form-control" 
                                                          required="true"
                                                          value="#{rehearsalRooms.reservacion.idSistemHora}">
-                                            <f:selectItem itemValue="" itemLabel="-Select"/>
-                                            <f:selectItem itemValue="1" itemLabel="08:00 - 10:00"/>
-                                            <f:selectItem itemValue="2" itemLabel="10:00 - 12:00"/>
-                                            <f:selectItem itemValue="3" itemLabel="12:00 - 02:00"/>
-                                            <f:selectItem itemValue="4" itemLabel="02:00 - 04:00"/>
-                                            <f:selectItem itemValue="5" itemLabel="04:00 - 06:00"/>
+                                            <f:selectItem itemValue="0" itemLabel="-Select"/>
+                                            <f:selectItems value="#{rehearsalRooms.listaHoras}"
+                                                           var="sistemaHora"
+                                                           itemValue="#{sistemaHora.idSistemaHora}" itemLabel="#{sistemaHora.horaInicio} - #{sistemaHora.horaFinalizacion}"/>
                                         </p:selectOneMenu>
                                         <p:message for="hora"/>
                                     </div>
