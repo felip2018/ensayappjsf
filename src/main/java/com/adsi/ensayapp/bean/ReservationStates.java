@@ -20,7 +20,7 @@ public class ReservationStates implements Serializable {
             
     @PostConstruct
     public void init(){
-        listaEstados = estadoReservaEJB.findAll();
+        listaEstados = estadoReservaEJB.findAllToCalendar();
     }
     
     

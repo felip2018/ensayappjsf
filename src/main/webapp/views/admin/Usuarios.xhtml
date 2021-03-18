@@ -81,7 +81,7 @@
 
                                         <p:commandButton update=":formDelete:userDeleteDetail" 
                                                          oncomplete="PF('deleteUserDialog').show()" 
-                                                         icon="fas fa-trash-alt" title="Eliminar"
+                                                         icon="fas fa-trash-alt" title="Inactivar"
                                                          rendered="#{usuario.estadoRegistro == 'Activo'}">
                                             <f:setPropertyActionListener value="#{usuario}" target="#{usuarioBean.usuarioSeleccionado}"/>
                                         </p:commandButton>

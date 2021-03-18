@@ -6,9 +6,11 @@
 package com.adsi.ensayapp.ejb;
 
 import com.adsi.ensayapp.model.EstadoReserva;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,24 @@ public class EstadoReservaFacade extends AbstractFacade<EstadoReserva> implement
 
     public EstadoReservaFacade() {
         super(EstadoReserva.class);
+    }
+
+    @Override
+    public List<EstadoReserva> findAllToCalendar() {
+        List<EstadoReserva> response = null;
+        String consulta;
+        try {
+            consulta = "FROM EstadoReserva er WHERE er.estadoRegistro = 'Activo' AND er.idEstadoReserva IN (2,3,5)";
+            
+            Query query = em.createQuery(consulta);
+            
+            response = query.getResultList();
+            
+        } catch (Exception e) {
+            throw e;
+        }
+        
+        return response;
     }
     
 }

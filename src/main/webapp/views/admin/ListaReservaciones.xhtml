@@ -76,7 +76,7 @@
                                     <p:column headerText="#{msgs['Musician.inicio.table.field2']}">
                                         <p:datePicker value="#{reservacion.fecha}" 
                                                       pattern="dd/MM/yyyy" showTime="false" appendTo="@(body)"  
-                                                      readonly="true"/>
+                                                      readonly="true" disabled="true"/>
                                     </p:column>
 
                                     <p:column filterBy="#{reservacion.idSistemHora}" filterMatchMode="exact" headerText="#{msgs['Musician.inicio.table.field3']}">
@@ -110,7 +110,8 @@
                                     <p:column headerText="Options">
                                         <p:commandButton icon="fas fa-file-invoice-dollar" title="Agregar recargo"
                                                          update=":formRecargo:recargoDetail"
-                                                         oncomplete="PF('recargoDialog').show()">
+                                                         oncomplete="PF('recargoDialog').show()"
+                                                         rendered="#{reservacion.idEstadoReserva == 5}">
                                             <f:setPropertyActionListener value="#{reservacion}" target="#{recargoBean.reservacion}"/>
                                         </p:commandButton>
                                     </p:column>

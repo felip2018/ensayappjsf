@@ -79,7 +79,7 @@
 
                                         <p:commandButton update=":formDelete:spendingDeleteDetail" 
                                                          oncomplete="PF('deleteSpendingDialog').show()" 
-                                                         icon="fas fa-trash-alt" title="Eliminar"
+                                                         icon="fas fa-trash-alt" title="Inactivar"
                                                          rendered="#{gasto.estadoRegistro == 'Activo'}">
                                             <f:setPropertyActionListener value="#{gasto}" target="#{spendings.gasto}"/>
                                         </p:commandButton>

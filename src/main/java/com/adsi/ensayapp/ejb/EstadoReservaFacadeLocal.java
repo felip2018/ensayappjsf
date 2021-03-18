@@ -25,6 +25,8 @@ public interface EstadoReservaFacadeLocal {
     EstadoReserva find(Object id);
 
     List<EstadoReserva> findAll();
+    
+    List<EstadoReserva> findAllToCalendar();
 
     List<EstadoReserva> findRange(int[] range);
 
