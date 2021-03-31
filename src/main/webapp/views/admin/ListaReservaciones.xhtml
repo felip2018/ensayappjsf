@@ -32,15 +32,7 @@
                     <div class="row">
                         <div class="col-12">
                             <h:form>
-                                <p:outputLabel value="#{msgs['Export.data.text']}"/>
-                                <h:commandLink style="margin-left: 5px;">
-                                    <h:graphicImage url="../../resources/img/excelIcon.png" style="width:25px;height:25px;" title="Exporta a Excel"/>
-                                    <p:dataExporter type="xls" target=":formReservationsList:tblReservations" fileName="reservaciones" />
-                                </h:commandLink>
-                                <h:commandLink style="margin-left: 5px;">
-                                    <h:graphicImage url="../../resources/img/pdfIcon.png" style="width:25px;height:25px;" title="Exporta a PDF"/>
-                                    <p:dataExporter type="pdf" target=":formReservationsList:tblReservations" fileName="reservaciones"/>
-                                </h:commandLink>                    
+                                <h:commandButton value="Ver PDF" actionListener="#{reportsBean.verPDF}"/>
                             </h:form>
                         </div>
                         <div class="col-12">
